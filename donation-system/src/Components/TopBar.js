@@ -1,13 +1,11 @@
-import './App.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-function App() {
+function TopBar() {
   return (
-    <div className="App">
-      <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -30,8 +28,7 @@ function App() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-    </div>
   );
 }
 
-export default App;
+export default BasicExample;
