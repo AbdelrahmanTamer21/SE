@@ -5,11 +5,14 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/esm/Button';
 import {UserContext} from './UserContext';
 import {useContext} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 
 function TopBar() {
     const { isLoggedIn, userRole, updateUser } = useContext(UserContext);
+    const navigate = useNavigate();
     const handleLogin = () => {
         updateUser('admin', true);
+        navigate("/Login");
     }
     const handleLogout = () => {
         updateUser(null, false);
@@ -17,7 +20,7 @@ function TopBar() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="#home">Donation System</Navbar.Brand>
+        <Navbar.Brand href="/">Donation System</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
