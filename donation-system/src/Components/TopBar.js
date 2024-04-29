@@ -18,7 +18,7 @@ function TopBar() {
         updateUser(null, false);
     }
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="navbar">
       <Container>
         <Navbar.Brand href="/">Donation System</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -39,7 +39,7 @@ function TopBar() {
                 ) : null}
           </Nav>
           <Nav>
-            <Button variant="primary" onClick={handleLogin}>Login</Button>
+            <Button variant="main" onClick={handleLogin}>Login</Button>
             <Button variant="danger" onClick={handleLogout}>Logout</Button>
           </Nav>
         </Navbar.Collapse>
