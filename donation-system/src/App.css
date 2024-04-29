@@ -1,3 +1,9 @@
+:root{
+  --main-grenn: #438844;
+  --main-brown: #8B4513;
+  --text-color: #FFFFFF;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +41,30 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.navbar {
+  background-color: var(--main-grenn);
+}
+
+.btn-main {
+  --bs-btn-font-weight: 600;
+  --bs-btn-color: var(--bs-white);
+  --bs-btn-bg: var(--main-brown);
+  --bs-btn-border-color: var(--main-brown);
+  --bs-btn-border-radius: .5rem;
+  --bs-btn-hover-color: var(--bs-white);
+  --bs-btn-hover-bg: #{shade-color($--main-brown, 10%)};
+  --bs-btn-hover-border-color: #{shade-color($--main-brown, 10%)};
+  --bs-btn-focus-shadow-rgb: var(----main-brown-rgb);
+  --bs-btn-active-color: var(--bs-btn-hover-color);
+  --bs-btn-active-bg: #{shade-color($--main-brown, 20%)};
+  --bs-btn-active-border-color: #{shade-color($--main-brown, 20%)};
+}
+
+
+
+.navbar a{
+  color: var(--text-color);
 }
