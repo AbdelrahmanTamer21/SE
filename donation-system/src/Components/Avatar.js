@@ -3,10 +3,15 @@ import { Button, Dropdown, DropdownButton, Image } from "react-bootstrap";
 import "./avatar.css";
 import {UserContext} from './UserContext';
 import {useContext, useEffect} from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
 function Avatar() {
     const { isLoggedIn, userRole, updateUser } = useContext(UserContext);
-
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        updateUser(null,false);
+        navigate("/");
+    }
     useEffect(() => {
         if (!isLoggedIn) {
             updateUser(null, false);
@@ -25,7 +30,7 @@ function Avatar() {
                 <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item>
-                    <Button variant="danger" className="w-100" onClick={()=>updateUser(null,false)}>Logout</Button>
+                    <Button variant="danger" onClick={handleLogout} className="w-100" >Logout</Button>
                 </Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
