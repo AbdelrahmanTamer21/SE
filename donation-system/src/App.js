@@ -14,7 +14,6 @@ function App() {
         <Route path='/Login' element={<Login />}></Route>
       </Routes>
       </UserProvider>
-      
     </div>
   );
 }
