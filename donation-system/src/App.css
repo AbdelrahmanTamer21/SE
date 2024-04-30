@@ -68,6 +68,9 @@
   color: white !important;
 }
 
-.navbar a{
-  color: var(--text-color);
+.navbar a:not(.dropdown-item),
+.navbar a:hover:not(.dropdown-item),
+.navbar a:focus:not(.dropdown-item),
+.navbar a:active:not(.dropdown-item){
+  color: var(--text-color) !important;
 }
