@@ -4,6 +4,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 function Login() {
     const navigate = useNavigate();
+    const handleLogin = () => {
+        navigate("/Admin");
+    }
   return (
     <section className="vh-100">
       <Container className="py-5 h-100">
@@ -17,7 +20,7 @@ function Login() {
       src="https://img.freepik.com/premium-vector/print_561236-152.jpg?w=740" 
       alt="Phone image" 
       className="img-fluid" 
-      style={{ width: '50%'}}
+      style={{ width: '50%', borderRadius: '15px'}}
     />
 </Col>
 <Col md={7} lg={5} xl={5} offsetXL={1}>
@@ -47,8 +50,8 @@ function Login() {
               </div>
 
               {/* Submit button */}
-              <Button type="submit" variant="primary" size="lg" block>Sign in</Button>
-              <div> 
+              <Button type="submit" variant="primary" onClick={handleLogin} size="lg" block>Sign in</Button>
+              <div className='p-3'> 
               <Link to="/Registeration">If you're not a user? Register</Link>      
               </div>      
                </Form>
