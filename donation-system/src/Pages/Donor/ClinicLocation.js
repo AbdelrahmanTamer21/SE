@@ -52,4 +52,4 @@ function ClinicLocation(){
         </Card>
       </Container>
     )
-}
+} export default ClinicLocation
