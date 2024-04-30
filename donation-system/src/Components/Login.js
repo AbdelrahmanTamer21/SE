@@ -4,6 +4,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 function Login() {
     const navigate = useNavigate();
+    function handleLogin(){
+      navigate("/Donor")
+    }
   return (
     <section className="vh-100">
       <Container className="py-5 h-100">
@@ -47,7 +50,7 @@ function Login() {
               </div>
 
               {/* Submit button */}
-              <Button type="submit" variant="primary" size="lg" block>Sign in</Button>
+              <Button type="submit" variant="primary" onClick={handleLogin} size="lg" block>Sign in</Button>
               <div> 
               <Link to="/Registeration">If you're not a user? Register</Link>      
               </div>      
