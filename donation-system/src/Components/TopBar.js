@@ -1,11 +1,9 @@
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Button from 'react-bootstrap/esm/Button';
+import {Navbar, NavDropdown, Button} from 'react-bootstrap';
 import {UserContext} from './UserContext';
 import {useContext} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 function TopBar() {
     const { isLoggedIn, userRole, updateUser } = useContext(UserContext);
@@ -39,7 +37,7 @@ function TopBar() {
                 ) : null}
           </Nav>
           <Nav>
-            <Button variant="main" onClick={handleLogin}>Login</Button>
+            <Button variant="" className="btn-brown" onClick={handleLogin}>Login</Button>
             <Button variant="danger" onClick={handleLogout}>Logout</Button>
           </Nav>
         </Navbar.Collapse>

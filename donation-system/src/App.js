@@ -19,7 +19,6 @@ function App() {
         <Route path='/Admin' element={<AdminDashboard />}></Route>
       </Routes>
       </UserProvider>
-      
     </div>
   );
 }
