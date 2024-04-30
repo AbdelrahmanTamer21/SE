@@ -15,15 +15,12 @@ function App() {
       <UserProvider>
       <TopBar />
       <Routes basename="/my-app">
-        <Route path='/' element={<Home/>}></Route>
+      <Route path='/' element={<Home/>}></Route>
         <Route path='/Login' element={<Login />}></Route>
         <Route path='/Registeration' element={<Registeration />}></Route>
         <Route path='/Home' element={<Home />}></Route>
 
         <Route path='/Donor' element={<DonorDashboard />}></Route>
-
-
-
         <Route path='/Admin' element={<AdminDashboard />}></Route>
         
       </Routes>
