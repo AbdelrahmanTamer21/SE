@@ -47,7 +47,11 @@ function SelectDonationItems() {
       {donationItems.length > 0 ? (
         <ul className="donation-item-list d-flex flex-wrap justify-content-start">
           {donationItems.map((item) => (
-            <li key={item.id} className="donation-item mb-3 p-3 border rounded-3" style={{ width: '300px' }}>
+            <li
+              key={item.id}
+              className="donation-item mb-4 p-3 border rounded-3"
+              style={{ width: '300px', margin: '15px' }} // Increased margin for spacing
+            >
               <div className="d-flex align-items-center">
                 <Form.Check
                   type="checkbox"
@@ -56,9 +60,9 @@ function SelectDonationItems() {
                   onChange={(event) => handleItemSelection(event, item.id)}
                   className="me-3"
                 />
-                {item.image && <Image src={item.image} alt={item.name} width={100} height={100} className="me-3" />}
+                {item.image && <Image src={item.image} alt={item.name} width={75} height={75} className="me-3" />}
                 <InputGroup style={{ width: '100px', marginLeft: 'auto' }}>
-                  <InputGroup.Text style={{ marginRight: '5px' }}>Quantity</InputGroup.Text>
+                  <InputGroup.Text style={{ marginLeft: '0px' }}>Quantity</InputGroup.Text>
                   <FormControl
                     type="number"
                     min="1"
@@ -66,7 +70,7 @@ function SelectDonationItems() {
                     onChange={(event) => handleQuantityChange(event, item.id)}
                   />
                 </InputGroup>
-              </div>
+                </div>
             </li>
           ))}
         </ul>
@@ -76,5 +80,7 @@ function SelectDonationItems() {
     </Container>
   );
 }
+
+
 
 export default SelectDonationItems;
