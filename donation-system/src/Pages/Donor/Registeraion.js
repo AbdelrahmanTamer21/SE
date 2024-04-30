@@ -26,6 +26,7 @@ function Registeration() {
               <IoIosPerson className="me-3" size='24'/>
               <Form.Control type='text' placeholder='Last Name' required/>
             </div>
+
             <div className="d-flex flex-row align-items-center mb-4">
               <MdOutlineMail className="me-3" size='24'/>
               <Form.Control type='email' placeholder='E-mail' required/>
