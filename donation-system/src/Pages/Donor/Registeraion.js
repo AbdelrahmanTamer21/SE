@@ -10,7 +10,7 @@ import { FaHome } from "react-icons/fa";
 import { FaCity } from "react-icons/fa";
 import { RiGovernmentFill } from "react-icons/ri";
 
-function Registration() {
+function Registeration() {
   return (
     <Container fluid>
     <Card className='text-black m-5' style={{ borderRadius: '25px' }}>
@@ -28,7 +28,7 @@ function Registration() {
             </div>
             <div className="d-flex flex-row align-items-center mb-4">
               <MdOutlineMail className="me-3" size='24'/>
-              <Form.Control type='email' placeholder='Email' required/>
+              <Form.Control type='email' placeholder='E-mail' required/>
             </div>
             <div className="d-flex flex-row align-items-center mb-4">
               <FaPhone className="me-3" size='24'/>
@@ -52,11 +52,9 @@ function Registration() {
             </div>
             <div className="d-flex flex-row align-items-center mb-4">
               <FaKey className="me-3" size='24'/>
-              <Form.Control type='password' placeholder='Repeat password' required/>
+              <Form.Control type='password' placeholder='Confirm Password' required/>
             </div>
-            <div className='mb-4'>
-              <Form.Check type='checkbox' id='flexCheckDefault' label='Subscribe to our newsletter' />
-            </div>
+           
             <Button className='mb-4' size='lg'>Register</Button>
           </Col>
           <Col md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
@@ -69,4 +67,4 @@ function Registration() {
   );
 }
 
-export default Registration;
+export default Registeration;
