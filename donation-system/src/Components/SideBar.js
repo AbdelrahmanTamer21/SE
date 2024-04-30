@@ -18,10 +18,10 @@ const Sidebar = () => {
         <span className={`sidebar-toggle-icon ${isOpen ? 'open' : 'closed'}`}></span>
       </button>
       <Nav defaultActiveKey="/home" className={`flex-column sidebar ${isOpen ? 'open' : 'closed'}`} style={{ backgroundColor: '#FFFFFF' }}>
-        <Nav.Link href="/home" className="nav-link" style={{ color: '#495057' }} >Home</Nav.Link>
-        <Nav.Link eventKey="link-1" className="nav-link" style={{ color: '#495057' }} >Dashboard</Nav.Link>
-        <Nav.Link eventKey="link-2" className="nav-link" style={{ color: '#495057' }} >Profile</Nav.Link>
-        <Nav.Link eventKey="link-3" className="nav-link" style={{ color: '#495057' }} >Settings</Nav.Link>
+        <Nav.Link href="/home" className="nav-link" style={{ color: '#000000' }}>Home</Nav.Link>
+        <Nav.Link eventKey="link-1" className="nav-link" style={{ color: '#000000' }} >Dashboard</Nav.Link>
+        <Nav.Link eventKey="link-2" className="nav-link" style={{ color: '#000000' }} >Profile</Nav.Link>
+        <Nav.Link eventKey="link-3" className="nav-link" style={{ color: '#000000' }} >Settings</Nav.Link>
       </Nav>
     </>
   );
