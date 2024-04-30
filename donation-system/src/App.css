@@ -48,7 +48,7 @@
   background-color: var(--main-grenn);
 }
 
-.btn-main {
+.btn-bd-main {
   --bs-btn-font-weight: 600;
   --bs-btn-color: var(--bs-white);
   --bs-btn-bg: var(--main-brown);
@@ -63,7 +63,10 @@
   --bs-btn-active-border-color: #{shade-color($--main-brown, 20%)};
 }
 
-
+.btn-brown {
+  background-color: #ca6738 !important;  /* Replace with your preferred brown color code */
+  color: white !important;
+}
 
 .navbar a{
   color: var(--text-color);

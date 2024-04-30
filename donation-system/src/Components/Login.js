@@ -20,7 +20,7 @@ function Login() {
       src="https://img.freepik.com/premium-vector/print_561236-152.jpg?w=740" 
       alt="Phone image" 
       className="img-fluid" 
-      style={{ width: '50%'}}
+      style={{ width: '50%', borderRadius: '15px'}}
     />
 </Col>
 <Col md={7} lg={5} xl={5} offsetXL={1}>
