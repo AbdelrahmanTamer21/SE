@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// Import Bootstrap components
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
 function DonorDashboard() {
@@ -21,10 +20,10 @@ function DonorDashboard() {
   // }, []);
 
   return (
-    <Container fluid className="donor-dashboard">
-      <Row>
-        <Col>
-          <Card className="text-black" style={{ borderRadius: '25px' }}>
+    <Container fluid className="donor-dashboard d-flex justify-content-center align-down-20px min-vh-100">
+      <Row className="justify-content-center"> {/* Center the Row within the container */}
+        <Col xs={0} md={60} lg={120}> {/* Adjust column size for responsiveness */}
+          <Card className="text-black donor-card"> {/* Added custom class */}
             <Card.Header className="d-flex justify-content-center align-items-center">
               <h2 className="m-0">Donor Dashboard</h2>
             </Card.Header>
@@ -45,16 +44,6 @@ function DonorDashboard() {
           </Card>
         </Col>
       </Row>
-
-      {/* Example of customizing font size and spacing (optional): */}
-      <style jsx>{`
-        .custom-title {
-          font-size: 1.5rem; /* Adjust font size as desired */
-        }
-        .donor-details p {
-          margin-bottom: 10px; /* Add spacing between details */
-        }
-      `}</style>
     </Container>
   );
 }
