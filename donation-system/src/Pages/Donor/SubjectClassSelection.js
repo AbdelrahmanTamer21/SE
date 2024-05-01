@@ -1,72 +1,117 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, FormCheck, Card } from 'react-bootstrap';
-import { useNavigate, Link } from 'react-router-dom'; // Add import for useNavigate and Link
-import { UserContext } from '../Components/UserContext'; // Add import for UserContext
-import { useContext } from 'react';
+import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import styles from './SubjectSelection.css';
 
-function SubjectClassSelection() {
-  const { isLoggedIn, userRole, updateUser } = useContext(UserContext);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+function ClassAndSubjectSelection() {
+  const [subjects, setSubjects] = useState([]); // Array to store selected subjects
+  const [numClasses, setNumClasses] = useState(0); // Number of pro-bono classes
+  const [numStudents, setNumStudents] = useState(0); // Number of pro-bono students
 
-  const handleLogin = () => {
-    if (username === "Admin" && password === "123") {
-      updateUser("admin",true);
-      navigate("/Admin");
+  const handleSubjectChange = (event) => {
+    const isChecked = event.target.checked;
+    const subject = event.target.value;
+
+    if (isChecked) {
+      setSubjects([...subjects, subject]);
+    } else {
+      setSubjects(subjects.filter((s) => s !== subject));
     }
   };
 
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+
+    if (name === 'numClasses') {
+      setNumClasses(parseInt(value));
+    } else if (name === 'numStudents') {
+      setNumStudents(parseInt(value));
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Implement logic to submit selection data (e.g., send to server)
+    alert(`Thank you for your willingness to help! You selected: 
+      Subjects: ${subjects.join(', ')}
+      Number of Pro-bono Classes: ${numClasses}
+      Number of Pro-bono Students: ${numStudents}`);
+  };
+
   return (
-    <section className="vh-100">
-      <Container className="py-5 h-100">
-        <Card style={{ padding: '20px' }} className='text-black m-5' borderRadius='25px'>
+    <section className="vh-100 d-flex justify-content-center align-items-center">
+      <Container className="py-5">
+        <Card style={{ padding: '20px' }} className='text-black m-5' borderRadius='5px'>
           <Card.Body style={{ padding: '20px' }}>
+            <h2 className="text-center mb-4">Classes&Subject Selection</h2>
 
-            <Row className="d-flex align-items-center justify-content-center h-100">
+            <Form onSubmit={handleSubmit}>
+              {/* Subject Selection */}
+              <Form.Group className="text-center">
+                <Form.Label className="text-center">
+                  Select Subjects You Can Teach (Choose all that apply):
+                </Form.Label>
+                <div className="d-flex flex-wrap justify-content-center">
+                  <Form.Check
+                    inline
+                    type="checkbox"
+                    id="subjectMath"
+                    value="Math"
+                    label="Math"
+                    onChange={handleSubjectChange}
+                  />
+                  <Form.Check
+                    inline
+                    type="checkbox"
+                    id="subjectScience"
+                    value="Science"
+                    label="Science"
+                    onChange={handleSubjectChange}
+                  />
+                  <Form.Check
+                    inline
+                    type="checkbox"
+                    id="subjectEnglish"
+                    value="English"
+                    label="English"
+                    onChange={handleSubjectChange}
+                  />
+                  {/* Add more checkboxes for other subjects */}
+                </div>
+              </Form.Group>
 
-              <Col md={8} lg={7} xl={6}>
-                <img
-                  src="https://img.freepik.com/premium-vector/print_561236-152.jpg?w=740"
-                  alt="Phone image"
-                  className="img-fluid"
-                  style={{ width: '50%', borderRadius: '15px' }}
+              {/* Number of Classes */}
+              <Form.Group className="text-center" >
+                <Form.Label>How many Pro-bono Classes can you teach?  </Form.Label >
+                <Form.Control
+                  className="text-center"
+                  type="number"
+                  min="0"
+                  name="numClasses"
+                  value={numClasses}
+                  onChange={handleInputChange}
                 />
-              </Col>
-              <Col md={7} lg={5} xl={5} offsetXL={1}>
-                <Form>
-                  {/* Username input */}
-                  <Form>
-                    <Form.Group className="mb-3" controlId="formGroupEmail">
-                      <Form.Label>Username</Form.Label>
-                      <Form.Control type="email" placeholder="Enter Username" onChange={(e) => setUsername(e.target.value)} />
-                    </Form.Group>
+              </Form.Group>
 
+              {/* Number of Students */}
+              <Form.Group className="text-center">
+                <Form.Label className="text-center">
+                  How many Pro-bono Students can you give private tutoring to?
+                </Form.Label>
+                <Form.Control className="text-center"
+                  type="number"
+                  min="0"
+                  name="numStudents"
+                  value={numStudents}
+                  onChange={handleInputChange}
+                />
+              </Form.Group >
 
-                    {/* Password input */}
-                    <Form.Group className="mb-3" controlId="formGroupPassword">
-                      <Form.Label>Password</Form.Label>
-                      <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-                    </Form.Group>
-                  </Form>
-
-                  <div className="d-flex justify-content-around align-items-center mb-4">
-                    {/* Checkbox */}
-                    <FormCheck>
-                      <FormCheck.Input type="checkbox" value="" id="form1Example3" defaultChecked />
-                      <FormCheck.Label for="form1Example3">Remember me</FormCheck.Label>
-                    </FormCheck>
-                    <a href="#!">Forgot password?</a>
-                  </div>
-
-                  {/* Submit button */}
-                  <Button type="submit" variant="primary" onClick={handleLogin} size="lg" block>Sign in</Button>
-                  <div className='p-3'>
-                    <Link to="/Registeration">If you're not a user? Register</Link>
-                  </div>
-                </Form>
-              </Col>
-            </Row>
+              <Button className="text-center" type="submit" variant="primary" size="lg" block >
+                Submit Selection
+              </Button>
+            </Form>
           </Card.Body>
         </Card>
       </Container>
@@ -74,4 +119,4 @@ function SubjectClassSelection() {
   );
 }
 
-export default SubjectClassSelection;
+export default ClassAndSubjectSelection;
