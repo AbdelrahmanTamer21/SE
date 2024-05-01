@@ -4,8 +4,9 @@ import { PiWarehouse } from "react-icons/pi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { MdOutlineMail } from "react-icons/md";
 import { FaKey } from "react-icons/fa";
+import Registration from '../Registration';
 
-function App() {
+function Registration() {
   return (
     <Container fluid>
       <Card className='text-black m-5' style={{ borderRadius: '25px' }}>
@@ -29,6 +30,10 @@ function App() {
                 <FaKey className="me-3" size='24'/>
                 <Form.Control type='password' placeholder='Repeat password' />
               </div>
+              <Form.Group className="mb-4">
+                <Form.Label>Document Upload for Organization Verification</Form.Label>
+                <Form.Control type="file" />
+              </Form.Group>
               <div className='mb-4'>
                 <Form.Check type='checkbox' id='flexCheckDefault' label='Subscribe to our newsletter' />
               </div>
@@ -44,4 +49,4 @@ function App() {
   );
 }
 
-export default App;
+export default Registration;
