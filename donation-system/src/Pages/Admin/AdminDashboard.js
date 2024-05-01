@@ -5,7 +5,6 @@ import {
     Col,
     Card,
 } from 'react-bootstrap';
-import { Chart } from 'chart.js/auto';
 import { Bar } from 'react-chartjs-2';
 import SideBar from '../../Components/SideBar';
 
@@ -29,8 +28,7 @@ const Dashboard = () => {
                 <Col>
                     <Card className='shadow' style={{ borderRadius: 0 }}>
                         <Card.Body>
-                            <h1>Donations Received</h1>
-                            <h2>100</h2>
+                           
                         </Card.Body>
                     </Card>
                 </Col>
