@@ -7,6 +7,8 @@ import {
 } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
 import SideBar from '../../Components/SideBar';
+import { Chart } from 'chart.js';
+import { LinearScale } from 'chart.js/auto'; // Import the LinearScale
 
 
 const Dashboard = () => {
