@@ -1,0 +1,40 @@
+.subject-selection {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ced4da;
+  border-radius: 15px;
+  background-color: #f8f9fa;
+  color: #000;
+  text-align: center;
+}
+
+.subject-selection h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.subject-list {
+  margin-bottom: 20px;
+}
+
+.teaching-options {
+  margin-bottom: 20px;
+}
+
+.teaching-options label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.teaching-options input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 3px;
+}
+
+.teaching-options input[type="number"] {
+  width: 50%;
+}
