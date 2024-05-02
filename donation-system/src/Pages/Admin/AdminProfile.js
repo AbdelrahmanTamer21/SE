@@ -13,7 +13,7 @@ const ProfileCard = () => {
                 <Col md="4" className="gradient-custom text-center text-white" style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem' }}>
                   <img src="https://i.pinimg.com/564x/c0/27/be/c027bec07c2dc08b9df60921dfd539bd.jpg" alt="Avatar" className="img-fluid my-5" style={{ width: '80px',borderRadius: '50%' }} />
                   <h5 style ={{color: 'black'}}> Omar Mosallam </h5>
-                  <p>Web Designer</p>
+                  <p style ={{color: 'black'}}>Web Designer</p>
                   <i className="far fa-edit mb-5" />
                 </Col>
                 <Col md="8">
