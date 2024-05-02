@@ -3,7 +3,7 @@ import { UserProvider } from './Components/UserContext';
 import {Routes, Route } from 'react-router-dom';
 import Login from './Pages/Login';
 import Home from './Pages/Home';
-import Registeration from './Pages/Donor/Registeraion';
+import Registeration from './Pages/Donor/Registeration';
 import DonorDashboard from './Pages/Donor/DonorDashboard';
 import Admin from './Pages/Admin/Admin';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
