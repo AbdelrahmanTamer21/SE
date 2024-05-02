@@ -25,8 +25,7 @@ function Avatar() {
                 <i className="dropdown-icon fas fa-caret-down"></i>
             </Dropdown.Toggle>
             <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                <Dropdown.Item as={Link} to="/AdminProfile">Profile</Dropdown.Item>                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item>
