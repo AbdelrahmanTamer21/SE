@@ -4,9 +4,8 @@ import { PiWarehouse } from "react-icons/pi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { MdOutlineMail } from "react-icons/md";
 import { FaKey } from "react-icons/fa";
-import Registration from '../Registration';
 
-function Registration() {
+function OrganizationRegistration() {
   return (
     <Container fluid>
       <Card className='text-black m-5' style={{ borderRadius: '25px' }}>
@@ -49,4 +48,4 @@ function Registration() {
   );
 }
 
-export default Registration;
+export default OrganizationRegistration;

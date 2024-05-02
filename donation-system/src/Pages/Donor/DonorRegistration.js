@@ -10,7 +10,7 @@ import { FaHome } from "react-icons/fa";
 import { FaCity } from "react-icons/fa";
 import { RiGovernmentFill } from "react-icons/ri";
 
-function Registeration() {
+function DonorRegistration() {
   return (
     <Container fluid>
     <Card className='text-black m-5' style={{ borderRadius: '25px' }}>
@@ -68,4 +68,4 @@ function Registeration() {
   );
 }
 
-export default Registeration;
+export default DonorRegistration;

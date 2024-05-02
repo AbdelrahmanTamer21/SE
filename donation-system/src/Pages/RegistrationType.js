@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import organizationImage from './organization.png';
@@ -8,11 +8,11 @@ function RegistrationPage() {
   const navigate = useNavigate();
 
   const handleOrganizationClick = () => {
-    navigate('/organization/registration');
+    navigate('./Pages/Organization/OrganizationRegistration');
   };
 
   const handleDonorClick = () => {
-    navigate('/donor/registration');
+    navigate('./Pages/Donor/Registeraion');
   };
 
   return (

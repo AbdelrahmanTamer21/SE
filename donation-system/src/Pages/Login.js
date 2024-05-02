@@ -61,7 +61,7 @@ function Login() {
                   {/* Submit button */}
                   <Button type="submit" variant="primary" onClick={handleLogin} size="lg" block>Sign in</Button>
                   <div className='p-3'>
-                    <Link to="/Registeration">If you're not a user? Register</Link>
+                    <Link to="/RegistrationType">If you're not a user? Register</Link>
                   </div>
                 </Form>
               </Col>
