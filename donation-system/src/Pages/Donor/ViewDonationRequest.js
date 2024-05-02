@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // Import Bootstrap components
 import { Container, Row, Col, Card, Button, Form, InputGroup, FormControl } from 'react-bootstrap';
+import styles from './ViewDonationRequest.css';
 
 function ViewDonationRequests() {
   const [donationRequests, setDonationRequests] = useState([]); // Stores list of donation requests
@@ -29,7 +30,7 @@ function ViewDonationRequests() {
       <Row>
         <Col xs={12}>
           <h2>Donation Requests</h2> {/* Heading */}
-          <Form className="mt-3 w-50 mx-auto"> {/* Filter bar with margin adjustments */}
+          <Form className="mt-3 d-flex justify-content-center"> {/* Centered filter bar */}
             <InputGroup size="sm" className="border border-success rounded"> {/* Green border */}
               <FormControl
                 placeholder="Filter by Category"
