@@ -5,6 +5,7 @@ import { UserContext } from './UserContext';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Avatar from './Avatar';
+import { SideBarContext } from './SideBarContext';
 
 function TopBar() {
   const { isLoggedIn } = useContext(UserContext);
@@ -13,8 +14,13 @@ function TopBar() {
     navigate("/Login");
   }
 
+  const { isOpen, toggleSidebar} = useContext(SideBarContext);
+
   return (
     <Navbar expand="lg" className="navbar">
+      <button onClick={toggleSidebar} className={`sidebar-toggle ${isOpen ? 'open' : ''} ms-3`}>
+        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQbMdpEOk1eHL8V9GHwWliqKfwb4V37ZxQZlJTMxIAOBmG674h4" alt="Toggle Sidebar" className="sidebar-toggle-icon" />
+      </button>
       <Container>
         <Navbar.Brand href="/">Donation System</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
