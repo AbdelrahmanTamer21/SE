@@ -4,8 +4,21 @@ import { useNavigate, Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 function Login() {
   const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const handleLogin = () => {
-    navigate("/Admin");
+    if (username === "Admin" && password === "123") {
+      updateUser("admin",true);
+      navigate("/Admin");
+    }
+    if (username === "donor" && password === "123") {
+      updateUser("donor",true);
+      navigate("/Donor");
+    }
+    if (username === "org" && password === "123") {
+      updateUser("organization",true);
+      navigate("/organization");
+    }
   }
   return (
     <section className="vh-100">
@@ -28,14 +41,14 @@ function Login() {
                   {/* Username input */}
                   <Form.Group className="mb-3" controlId="formGroupEmail">
                     <Form.Label>Username</Form.Label>
-                    <Form.Control type="email" placeholder="Enter Username" />
+                    <Form.Control type="email" placeholder="Enter Username" onChange={(e) => setUsername(e.target.value) } />
                   </Form.Group>
 
 
                   {/* Password input */}
                   <Form.Group className="mb-3" controlId="formGroupPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value) } />
                   </Form.Group>
 
                   <div className="d-flex justify-content-around align-items-center mb-4">
