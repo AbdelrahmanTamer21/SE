@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, InputGroup, FormControl, Card, Button, ButtonGroup } from 'react-bootstrap';
-import styles from './ViewDonationRequest.css';
+//import styles from './ViewDonationRequest.css';
 
-function ViewDonationRequests() {
+function ViewDonationRequest() {
   const [donationRequests, setDonationRequests] = useState([]); // Stores list of donation requests
   const [filterCategory, setFilterCategory] = useState(''); // Stores selected filter category
 
@@ -54,7 +54,94 @@ function ViewDonationRequests() {
           </div>
         </Col>
       </Row>
-      <Row className="mt-3">
+      <Card className="mt-3 d-flex justify-content-center col-10 mx-auto border border-success">
+      <Card.Body>
+        <Card.Title>Donation 1</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">Clothes</Card.Subtitle>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
+        <Card.Link href="#">View Details</Card.Link>
+        <Card.Link href="#">Donate</Card.Link>
+      </Card.Body>
+    </Card>
+    <Card className="mt-3 d-flex justify-content-center col-10 mx-auto border border-success">
+      <Card.Body>
+        <Card.Title>Donation 2</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">Toys</Card.Subtitle>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
+        <Card.Link href="#">View Details</Card.Link>
+        <Card.Link href="#">Donate</Card.Link>
+      </Card.Body>
+    </Card>
+    <Card className="mt-3 d-flex justify-content-center col-10 mx-auto border border-success">
+      <Card.Body>
+        <Card.Title>Donation 3</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">Food</Card.Subtitle>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
+        <Card.Link href="#">View Details</Card.Link>
+        <Card.Link href="#">Donate</Card.Link>
+      </Card.Body>
+    </Card>
+    <Card className="mt-3 d-flex justify-content-center col-10 mx-auto border border-success">
+      <Card.Body>
+        <Card.Title>Donation 4</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">School Supplies</Card.Subtitle>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
+        <Card.Link href="#">View Details</Card.Link>
+        <Card.Link href="#">Donate</Card.Link>
+      </Card.Body>
+    </Card>
+    <Card className="mt-3 d-flex justify-content-center col-10 mx-auto border border-success">
+      <Card.Body>
+        <Card.Title>Donation 5</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">Medical Supplies</Card.Subtitle>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
+        <Card.Link href="#">View Details</Card.Link>
+        <Card.Link href="#">Donate</Card.Link>
+      </Card.Body>
+    </Card>
+    <Card className="mt-3 d-flex justify-content-center col-10 mx-auto border border-success">
+      <Card.Body>
+        <Card.Title>Donation 6</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">Clothes</Card.Subtitle>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
+        <Card.Link href="#">View Details</Card.Link>
+        <Card.Link href="#">Donate</Card.Link>
+      </Card.Body>
+    </Card>
+    <Card className="mt-3 d-flex justify-content-center col-10 mx-auto border border-success">
+      <Card.Body>
+        <Card.Title>Donation 7</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">Blood Donations</Card.Subtitle>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
+        <Card.Link href="#">View Details</Card.Link>
+        <Card.Link href="#">Donate</Card.Link>
+      </Card.Body>
+    </Card>
+
+
+    {/* Hassan's Code */}
+    <Row className="mt-3">
         {donationRequests.map((request) => (
           <Col key={request.id} xs={12} sm={6} md={4} lg={3}>
             <Card className="mb-3">
@@ -67,8 +154,9 @@ function ViewDonationRequests() {
           </Col>
         ))}
       </Row>
+
     </Container>
   );
 }
 
-export default ViewDonationRequests;
+export default ViewDonationRequest;
