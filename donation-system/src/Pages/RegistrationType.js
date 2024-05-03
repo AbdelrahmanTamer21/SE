@@ -8,11 +8,11 @@ function RegistrationPage() {
   const navigate = useNavigate();
 
   const handleOrganizationClick = () => {
-    navigate('./Pages/Organization/OrganizationRegistration');
+    navigate('/OrganizationRegistration');
   };
 
   const handleDonorClick = () => {
-    navigate('./Pages/Donor/Registeraion');
+    navigate('/DonorRegistration');
   };
 
   return (
