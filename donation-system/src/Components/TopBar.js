@@ -22,7 +22,7 @@ function TopBar() {
         <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQbMdpEOk1eHL8V9GHwWliqKfwb4V37ZxQZlJTMxIAOBmG674h4" alt="Toggle Sidebar" className="sidebar-toggle-icon" />
       </button>
       <Container>
-        <Navbar.Brand href="/">Donation System</Navbar.Brand>
+        <Navbar.Brand href="/" >Donation System</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

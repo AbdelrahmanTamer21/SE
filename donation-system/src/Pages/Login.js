@@ -1,19 +1,28 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, FormCheck } from 'react-bootstrap';
+import React from 'react';
+import { Container, Row, Col, Form, Button, InputGroup, FormControl, FormLabel, FormCheck } from 'react-bootstrap';
 import { useNavigate, Link } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import { useState } from 'react';
 import { UserContext } from '../Components/UserContext';
 import { useContext } from 'react';
-import Card from 'react-bootstrap/Card';
 
 function Login() {
   const { isLoggedIn, userRole, updateUser } = useContext(UserContext);
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
   const handleLogin = () => {
-    if (username === "Admin" && password === "123") {
-      updateUser("admin",true);
+    if (username === "Mosallam" && password === "123") {
+      updateUser("admin",true,username);
       navigate("/Admin");
+    }
+    if (username === "donor" && password === "123") {
+      updateUser("donor",true);
+      navigate("/Donor");
+    }
+    if (username === "org" && password === "123") {
+      updateUser("organization",true);
+      navigate("/organization");
     }
   }
   return (
@@ -35,19 +44,17 @@ function Login() {
               <Col md={7} lg={5} xl={5} offsetXL={1}>
                 <Form>
                   {/* Username input */}
-                  <Form>
-                    <Form.Group className="mb-3" controlId="formGroupEmail">
-                      <Form.Label>Username</Form.Label>
-                      <Form.Control type="email" placeholder="Enter Username" onChange={(e) => setUsername(e.target.value)} />
-                    </Form.Group>
+                  <Form.Group className="mb-3" controlId="formGroupEmail">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control type="email" placeholder="Enter Username" onChange={(e) => setUsername(e.target.value) } />
+                  </Form.Group>
 
 
-                    {/* Password input */}
-                    <Form.Group className="mb-3" controlId="formGroupPassword">
-                      <Form.Label>Password</Form.Label>
-                      <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
-                    </Form.Group>
-                  </Form>
+                  {/* Password input */}
+                  <Form.Group className="mb-3" controlId="formGroupPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value) } />
+                  </Form.Group>
 
                   <div className="d-flex justify-content-around align-items-center mb-4">
                     {/* Checkbox */}

@@ -64,8 +64,9 @@
 }
 
 .btn-brown {
-  background-color: #ca6738 !important;  /* Replace with your preferred brown color code */
-  color: white !important;
+  background-color: #FFF !important;  /* Replace with your preferred brown color code */
+  color: #438844 !important;
+  font-weight: bold !important;
 }
 
 .navbar a:not(.dropdown-item),
