@@ -24,19 +24,17 @@ function App() {
             <Route path='/Login' element={<Login />}></Route>
             <Route path='/RegistrationType' element={<RegistrationType />}></Route>
             
-            
             <Route path='/Home' element={<Home />}></Route>
 
-
-           
             <Route path = '/OrganizationRegistration' element={<OrganizationRegistration/>}></Route>
-            
             
             <Route path = '/DonorRegistration' element={<DonorRegistration/>}></Route>
 
             <Route path='/Donor' element={<DonorDashboard />}></Route>
-            <Route path='/Admin' element={<AdminDashboard />}></Route>
-            <Route path='/AdminProfile' element={<AdminProfile />}></Route>
+            <Route path='/Admin' element={<Admin />}>
+              <Route path='' element={<AdminDashboard />}></Route>
+              <Route path='/AdminProfile' element={<AdminProfile />}></Route>
+            </Route>
           </Routes>
         </SideBarProvider>
       </UserProvider>
