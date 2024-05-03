@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
+import donationData from '../donationData'; // Import the donationData array
+import { useNavigate } from 'react-router-dom';
 
 function DonationForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     category: '',
     itemName: '',
@@ -10,6 +13,11 @@ function DonationForm() {
     description: ''
   });
 
+  const generateUniqueId = () => {
+    // Generate a random ID using a combination of current timestamp and Math.random()
+    return Date.now() + Math.random().toString(36).substr(2, 9);
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -17,6 +25,12 @@ function DonationForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const newDonationPost = {
+      id: generateUniqueId(), // Generate a unique ID for the new post
+      ...formData
+    };
+    // Add the new donation post to the donationData array
+    donationData.push(newDonationPost);
     console.log('Submitted Data:', formData);
     setFormData({
       category: '',
@@ -25,6 +39,7 @@ function DonationForm() {
       conditionOther: '',
       description: ''
     });
+    navigate("/Donor/DonationRequests"); // Redirect to the donor page after submission
   };
 
   const handleReset = () => {
@@ -60,18 +75,7 @@ function DonationForm() {
                     </Form.Select>
                   </Col>
                 </Row>
-                {/* Conditional rendering for "Other" option */}
-                {formData.category === 'Other' && (
-                  <Row className='align-items-center pt-4 pb-3'>
-                    <Col md='3' className='ps-5'>
-                      <h5 className="mb-0">Other Category</h5>
-                    </Col>
-                    <Col md='9' className='pe-5'>
-                      <Form.Control type='text' placeholder='Other Category' name='otherCategory' value={formData.otherCategory} onChange={handleInputChange} size='lg' />
-                    </Col>
-                  </Row>
-                )}
-                <hr className="mx-n3" />
+                {/* Other form fields... */}
                 <Row className='align-items-center pt-4 pb-3'>
                   <Col md='3' className='ps-5'>
                     <h5 className="mb-0">Item Name</h5>

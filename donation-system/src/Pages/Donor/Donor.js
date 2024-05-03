@@ -9,7 +9,7 @@ import SideBar from '../../Components/SideBar';
 import { SideBarContext } from '../../Components/SideBarContext';
 import { Outlet, Route, Routes } from 'react-router-dom';
 
-const MainPage = () => {
+const DonorPage = () => {
 
     const { isOpen, toggleSidebar } = useContext(SideBarContext);
 
@@ -34,4 +34,4 @@ const MainPage = () => {
     );
 };
 
-export default MainPage;
+export default DonorPage;

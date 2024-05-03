@@ -63,8 +63,8 @@
   --bs-btn-active-border-color: #{shade-color($--main-brown, 20%)};
 }
 
-.btn-brown {
-  background-color: #FFF !important;  /* Replace with your preferred brown color code */
+.btn-main {
+  background-color: white !important;  /* Replace with your preferred brown color code */
   color: #438844 !important;
   font-weight: bold !important;
 }

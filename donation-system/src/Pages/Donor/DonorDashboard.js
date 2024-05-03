@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { SideBarContext } from '../../Components/SideBarContext';
+import { Outlet } from 'react-router-dom';
+import donationData from '../donationData';
 
 function DonorDashboard() {
   const [donorData, setDonorData] = useState({
@@ -24,8 +26,7 @@ function DonorDashboard() {
   // }, []);
 
   return (
-    
-    <Container fluid className="donor-dashboard d-flex justify-content-center align-down-20px min-vh-100">
+    <><Container fluid className="donor-dashboard d-flex justify-content-center align-down-20px min-vh-100">
       <Row className="justify-content-center"> {/* Center the Row within the container */}
         <Col xs={0} md={60} lg={120}> {/* Adjust column size for responsiveness */}
           <Card className="text-black donor-card"> {/* Added custom class */}
@@ -50,6 +51,8 @@ function DonorDashboard() {
         </Col>
       </Row>
     </Container>
+    <Outlet></Outlet>
+    </>
   );
 }
 

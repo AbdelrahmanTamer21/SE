@@ -13,16 +13,16 @@ function Login() {
   const [password, setPassword] = useState('');
   const handleLogin = () => {
     if (username === "Admin" && password === "123") {
-      updateUser("admin",true);
-      navigate("/Admin"); // Change this line
+      updateUser("Admin",true,username);
+      navigate("/Admin");
     }
-    if (username === "Admin" && password === "123") {
-      updateUser("admin",true);
-      navigate("/Admin"); // Change this line
+    if (username === "donor" && password === "123") {
+      updateUser("Donor",true,username);
+      navigate("/Donor");
     }
-    if (username === "Admin" && password === "123") {
-      updateUser("admin",true);
-      navigate("/Admin"); // Change this line
+    if (username === "org" && password === "123") {
+      updateUser("Organization",true,username);
+      navigate("/Organization");
     }
   }
   
