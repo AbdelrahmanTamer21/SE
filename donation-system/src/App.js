@@ -44,7 +44,7 @@ function App() {
               <Route path='/AdminProfile' element={<AdminProfile />}></Route>
               <Route path='Donors' element={<DonorsList />}></Route>
               <Route path='Organizations' element={<OrganizationList />}></Route>
-              <Route path='DonorsInfo' element={<DonorsInfo />}></Route>
+              <Route path='DonorsInfo/:donor_id' element={<DonorsInfo />}></Route>
             </Route>
             <Route path='/Organization' element={<DonationForm />}></Route>
           </Routes>
