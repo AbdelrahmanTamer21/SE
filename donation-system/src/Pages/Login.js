@@ -1,30 +1,31 @@
-import React from 'react';
-import { Container, Row, Col, Form, Button, InputGroup, FormControl, FormLabel, FormCheck } from 'react-bootstrap';
-import { useNavigate, Link } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { Container, Row, Col, Form, Button, FormCheck } from 'react-bootstrap';
+import {Link } from 'react-router-dom';
 import { UserContext } from '../Components/UserContext';
 import { useContext } from 'react';
+import Card from 'react-bootstrap/Card';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+  const navigate = useNavigate(); // Add this line
   const { isLoggedIn, userRole, updateUser } = useContext(UserContext);
-  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const handleLogin = () => {
-    if (username === "Mosallam" && password === "123") {
-      updateUser("admin",true,username);
-      navigate("/Admin");
+    if (username === "Admin" && password === "123") {
+      updateUser("admin",true);
+      navigate("/Admin"); // Change this line
     }
-    if (username === "donor" && password === "123") {
-      updateUser("donor",true);
-      navigate("/Donor");
+    if (username === "Admin" && password === "123") {
+      updateUser("admin",true);
+      navigate("/Admin"); // Change this line
     }
-    if (username === "org" && password === "123") {
-      updateUser("organization",true);
-      navigate("/organization");
+    if (username === "Admin" && password === "123") {
+      updateUser("admin",true);
+      navigate("/Admin"); // Change this line
     }
   }
+  
   return (
     <section className="vh-100">
       <Container className="py-5 h-100">
@@ -68,7 +69,7 @@ function Login() {
                   {/* Submit button */}
                   <Button type="submit" variant="primary" onClick={handleLogin} size="lg" block>Sign in</Button>
                   <div className='p-3'>
-                    <Link to="/Registeration">If you're not a user? Register</Link>
+                    <Link to="/RegistrationType">If you're not a user? Register</Link>
                   </div>
                 </Form>
               </Col>
@@ -78,6 +79,8 @@ function Login() {
       </Container>
     </section>
   );
+
 }
+
 
 export default Login;

@@ -1,0 +1,25 @@
+.donation-requests {
+    padding: 2rem; /* Add padding for spacing */
+    display: flex; /* Make container a flexbox for alignment */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center elements horizontally */
+  }
+  
+  .mt-3 {
+    margin-top: 1.5rem; /* Consistent margin for elements */
+  }
+  
+  .h2 { /* Target heading element (assuming it has class h2) */
+    margin-bottom: 1rem; /* Add space between heading and filter bar */
+    text-align: center; /* Center text of the heading */
+  }
+  
+  .form-group { /* Assuming the filter bar is wrapped in a form-group class */
+    width: fit-content; /* Adjust filter bar width to fit content */
+  }
+  
+  .input-group-sm .form-control { /* Target the input field within the filter bar */
+    padding: 0.5rem 1rem; /* Reduce padding for a smaller input field */
+    font-size: 0.8rem; /* Adjust font size for a smaller look (optional) */
+  }
+  
