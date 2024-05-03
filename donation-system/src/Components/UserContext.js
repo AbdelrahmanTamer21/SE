@@ -7,6 +7,7 @@ const UserProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState(null);
   const [username,setUsername] = useState(null);
+
   // Load user data from localStorage on component mount
   useEffect(() => {
     const storedUserRole = localStorage.getItem('userRole');

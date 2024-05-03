@@ -14,7 +14,9 @@ import DonorRegistration from './Pages/Donor/DonorRegistration';
 import DonorPage from './Pages/Donor/Donor';
 import DonationForm from './Pages/Organization/DonationPosts';
 import ViewDonationRequests from './Pages/Donor/ViewDonationRequest';
-
+import DonorsList from './Pages/Admin/DonorsList';  
+import OrganizationList from './Pages/Admin/OrganizationList';
+import DonorsInfo from './Pages/Admin/DonorsInfo';
 function App() {
   return (
     <div className="App">
@@ -40,6 +42,9 @@ function App() {
             <Route path='/Admin' element={<Admin />}>
               <Route path='' element={<AdminDashboard />}></Route>
               <Route path='/AdminProfile' element={<AdminProfile />}></Route>
+              <Route path='Donors' element={<DonorsList />}></Route>
+              <Route path='Organizations' element={<OrganizationList />}></Route>
+              <Route path='DonorsInfo' element={<DonorsInfo />}></Route>
             </Route>
             <Route path='/Organization' element={<DonationForm />}></Route>
           </Routes>

@@ -12,7 +12,7 @@ function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const handleLogin = () => {
-    if (username === "Admin" && password === "123") {
+    if (username === "admin" && password === "123") {
       updateUser("Admin",true,username);
       navigate("/Admin");
     }
