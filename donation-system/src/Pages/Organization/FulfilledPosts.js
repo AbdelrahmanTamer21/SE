@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Card, Button, Row, Col } from 'react-bootstrap';
 
 function FulfilledDonationPosts() {
   const [fulfilledPosts, setFulfilledPosts] = useState([
@@ -24,7 +25,7 @@ function FulfilledDonationPosts() {
         email: 'jane@example.com',
         phone: '987-654-3210'
       },
-      acknowledged: true,
+      acknowledged: false,
       showDetails: false
     }
   ]);
@@ -45,34 +46,42 @@ function FulfilledDonationPosts() {
     setFulfilledPosts(updatedPosts);
   };
 
+  // Function to delete a donation post
+  const deletePost = (id) => {
+    const updatedPosts = fulfilledPosts.filter(post => post.id !== id);
+    setFulfilledPosts(updatedPosts);
+  };
+
   return (
     <div>
       <h2>Fulfilled Donation Posts</h2>
-      <div>
-        <h3>Details of Fulfilled Donation Posts:</h3>
-        <ul>
-          {fulfilledPosts.map(post => (
-            <li key={post.id}>
-              <h4>{post.itemName}</h4>
-              <p>{post.description}</p>
-              <button onClick={() => toggleDetails(post.id)}>
-                {post.showDetails ? 'Hide Donor Details' : 'View Donor Details'}
-              </button>
-              {post.showDetails && (
-                <div>
-                  <p>Donor: {post.donor.name}</p>
-                  <p>Email: {post.donor.email}</p>
-                  <p>Phone: {post.donor.phone}</p>
-                </div>
-              )}
-              <p>Acknowledged: {post.acknowledged ? 'Yes' : 'No'}</p>
-              {!post.acknowledged && (
-                <button onClick={() => acknowledgeContribution(post.id)}>Acknowledge</button>
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <Row>
+        {fulfilledPosts.map(post => (
+          <Col key={post.id} xs={12} md={6} lg={4}>
+            <Card className="mb-3">
+              <Card.Body>
+                <Card.Title>{post.itemName}</Card.Title>
+                <Card.Text>{post.description}</Card.Text>
+                <Button variant="primary" onClick={() => toggleDetails(post.id)}>
+                  {post.showDetails ? 'Hide Donor Details' : 'View Donor Details'}
+                </Button>
+                <Button variant="danger" onClick={() => deletePost(post.id)}>Delete</Button>
+                {post.showDetails && (
+                  <div>
+                    <p>Donor: {post.donor.name}</p>
+                    <p>Email: {post.donor.email}</p>
+                    <p>Phone: {post.donor.phone}</p>
+                  </div>
+                )}
+                <p>Acknowledged: {post.acknowledged ? 'Yes' : 'No'}</p>
+                {!post.acknowledged && (
+                  <Button variant="success" onClick={() => acknowledgeContribution(post.id)}>Acknowledge</Button>
+                )}
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
     </div>
   );
 }
