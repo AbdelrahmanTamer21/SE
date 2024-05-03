@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import OrganizationData from "../OrganizationData";
 import Table from 'react-bootstrap/Table';
 

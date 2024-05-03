@@ -1,20 +1,12 @@
-import React, { useRef, useContext } from 'react';
 import {
-    Container,
     Row,
     Col,
     Card,
 } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
-import SideBar from '../../Components/SideBar';
-import { SideBarContext } from '../../Components/SideBarContext';
-import { Chart } from 'chart.js';
-import { LinearScale } from 'chart.js/auto';
 
 
 const Dashboard = () => {
-
-    const { isOpen, toggleSidebar } = useContext(SideBarContext);
 
     const data = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],

@@ -1,17 +1,16 @@
-import React, { useRef, useContext } from 'react';
+import React, { useContext } from 'react';
 import {
     Container,
     Row,
-    Col,
-    Card,
+    Col
 } from 'react-bootstrap';
 import SideBar from '../../Components/SideBar';
 import { SideBarContext } from '../../Components/SideBarContext';
-import { Outlet, Route, Routes } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 const DonorPage = () => {
 
-    const { isOpen, toggleSidebar } = useContext(SideBarContext);
+    const { isOpen } = useContext(SideBarContext);
 
     return (
         <Container fluid className="p-0 h-100">

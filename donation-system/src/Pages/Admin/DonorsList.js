@@ -7,32 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { Container } from "react-bootstrap";
 
 
-const data = [
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-    },
-    {
-        key: '2',
-        name: 'Joe Black',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-    },
-    {
-        key: '3',
-        name: 'Jim Green',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-    },
-    {
-        key: '4',
-        name: 'Jim Red',
-        age: 32,
-        address: 'London No. 2 Lake Park',
-    },
-];
 function DonorsList() {
     const navigate = useNavigate();
 
@@ -40,32 +14,6 @@ function DonorsList() {
         console.log(donor_id);
         navigate(`/Admin/DonorsInfo/${donor_id}`);
     }
-
-    // return (
-    //     <div>
-    //         <h1>Donors List</h1>
-    //         <Table striped bordered hover size=" sm">
-    //             <thead>
-    //                 <tr>
-    //                     <th>#</th>
-    //                     <th>First Name</th>
-    //                     <th >Last Name</th>
-    //                     <th>Email</th>                  
-    //               </tr>
-    //             </thead>
-    //             <tbody>
-    //                 {DonorsData.map((donor, index) => (
-    //                     <tr key={index} onClick={() => handleRowClick(donor.donor_id)}>
-    //                         <td>{index + 1}</td>
-    //                         <td>{donor.first_name}</td>
-    //                         <td>{donor.last_name}</td>
-    //                         <td>{donor.email}</td>
-    //                     </tr>
-    //                 ))}
-    //             </tbody>
-    //         </Table>
-    //     </div>
-    // );
 
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
@@ -205,11 +153,26 @@ function DonorsList() {
             sortDirections: ['descend', 'ascend'],
         }
     ];
+
+    const rowSelection = {
+        onChange: (selectedRowKeys, selectedRows) => {
+          console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+        },
+        onSelect: (record, selected, selectedRows) => {
+          console.log(record, selected, selectedRows);
+        },
+        onSelectAll: (selected, selectedRows, changeRows) => {
+          console.log(selected, selectedRows, changeRows);
+        },
+      };
     return (
         <Container className="pt-3">
             <h1>Donors List</h1>
             <Table className="mt-4"
                 columns={columns}
+                rowSelection={{
+                    ...rowSelection
+                }}
                 dataSource={DonorsData}
                 onRow={(record, rowIndex) => {
                     return {

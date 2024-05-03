@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Dropdown, DropdownButton, Image } from "react-bootstrap";
+import { Button, Dropdown, Image } from "react-bootstrap";
 import "./avatar.css";
 import {UserContext} from './UserContext';
 import {useContext, useEffect} from 'react';

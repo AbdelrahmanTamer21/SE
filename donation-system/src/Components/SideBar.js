@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Nav } from 'react-bootstrap';
 import { SideBarContext } from './SideBarContext';
 import { UserContext } from './UserContext';
@@ -10,7 +10,7 @@ const Sidebar = () => {
 
   const { userRole } = useContext(UserContext);
 
-  const { isOpen, toggleSidebar } = useContext(SideBarContext);
+  const { isOpen } = useContext(SideBarContext);
 
   return (
     <>

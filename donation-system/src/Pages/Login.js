@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const navigate = useNavigate(); // Add this line
-  const { isLoggedIn, userRole, updateUser } = useContext(UserContext);
+  const { updateUser } = useContext(UserContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const handleLogin = () => {
@@ -37,7 +37,7 @@ function Login() {
               <Col md={8} lg={7} xl={6}>
                 <img
                   src="https://img.freepik.com/premium-vector/print_561236-152.jpg?w=740"
-                  alt="Phone image"
+                  alt="Phone"
                   className="img-fluid"
                   style={{ width: '50%', borderRadius: '15px' }}
                 />
