@@ -1,4 +1,4 @@
-const donationData = [
+let donationData = [
     {
       id: 1,
       category: 'Clothing',

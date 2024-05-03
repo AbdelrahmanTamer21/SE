@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Row, Col, Card, CardBody} from 'react-bootstrap';
+import { UserContext } from '../../Components/UserContext';
 
 
 const ProfileCard = () => {
+  const { username } = useContext(UserContext);
+
   return (
     <section className="vh-100" style={{ backgroundColor: '#f4f5f7' }}>
       <Container className="py-5 h-100">
@@ -12,7 +15,7 @@ const ProfileCard = () => {
               <Row className="g-0">
                 <Col md="4" className="gradient-custom text-center text-white" style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem' }}>
                   <img src="https://i.pinimg.com/564x/c0/27/be/c027bec07c2dc08b9df60921dfd539bd.jpg" alt="Avatar" className="img-fluid my-5" style={{ width: '80px',borderRadius: '50%' }} />
-                  <h5 style ={{color: 'black'}}> Omar Mosallam </h5>
+                  <h5 style ={{color: 'black'}}> {username} </h5>
                   <p style ={{color: 'black'}}>Web Designer</p>
                   <i className="far fa-edit mb-5" />
                 </Col>

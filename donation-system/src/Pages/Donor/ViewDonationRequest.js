@@ -1,8 +1,9 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import donationData from './Pages/donationData'; 
+import donationData from '../donationData'; 
 
 function ViewDonationRequests() {
+  console.log(donationData);
   return (
     <Container fluid>
       <Row className='justify-content-center align-items-center'>

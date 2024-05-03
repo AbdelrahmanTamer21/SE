@@ -11,7 +11,9 @@ import AdminProfile from './Pages/Admin/AdminProfile';
 import { SideBarProvider } from './Components/SideBarContext';
 import OrganizationRegistration from './Pages/Organization/OrgRegistration';
 import DonorRegistration from './Pages/Donor/DonorRegistration';
-
+import DonorPage from './Pages/Donor/Donor';
+import DonationForm from './Pages/Organization/DonationPosts';
+import ViewDonationRequests from './Pages/Donor/ViewDonationRequest';
 
 function App() {
   return (
@@ -30,11 +32,15 @@ function App() {
             
             <Route path = '/DonorRegistration' element={<DonorRegistration/>}></Route>
 
-            <Route path='/Donor' element={<DonorDashboard />}></Route>
+            <Route path='/Donor' element={<DonorPage />}>
+              <Route path='' element={<DonorDashboard />}></Route>
+              <Route path='DonationRequests' element={<ViewDonationRequests />}></Route>
+            </Route>
             <Route path='/Admin' element={<Admin />}>
               <Route path='' element={<AdminDashboard />}></Route>
               <Route path='/AdminProfile' element={<AdminProfile />}></Route>
             </Route>
+            <Route path='/Organization' element={<DonationForm />}></Route>
           </Routes>
         </SideBarProvider>
       </UserProvider>

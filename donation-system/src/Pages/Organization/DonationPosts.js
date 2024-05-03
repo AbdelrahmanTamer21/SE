@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-import donationData from './Pages/donationData'; // Import the donationData array
+import donationData from '../donationData'; // Import the donationData array
+import { useNavigate } from 'react-router-dom';
 
 function DonationForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     category: '',
     itemName: '',
@@ -37,6 +39,7 @@ function DonationForm() {
       conditionOther: '',
       description: ''
     });
+    navigate("/Donor/DonationRequests"); // Redirect to the donor page after submission
   };
 
   const handleReset = () => {
