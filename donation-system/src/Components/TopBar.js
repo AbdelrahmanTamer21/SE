@@ -14,19 +14,21 @@ function TopBar() {
     navigate("/Login");
   }
 
-  const { isOpen, toggleSidebar} = useContext(SideBarContext);
+  const { isOpen, toggleSidebar } = useContext(SideBarContext);
 
   return (
     <Navbar expand="lg" className="navbar">
-      <button onClick={toggleSidebar} className={`sidebar-toggle ${isOpen ? 'open' : ''} ms-3`}>
-        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQbMdpEOk1eHL8V9GHwWliqKfwb4V37ZxQZlJTMxIAOBmG674h4" alt="Toggle Sidebar" className="sidebar-toggle-icon" />
-      </button>
+      {isLoggedIn === true ? (
+        <button onClick={toggleSidebar} className={`sidebar-toggle ${isOpen ? 'open' : ''} ms-3`}>
+          <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQbMdpEOk1eHL8V9GHwWliqKfwb4V37ZxQZlJTMxIAOBmG674h4" alt="Toggle Sidebar" className="sidebar-toggle-icon" />
+        </button>
+      ) : null}
       <Container>
         <Navbar.Brand href="/">Donation System</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            {isLoggedIn===true ? (
+            {isLoggedIn === true ? (
               <><Nav.Link href="#home">Home</Nav.Link><Nav.Link href="#link">Link</Nav.Link><NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
@@ -40,7 +42,7 @@ function TopBar() {
               </NavDropdown></>
             ) : null}
           </Nav>
-          {isLoggedIn===true ? (
+          {isLoggedIn === true ? (
             <Avatar />
           ) : <Nav>
             <Button variant="" className="btn-brown" onClick={handleLogin}>Login</Button>

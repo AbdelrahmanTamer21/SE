@@ -5,8 +5,9 @@ import Login from './Pages/Login';
 import Home from './Pages/Home';
 import RegistrationType from './Pages/RegistrationType';
 import DonorDashboard from './Pages/Donor/DonorDashboard';
+import Admin from './Pages/Admin/Admin';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
-import AdminProfile from './Pages/Admin/AdminProfile'; 
+import AdminProfile from './Pages/Admin/AdminProfile';
 import { SideBarProvider } from './Components/SideBarContext';
 import OrganizationRegistration from './Pages/Organization/OrgRegistration';
 import DonorRegistration from './Pages/Donor/DonorRegistration';
@@ -19,7 +20,7 @@ function App() {
         <SideBarProvider>
           <TopBar />
           <Routes basename="/my-app">
-            <Route path='/' element={<Home />}></Route>
+            <Route path='/' element={<Home />}></Route>``
             <Route path='/Login' element={<Login />}></Route>
             <Route path='/RegistrationType' element={<RegistrationType />}></Route>
             
