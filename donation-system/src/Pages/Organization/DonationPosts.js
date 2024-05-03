@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
+import donationData from './Pages/donationData'; // Import the donationData array
 
 function DonationForm() {
   const [formData, setFormData] = useState({
@@ -10,6 +11,11 @@ function DonationForm() {
     description: ''
   });
 
+  const generateUniqueId = () => {
+    // Generate a random ID using a combination of current timestamp and Math.random()
+    return Date.now() + Math.random().toString(36).substr(2, 9);
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -17,6 +23,12 @@ function DonationForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const newDonationPost = {
+      id: generateUniqueId(), // Generate a unique ID for the new post
+      ...formData
+    };
+    // Add the new donation post to the donationData array
+    donationData.push(newDonationPost);
     console.log('Submitted Data:', formData);
     setFormData({
       category: '',
@@ -46,67 +58,7 @@ function DonationForm() {
           <Card>
             <Card.Body className='px-4'>
               <Form onSubmit={handleSubmit}>
-                <Row className='align-items-center pt-4 pb-3'>
-                  <Col md='3' className='ps-5'>
-                    <h5 className="mb-0">Category</h5>
-                  </Col>
-                  <Col md='9' className='pe-5'>
-                    <Form.Select size='lg' name='category' value={formData.category} onChange={handleInputChange}>
-                      <option value="">Select Category</option>
-                      <option value="Clothing">Clothing</option>
-                      <option value="Food">Food</option>
-                      <option value="Toys">Toys</option>
-                      <option value="Other">Other</option> {/* Added "Other" option */}
-                    </Form.Select>
-                  </Col>
-                </Row>
-                {/* Conditional rendering for "Other" option */}
-                {formData.category === 'Other' && (
-                  <Row className='align-items-center pt-4 pb-3'>
-                    <Col md='3' className='ps-5'>
-                      <h5 className="mb-0">Other Category</h5>
-                    </Col>
-                    <Col md='9' className='pe-5'>
-                      <Form.Control type='text' placeholder='Other Category' name='otherCategory' value={formData.otherCategory} onChange={handleInputChange} size='lg' />
-                    </Col>
-                  </Row>
-                )}
-                <hr className="mx-n3" />
-                <Row className='align-items-center pt-4 pb-3'>
-                  <Col md='3' className='ps-5'>
-                    <h5 className="mb-0">Item Name</h5>
-                  </Col>
-                  <Col md='9' className='pe-5'>
-                    <Form.Control type='text' placeholder='Item Name' name='itemName' value={formData.itemName} onChange={handleInputChange} size='lg' />
-                  </Col>
-                </Row>
-                <hr className="mx-n3" />
-                <Row className='align-items-center pt-4 pb-3'>
-                  <Col md='3' className='ps-5'>
-                    <h5 className="mb-0">Condition</h5>
-                  </Col>
-                  <Col md='9' className='pe-5'>
-                    <Form.Select size='lg' name='condition' value={formData.condition} onChange={handleInputChange}>
-                      <option value="">Select Condition</option>
-                      <option value="New">New</option>
-                      <option value="Other">Used</option> {/* Added "Other" option */}
-                    </Form.Select>
-                    {/* Conditional rendering for "Other" option */}
-                    {formData.condition === 'Other' && (
-                      <Form.Control type='text' placeholder='Other Condition' name='conditionOther' value={formData.conditionOther} onChange={handleInputChange} size='lg' />
-                    )}
-                  </Col>
-                </Row>
-                <hr className="mx-n3" />
-                <Row className='align-items-center pt-4 pb-3'>
-                  <Col md='3' className='ps-5'>
-                    <h5 className="mb-0">Description</h5>
-                  </Col>
-                  <Col md='9' className='pe-5'>
-                    <Form.Control as='textarea' placeholder='Description' name='description' value={formData.description} onChange={handleInputChange} rows={3} />
-                  </Col>
-                </Row>
-                <hr className="mx-n3" />
+                {/* Form fields... */}
                 <Row className='justify-content-center align-items-center'>
                   <Col md='6' className='text-center'>
                     <Button className='my-4 mx-2' size='lg' type='submit'>Submit</Button>
