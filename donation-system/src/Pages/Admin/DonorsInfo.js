@@ -4,7 +4,7 @@ import DonorsData from "../DonorsData"
 function DonorsInfo() {
     const navigate = useNavigate();
     const { donor_id } = useParams();
-    const donor = DonorsData.find(donor => donor.donor_id == donor_id);
+    const donor = DonorsData.find(donor => donor.donor_id === Number(donor_id));
     
     const goBack = () => {
         navigate('/Admin/Donors');

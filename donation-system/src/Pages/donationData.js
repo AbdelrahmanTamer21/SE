@@ -13,6 +13,34 @@ let donationData = [
       condition: 'New',
       description: 'Various canned goods and non-perishable food items.'
     },
+    {
+      id: 3,
+      category: 'Medical Supplies',
+      itemName: 'Canned goods and non-perishable items',
+      condition: 'New',
+      description: 'Various canned goods and non-perishable food items.'
+    },
+    {
+      id: 4,
+      category: 'Toys',
+      itemName: 'Canned goods and non-perishable items',
+      condition: 'New',
+      description: 'Various canned goods and non-perishable food items.'
+    },
+    {
+      id: 5,
+      category: 'Blood Donations',
+      itemName: 'Canned goods and non-perishable items',
+      condition: 'New',
+      description: 'Various canned goods and non-perishable food items.'
+    },
+    {
+      id: 6,
+      category: 'School Supplies',
+      itemName: 'Canned goods and non-perishable items',
+      condition: 'New',
+      description: 'Various canned goods and non-perishable food items.'
+    },
     
   ];
   

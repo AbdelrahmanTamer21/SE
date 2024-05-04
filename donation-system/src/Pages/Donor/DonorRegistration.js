@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-import { PiWarehouse } from "react-icons/pi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { MdOutlineMail } from "react-icons/md";
 import { FaKey } from "react-icons/fa";

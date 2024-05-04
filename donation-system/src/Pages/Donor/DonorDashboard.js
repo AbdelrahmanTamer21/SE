@@ -1,8 +1,6 @@
-import React, { useState, useContext } from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import { SideBarContext } from '../../Components/SideBarContext';
+import React, { useState } from 'react';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
-import donationData from '../donationData';
 
 function DonorDashboard() {
   const [donorData, setDonorData] = useState({
@@ -12,18 +10,12 @@ function DonorDashboard() {
     address: 'Tagamoa 1, Banafseg 3, Villa 175', // Example address
   }); // Stores donor information with example data
 
-
-  const { isOpen, toggleSidebar } = useContext(SideBarContext);
-
-  // Replace with your actual API call to fetch donor data
-  // useEffect(() => {
-  //   const fetchDonorData = async () => {
-  //     const response = await fetch('/api/donors/me'); // Replace with your API endpoint
-  //     const data = await response.json();
-  //     setDonorData(data);
-  //   };
-  //   fetchDonorData();
-  // }, []);
+  setDonorData({
+    name: 'Hassan Khaled',
+    email: 'hassankhaledxx@gmail.com',
+    phone: '+201205022226',
+    address: 'Tagamoa 1, Banafseg 3, Villa 175', // Example address
+  });
 
   return (
     <><Container fluid className="donor-dashboard d-flex justify-content-center align-down-20px min-vh-100">
