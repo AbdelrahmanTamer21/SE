@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const navigate = useNavigate(); // Add this line
+  const navigate = useNavigate(); 
   const { updateUser } = useContext(UserContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

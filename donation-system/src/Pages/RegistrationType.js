@@ -17,8 +17,7 @@ function RegistrationPage() {
 
   return (
     <Container>
-      <h1 className="text-center my-5">Register</h1>
-      <Row className="justify-content-center">
+      <Row className="justify-content-center mt-5" >
         <Col md={4} className="mb-4">
           <Card style={{ width: '20rem', border: '2px solid #000', borderRadius: '10px' }}>
             <Card.Img variant="top" src={organizationImage} />
