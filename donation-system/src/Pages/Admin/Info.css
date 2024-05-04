@@ -1,0 +1,26 @@
+
+.nav-item .nav-link {
+    color: black;
+}
+
+.nav-item .nav-link:hover, .nav-item .nav-link.active, .nav-item .nav-link:focus {
+    color: white;
+    background-color: #438844;
+}
+
+
+.tab-content {
+    width: 75vw;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.backIcon{
+    margin-top: 0.8rem !important;
+    font-size: 20px !important;
+}
+.backIcon:hover{
+    font-size: 22px !important;
+    margin-top: 0.75rem !important;
+    cursor:  pointer;
+}
