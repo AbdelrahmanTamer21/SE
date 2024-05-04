@@ -1,11 +1,10 @@
 import './App.css';
 
-import { UserProvider, UserContext } from './Components/UserContext';
+import { UserProvider } from './Components/UserContext';
 import TopBar from './Components/TopBar';
 import { SideBarProvider } from './Components/SideBarContext';
-import { useContext } from 'react';
 
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Home from './Pages/Home';
 import Login from './Pages/Login';

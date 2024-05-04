@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
 
 function DonorDashboard() {
-  const [donorData, setDonorData] = useState({
-    name: 'Hassan Khaled',
-    email: 'hassankhaledxx@gmail.com',
-    phone: '+201205022226',
-    address: 'Tagamoa 1, Banafseg 3, Villa 175', // Example address
-  }); // Stores donor information with example data
+  const [donorData, setDonorData] = useState({}); // Stores donor information with example data
 
-  setDonorData({
-    name: 'Hassan Khaled',
-    email: 'hassankhaledxx@gmail.com',
-    phone: '+201205022226',
-    address: 'Tagamoa 1, Banafseg 3, Villa 175', // Example address
-  });
+  useEffect(() => {
+    setDonorData(
+      {
+        name: 'Hassan Khaled',
+        email: 'hassankhaledxx@gmail.com',
+        phone: '+201205022226',
+        address: 'Tagamoa 1, Banafseg 3, Villa 175', // Example address
+      }
+    );
+  }, []);
+
 
   return (
     <><Container fluid className="donor-dashboard d-flex justify-content-center align-down-20px min-vh-100">
@@ -43,7 +43,7 @@ function DonorDashboard() {
         </Col>
       </Row>
     </Container>
-    <Outlet></Outlet>
+      <Outlet></Outlet>
     </>
   );
 }

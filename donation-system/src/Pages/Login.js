@@ -11,16 +11,16 @@ function Login() {
   const { updateUser } = useContext(UserContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const handleLogin = () => {
+  const handleLogin = (event) => {
+    event.preventDefault();
     if (username === "admin" && password === "123") {
       updateUser("Admin",true,username);
       navigate("/Admin");
-    }
-    if (username === "donor" && password === "123") {
+    }else if (username === "donor" && password === "123") {
+      console.log("Donor");
       updateUser("Donor",true,username);
       navigate("/Donor");
-    }
-    if (username === "org" && password === "123") {
+    }else if (username === "org" && password === "123") {
       updateUser("Organization",true,username);
       navigate("/Organization");
     }
@@ -67,7 +67,7 @@ function Login() {
                   </div>
 
                   {/* Submit button */}
-                  <Button type="submit" variant="primary" onClick={handleLogin} size="lg" block>Sign in</Button>
+                  <Button type="submit" variant="primary" onClick={(event)=>handleLogin(event)} size="lg" block>Sign in</Button>
                   <div className='p-3'>
                     <Link to="/RegistrationType">If you're not a user? Register</Link>
                   </div>

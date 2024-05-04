@@ -4,11 +4,11 @@ import {
     Card,
 } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
-import { Chart  } from 'chart.js';
-import { LinearScale } from 'chart.js/auto';
+import { Chart, CategoryScale } from 'chart.js/auto';
 
 const Dashboard = () => {
 
+    Chart.register(CategoryScale);
     const data = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [
