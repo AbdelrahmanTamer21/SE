@@ -11,12 +11,12 @@ const ProfileCard = () => {
       <Container className="py-5 h-100">
         <Row className="d-flex justify-content-center align-items-center h-100">
           <Col lg="6" mb="4" mb-lg="0">
-            <Card className="mb-3" style={{ borderRadius: '.5rem' }}>
+            <Card className="mb-3 rounded-3">
               <Row className="g-0">
                 <Col md="4" className="gradient-custom text-center text-white" style={{ borderTopLeftRadius: '.5rem', borderBottomLeftRadius: '.5rem' }}>
-                  <img src="https://i.pinimg.com/564x/c0/27/be/c027bec07c2dc08b9df60921dfd539bd.jpg" alt="Avatar" className="img-fluid my-5" style={{ width: '80px',borderRadius: '50%' }} />
+                  <img src="https://i.pinimg.com/564x/c0/27/be/c027bec07c2dc08b9df60921dfd539bd.jpg" alt="Avatar" className="img-fluid my-5 rounded-circle" style={{ width: '80px'}} />
                   <h5 style ={{color: 'black'}}> {username} </h5>
-                  <p style ={{color: 'black'}}></p>
+                  <p style ={{color: 'black'}}>Web Dev</p>
                   <i className="far fa-edit mb-5" />
                 </Col>
                 <Col md="8">

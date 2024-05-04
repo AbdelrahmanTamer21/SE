@@ -17,7 +17,6 @@ function Login() {
       updateUser("Admin",true,username);
       navigate("/Admin");
     }else if (username === "donor" && password === "123") {
-      console.log("Donor");
       updateUser("Donor",true,username);
       navigate("/Donor");
     }else if (username === "org" && password === "123") {
@@ -29,7 +28,7 @@ function Login() {
   return (
     <section className="vh-100">
       <Container className="py-5 h-100">
-        <Card style={{ padding: '20px' }} className='text-black m-5' borderRadius='25px'>
+        <Card style={{ padding: '20px' }} className='text-black m-5'>
           <Card.Body style={{ padding: '20px' }}>
 
             <Row className="d-flex align-items-center justify-content-center h-100">
@@ -38,11 +37,10 @@ function Login() {
                 <img
                   src="https://img.freepik.com/premium-vector/print_561236-152.jpg?w=740"
                   alt="Phone"
-                  className="img-fluid"
-                  style={{ width: '50%', borderRadius: '15px' }}
+                  className="img-fluid rounded-3 w-50"
                 />
               </Col>
-              <Col md={7} lg={5} xl={5} offsetXL={1}>
+              <Col md={7} lg={5} xl={5}>
                 <Form>
                   {/* Username input */}
                   <Form.Group className="mb-3" controlId="formGroupEmail">
