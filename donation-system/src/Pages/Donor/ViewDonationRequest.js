@@ -142,15 +142,27 @@ function ViewDonationRequest() {
             dataIndex: 'category',
             key: 'category',
             width: '30%',
-            ...getColumnSearchProps('category'),
+            filters: [
+                { text: 'Clothing', value: 'Clothing' },
+                { text: 'Food', value: 'Food' },
+                { text: 'Toys', value: 'Toys' },
+                { text: 'Medical Supplies', value: 'Medical Supplies' },
+                { text: 'Blood Donations', value: 'Blood Donations' },
+                { text: 'School Supplies', value: 'School Supplies' },
+            ],
+            filterSearch: true,
+            onFilter: (value, record) => record.category.startsWith(value),
         },
         {
             title: 'Condition',
             dataIndex: 'condition',
             key: 'condition',
-            ...getColumnSearchProps('condition'),
-            //sorter: (a, b) => a.email.length - b.email.length,
-            //sortDirections: ['descend', 'ascend'],
+            filters: [
+                { text: 'New', value: 'New' },
+                { text: 'Used', value: 'Used' },
+            ],
+            filterSearch: true,
+            onFilter: (value, record) => record.condition.startsWith(value),
         }
     ];
 

@@ -17,6 +17,8 @@ import DonorDashboard from './Pages/Donor/DonorDashboard';
 import DonorRegistration from './Pages/Donor/DonorRegistration';
 import ViewDonationRequests from './Pages/Donor/ViewDonationRequest';
 import DonationInfo from './Pages/Donor/DonationsInfo';
+import VolunteerRoleSelection from './Pages/Donor/VolunteerRoleSelection';
+import DocumentUpload from './Pages/Donor/DocumentUpload';
 
 import Admin from './Pages/Admin/Admin';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
@@ -50,6 +52,8 @@ function App() {
               <Route path='' element={<DonorDashboard />}></Route>
               <Route path='DonationRequests' element={<ViewDonationRequests />}></Route>
               <Route path='Donationsinfo/:id' element={<DonationInfo />}></Route>
+              <Route path='VolunteerSelection' element={<VolunteerRoleSelection />}></Route>
+              <Route path='DocumentUpload' element={<DocumentUpload />}></Route>
             </Route>
             <Route path='/Admin' element={<Admin />}>
               <Route path='' element={<AdminDashboard />}></Route>
