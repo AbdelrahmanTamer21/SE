@@ -1,73 +1,187 @@
-import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import donationData from '../donationData'; 
+import React, { useState, useRef } from "react";
+import donationData from "../donationData";
+import { SearchOutlined } from '@ant-design/icons';
+import { Button, Input, Space, Table } from 'antd';
+import Highlighter from 'react-highlight-words';
 import { useNavigate } from 'react-router-dom';
-
-
+import { Container } from "react-bootstrap";
 
 
 function ViewDonationRequest() {
-  
-  const navigate = useNavigate();
-  const handleClothesClick = () => {
-    navigate('/ViewListClothes');
-  };
-  const handleMedClick = () => {
-    navigate('/ViewListMedicalSupplies');
-  };
-  const handleBloodClick = () => {
-    navigate('/ViewListBloodDonations');
-  };
-  const handleFoodClick = () => {
-    navigate('/ViewListFood');
-  };
-  const handleToysClick = () => {
-    navigate('/ViewListToys');
-  };
-  const handleSchoolClick = () => {
-    navigate('/ViewListSchoolSupplies');
-  };
-  
-  
-  console.log(donationData);
-  return (
-    <Container fluid>
+    const navigate = useNavigate();
 
-    <DropdownButton id="dropdown-basic-button" title="Select By Category">
-      <Dropdown.Item href="#/action-1">All</Dropdown.Item>
-      <Dropdown.Item onClick={handleClothesClick}>Clothes</Dropdown.Item>
-      <Dropdown.Item onClick={handleMedClick}>Medical Supplies</Dropdown.Item>
-      <Dropdown.Item onClick={handleSchoolClick}>School Supplies</Dropdown.Item>
-      <Dropdown.Item onClick={handleToysClick}>Toys</Dropdown.Item>
-      <Dropdown.Item onClick={handleFoodClick}>Food</Dropdown.Item>
-      <Dropdown.Item onClick={handleBloodClick}>Blood Donations</Dropdown.Item>
-    </DropdownButton>
-    
-      <Row className='justify-content-center align-items-center mx-auto col-12'>
-        <Col lg='9' className='my-5'>
-          <h1 className="text-Black mb-4 text-center">View Donation Requests</h1>
-          <Row classname='card mt-3 d-flex justify-content-center mx-auto col-12'>
-            {donationData.map((post) => (
-              <Col key={post.id}>
-               <Card style={{ width: '18rem' }}>
-                  <Card.Body>
-                  <Card.Title>{post.itemName}</Card.Title>
-                  <Card.Subtitle className="mb-2 text-muted">{post.category}</Card.Subtitle>
-                  <Card.Text>{post.description}</Card.Text>
-                  <Card.Link href="#">View Details</Card.Link>
-                  <Card.Link href="#">Donate</Card.Link>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </Col>
-      </Row>
-    </Container>
-  );
+    const handleRowClick = (id) => {
+        console.log(id);
+        navigate(`/Donor/DonationsInfo/${id}`);
+    }
+
+    const [searchText, setSearchText] = useState('');
+    const [searchedColumn, setSearchedColumn] = useState('');
+    const searchInput = useRef(null);
+    const handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        setSearchText(selectedKeys[0]);
+        setSearchedColumn(dataIndex);
+    };
+    const handleReset = (clearFilters) => {
+        clearFilters();
+        setSearchText('');
+    };
+    const getColumnSearchProps = (dataIndex) => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+            <div
+                style={{
+                    padding: 8,
+                }}
+                onKeyDown={(e) => e.stopPropagation()}
+            >
+                <Input
+                    ref={searchInput}
+                    placeholder={`Search ${dataIndex}`}
+                    value={selectedKeys[0]}
+                    onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+                    onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                    style={{
+                        marginBottom: 8,
+                        display: 'block',
+                    }}
+                />
+                <Space>
+                    <Button
+                        type="primary"
+                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                        icon={<SearchOutlined />}
+                        size="small"
+                        style={{
+                            width: 90,
+                        }}
+                    >
+                        Search
+                    </Button>
+                    <Button
+                        onClick={() => clearFilters && handleReset(clearFilters)}
+                        size="small"
+                        style={{
+                            width: 90,
+                        }}
+                    >
+                        Reset
+                    </Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        onClick={() => {
+                            confirm({
+                                closeDropdown: false,
+                            });
+                            setSearchText(selectedKeys[0]);
+                            setSearchedColumn(dataIndex);
+                        }}
+                    >
+                        Filter
+                    </Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        onClick={() => {
+                            close();
+                        }}
+                    >
+                        close
+                    </Button>
+                </Space>
+            </div>
+        ),
+        filterIcon: (filtered) => (
+            <SearchOutlined
+                style={{
+                    color: filtered ? '#1677ff' : undefined,
+                }}
+            />
+        ),
+        onFilter: (value, record) =>
+            record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+        onFilterDropdownOpenChange: (visible) => {
+            if (visible) {
+                setTimeout(() => searchInput.current?.select(), 100);
+            }
+        },
+        render: (text) =>
+            searchedColumn === dataIndex ? (
+                <Highlighter
+                    highlightStyle={{
+                        backgroundColor: '#ffc069',
+                        padding: 0,
+                    }}
+                    searchWords={[searchText]}
+                    autoEscape
+                    textToHighlight={text ? text.toString() : ''}
+                />
+            ) : (
+                text
+            ),
+    });
+
+    const columns = [
+        {
+            title: '#',
+            dataIndex: 'id',
+            key: 'id',
+            width: '10%',
+            ...getColumnSearchProps('id'),
+        },
+        {
+            title: 'Item Name',
+            dataIndex: 'itemName',
+            key: 'itemName',
+            width: '30%',
+            ...getColumnSearchProps('itemName'),
+        },
+        {
+            title: 'Category',
+            dataIndex: 'category',
+            key: 'category',
+            width: '30%',
+            ...getColumnSearchProps('category'),
+        },
+        {
+            title: 'Condition',
+            dataIndex: 'condition',
+            key: 'condition',
+            ...getColumnSearchProps('condition'),
+            //sorter: (a, b) => a.email.length - b.email.length,
+            //sortDirections: ['descend', 'ascend'],
+        }
+    ];
+
+    const rowSelection = {
+        onChange: (selectedRowKeys, selectedRows) => {
+          console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+        },
+        onSelect: (record, selected, selectedRows) => {
+          console.log(record, selected, selectedRows);
+        },
+        onSelectAll: (selected, selectedRows, changeRows) => {
+          console.log(selected, selectedRows, changeRows);
+        },
+      };
+    return (
+        <Container className="pt-3">
+            <h1>Donation List</h1>
+            <Table className="mt-4"
+                columns={columns}
+                rowSelection={{
+                    ...rowSelection
+                }}
+                dataSource={donationData}
+                onRow={(record, rowIndex) => {
+                    return {
+                        onClick: () => handleRowClick(record.id), // click row
+                    };
+                }}
+            />
+        </Container>
+    );
 }
-
 
 export default ViewDonationRequest;

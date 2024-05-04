@@ -16,6 +16,7 @@ import DonorPage from './Pages/Donor/Donor';
 import DonorDashboard from './Pages/Donor/DonorDashboard';
 import DonorRegistration from './Pages/Donor/DonorRegistration';
 import ViewDonationRequests from './Pages/Donor/ViewDonationRequest';
+import DonationInfo from './Pages/Donor/DonationsInfo';
 
 import Admin from './Pages/Admin/Admin';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
@@ -47,6 +48,7 @@ function App() {
             <Route path='/Donor' element={<DonorPage />}>
               <Route path='' element={<DonorDashboard />}></Route>
               <Route path='DonationRequests' element={<ViewDonationRequests />}></Route>
+              <Route path='Donationsinfo/:id' element={<DonationInfo />}></Route>
             </Route>
             <Route path='/Admin' element={<Admin />}>
               <Route path='' element={<AdminDashboard />}></Route>
