@@ -19,8 +19,8 @@ function RegistrationPage() {
     <Container>
       <h1 className="text-center my-5">Register</h1>
       <Row className="justify-content-center">
-        <Col md={4} className="mb-4">
-          <Card style={{ width: '20rem', border: '2px solid #000', borderRadius: '10px' }}>
+        <Col md={4} className="mb-4 d-flex justify-content-center">
+          <Card className='rounded-4' style={{ width: '20rem', border: '2px solid #000' }}>
             <Card.Img variant="top" src={organizationImage} />
             <Card.Body>
               <Card.Title>Register as Organization</Card.Title>
@@ -33,9 +33,9 @@ function RegistrationPage() {
             </Card.Body>
           </Card>
         </Col>
-        <Col md={4} className="mb-4">
-          <Card style={{ width: '20rem', border: '2px solid #000', borderRadius: '10px' }}>
-            <Card.Img variant="top" src={donorImage} />
+        <Col md={4} className="mb-4 d-flex justify-content-center">
+          <Card className='rounded-4' style={{ width: '20rem', border: '2px solid #000' }}>
+            <Card.Img variant="top" className='rounded-4' src={donorImage} />
             <Card.Body>
               <Card.Title>Register as Donor</Card.Title>
               <Card.Text>

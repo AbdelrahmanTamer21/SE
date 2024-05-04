@@ -11,7 +11,6 @@ function DonorsList() {
     const navigate = useNavigate();
 
     const handleRowClick = (donor_id) => {
-        console.log(donor_id);
         navigate(`/Admin/DonorsInfo/${donor_id}`);
     }
 
