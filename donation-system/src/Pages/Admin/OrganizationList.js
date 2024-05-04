@@ -11,7 +11,6 @@ function OrganizationList() {
     const navigate = useNavigate();
 
     const handleRowClick = (org_id) => {
-        console.log(org_id);
         navigate(`/Admin/OrganizationInfo/${org_id}`);
     }
 

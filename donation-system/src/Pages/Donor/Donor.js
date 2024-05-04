@@ -33,7 +33,8 @@ const DonorPage = () => {
                     : 
                     <Col>
                        <Outlet />
-                    </Col>}
+                    </Col>
+                    }
             </Row>
         </Container>
     );

@@ -4,11 +4,11 @@ import {
     Card,
 } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
-import { Chart  } from 'chart.js';
-import { LinearScale } from 'chart.js/auto';
+import { Chart, CategoryScale } from 'chart.js/auto';
 
 const Dashboard = () => {
 
+    Chart.register(CategoryScale);
     const data = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [
@@ -25,7 +25,7 @@ const Dashboard = () => {
             <Row className='pt-3' xl>
                 {/* 1st Card */}
                 <Col>
-                    <Card className='shadow' style={{ borderRadius: 0 }}>
+                    <Card className='shadow rounded-0'>
                         <Card.Body>
 
                         </Card.Body>
@@ -33,7 +33,7 @@ const Dashboard = () => {
                 </Col>
                 {/* 2nd Card */}
                 <Col>
-                    <Card className='shadow' style={{ borderRadius: 0 }}>
+                    <Card className='shadow rounded-0'>
                         <Card.Body>
 
                         </Card.Body>
@@ -41,7 +41,7 @@ const Dashboard = () => {
                 </Col>
                 {/*3rd Card */}
                 <Col>
-                    <Card className='shadow' style={{ borderRadius: 0 }}>
+                    <Card className='shadow rounded-0'>
                         <Card.Body>
 
                         </Card.Body>
@@ -49,7 +49,7 @@ const Dashboard = () => {
                 </Col>
                 {/* 4th Card */}
                 <Col>
-                    <Card className='shadow' style={{ borderRadius: 0 }}>
+                    <Card className='shadow rounded-0'>
                         <Card.Body>
 
                         </Card.Body>

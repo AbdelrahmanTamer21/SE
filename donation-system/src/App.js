@@ -1,11 +1,10 @@
 import './App.css';
 
-import { UserProvider, UserContext } from './Components/UserContext';
+import { UserProvider } from './Components/UserContext';
 import TopBar from './Components/TopBar';
 import { SideBarProvider } from './Components/SideBarContext';
-import { useContext } from 'react';
 
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import Home from './Pages/Home';
 import Login from './Pages/Login';
@@ -17,6 +16,7 @@ import DonorPage from './Pages/Donor/Donor';
 import DonorDashboard from './Pages/Donor/DonorDashboard';
 import DonorRegistration from './Pages/Donor/DonorRegistration';
 import ViewDonationRequests from './Pages/Donor/ViewDonationRequest';
+import DonationInfo from './Pages/Donor/DonationsInfo';
 
 import Admin from './Pages/Admin/Admin';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
@@ -25,7 +25,8 @@ import DonorsList from './Pages/Admin/DonorsList';
 import OrganizationList from './Pages/Admin/OrganizationList';
 import DonorsInfo from './Pages/Admin/DonorsInfo';
 import OrganizationInfo from './Pages/Admin/OrganizationInfo';
-import { HomeTab , DonationsTab , ContactTab } from './Pages/Admin/OrganizationInfo';
+import { HomeTab, DonationsTab, ContactTab } from './Pages/Admin/OrganizationInfo';
+import { HomeTab as DonorHomeTab, DonationsTab as DonorDonationsTab, ContactTab as DonorContactTab } from './Pages/Admin/DonorsInfo';
 
 function App() {
   return (
@@ -48,14 +49,19 @@ function App() {
             <Route path='/Donor' element={<DonorPage />}>
               <Route path='' element={<DonorDashboard />}></Route>
               <Route path='DonationRequests' element={<ViewDonationRequests />}></Route>
+              <Route path='Donationsinfo/:id' element={<DonationInfo />}></Route>
             </Route>
             <Route path='/Admin' element={<Admin />}>
               <Route path='' element={<AdminDashboard />}></Route>
               <Route path='/AdminProfile' element={<AdminProfile />}></Route>
               <Route path='Donors' element={<DonorsList />}></Route>
               <Route path='Organizations' element={<OrganizationList />}></Route>
-              <Route path='DonorsInfo/:donor_id' element={<DonorsInfo />}></Route>
-              <Route path="OrganizationInfo/:org_id" element={<OrganizationInfo />}>  
+              <Route path='DonorsInfo/:donor_id' element={<DonorsInfo />}>
+                <Route path="" element={<DonorHomeTab />} />
+                <Route path="donations" element={<DonorDonationsTab />} />
+                <Route path="contact" element={<DonorContactTab />} />
+              </Route>
+              <Route path="OrganizationInfo/:org_id" element={<OrganizationInfo />}>
                 <Route path="" element={<HomeTab />} />
                 <Route path="donations" element={<DonationsTab />} />
                 <Route path="contact" element={<ContactTab />} />

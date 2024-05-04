@@ -11,16 +11,15 @@ function Login() {
   const { updateUser } = useContext(UserContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const handleLogin = () => {
+  const handleLogin = (event) => {
+    event.preventDefault();
     if (username === "admin" && password === "123") {
       updateUser("Admin",true,username);
       navigate("/Admin");
-    }
-    if (username === "donor" && password === "123") {
+    }else if (username === "donor" && password === "123") {
       updateUser("Donor",true,username);
       navigate("/Donor");
-    }
-    if (username === "org" && password === "123") {
+    }else if (username === "org" && password === "123") {
       updateUser("Organization",true,username);
       navigate("/Organization");
     }
@@ -29,7 +28,7 @@ function Login() {
   return (
     <section className="vh-100">
       <Container className="py-5 h-100">
-        <Card style={{ padding: '20px' }} className='text-black m-5' borderRadius='25px'>
+        <Card style={{ padding: '20px' }} className='text-black m-5'>
           <Card.Body style={{ padding: '20px' }}>
 
             <Row className="d-flex align-items-center justify-content-center h-100">
@@ -38,11 +37,10 @@ function Login() {
                 <img
                   src="https://img.freepik.com/premium-vector/print_561236-152.jpg?w=740"
                   alt="Phone"
-                  className="img-fluid"
-                  style={{ width: '50%', borderRadius: '15px' }}
+                  className="img-fluid rounded-3 w-50"
                 />
               </Col>
-              <Col md={7} lg={5} xl={5} offsetXL={1}>
+              <Col md={7} lg={5} xl={5}>
                 <Form>
                   {/* Username input */}
                   <Form.Group className="mb-3" controlId="formGroupEmail">
@@ -67,7 +65,7 @@ function Login() {
                   </div>
 
                   {/* Submit button */}
-                  <Button type="submit" variant="primary" onClick={handleLogin} size="lg" block>Sign in</Button>
+                  <Button type="submit" variant="primary" onClick={(event)=>handleLogin(event)} size="lg" block>Sign in</Button>
                   <div className='p-3'>
                     <Link to="/RegistrationType">If you're not a user? Register</Link>
                   </div>

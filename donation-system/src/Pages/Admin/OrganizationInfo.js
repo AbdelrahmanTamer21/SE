@@ -1,4 +1,5 @@
-import { useNavigate, useParams, Link, Routes, Route, Outlet } from 'react-router-dom';
+import React from 'react';
+import { useNavigate, useParams, Outlet } from 'react-router-dom';
 import OrganizationData from '../OrganizationData';
 import './Info.css';
 import { Nav, Row ,Col} from 'react-bootstrap';
@@ -7,7 +8,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 export function HomeTab() {
     const { org_id } = useParams();
 
-    const Organization = OrganizationData.find(Organization => Organization.org_id == org_id);
+    const Organization = OrganizationData.find(Organization => Organization.org_id === Number(org_id));
 
     return (
         <div>
@@ -38,7 +39,9 @@ export function ContactTab() {
 function OrganizationInfo() {
     const { org_id } = useParams();
     const navigate = useNavigate();
+    const [activeTab, setActiveTab] = React.useState("");
     const handleTabClick = (tab) => {
+        setActiveTab(tab);
         navigate(`/Admin/OrganizationInfo/${org_id}/${tab}`);
     }
 
@@ -51,15 +54,25 @@ function OrganizationInfo() {
             <Col >
                 <div>
 
-                    <Nav variant="tabs" defaultActiveKey="/home">
+                <Nav variant="tabs" defaultActiveKey="/home">
                         <Nav.Item>
-                            <Nav.Link onClick={() => handleTabClick("")}>Active</Nav.Link>
+                            <Nav.Link
+                                onClick={() => handleTabClick("")}
+                                className={activeTab === "" ? "active" : ""}>
+                                Active
+                            </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link onClick={() => handleTabClick("donations")}>Donations</Nav.Link>
+                            <Nav.Link
+                                onClick={() => handleTabClick("donations")}
+                                className={activeTab === "donations" ? "active" : ""}>
+                                Donations
+                            </Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link onClick={() => handleTabClick("contact")} >
+                            <Nav.Link
+                                onClick={() => handleTabClick("contact")}
+                                className={activeTab === "contact" ? "active" : ""}>
                                 Contact
                             </Nav.Link>
                         </Nav.Item>
