@@ -4,7 +4,8 @@ import {
     Card,
 } from 'react-bootstrap';
 import { Bar } from 'react-chartjs-2';
-
+import { Chart  } from 'chart.js';
+import { LinearScale } from 'chart.js/auto';
 
 const Dashboard = () => {
 
