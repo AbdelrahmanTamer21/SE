@@ -7,10 +7,16 @@ import {
 import SideBar from '../../Components/SideBar';
 import { SideBarContext } from '../../Components/SideBarContext';
 import { Outlet } from 'react-router-dom';
+import { UserContext } from '../../Components/UserContext';
+import { Navigate } from 'react-router-dom';
 
 const DonorPage = () => {
 
     const { isOpen } = useContext(SideBarContext);
+    const { isLoggedIn } = useContext(UserContext);
+    if(isLoggedIn === false){
+        return <Navigate to='/Login' />
+    }
 
     return (
         <Container fluid className="p-0 h-100">
