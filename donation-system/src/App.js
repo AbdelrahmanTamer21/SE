@@ -20,7 +20,7 @@ import DonorDashboard from './Pages/Donor/DonorDashboard';
 import DonorRegistration from './Pages/Donor/DonorRegistration';
 import ViewDonationRequests from './Pages/Donor/ViewDonationRequest';
 import DonationInfo from './Pages/Donor/DonationsInfo';
-import VolunteerRoleSelection from './Pages/Donor/VolunteerRoleSelection';
+import VolunteerRoleSelection from './Pages/VolunteerRoleSelection';
 import DocumentUpload from './Pages/Donor/DocumentUpload';
 
 import Admin from './Pages/Admin/Admin';
