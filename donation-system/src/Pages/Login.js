@@ -26,7 +26,7 @@ function Login() {
   }
   
   return (
-    <section className="vh-100">
+    <section className="h-100">
       <Container className="py-5 h-100">
         <Card style={{ padding: '20px' }} className='text-black m-5'>
           <Card.Body style={{ padding: '20px' }}>
@@ -59,13 +59,13 @@ function Login() {
                     {/* Checkbox */}
                     <FormCheck>
                       <FormCheck.Input type="checkbox" value="" id="form1Example3" defaultChecked />
-                      <FormCheck.Label for="form1Example3">Remember me</FormCheck.Label>
+                      <FormCheck.Label>Remember me</FormCheck.Label>
                     </FormCheck>
                     <a href="#!">Forgot password?</a>
                   </div>
 
                   {/* Submit button */}
-                  <Button type="submit" variant="primary" onClick={(event)=>handleLogin(event)} size="lg" block>Sign in</Button>
+                  <Button type="submit" variant="main-inverse" onClick={(event)=>handleLogin(event)} size="lg" className='w-100'>Sign in</Button>
                   <div className='p-3'>
                     <Link to="/RegistrationType">If you're not a user? Register</Link>
                   </div>

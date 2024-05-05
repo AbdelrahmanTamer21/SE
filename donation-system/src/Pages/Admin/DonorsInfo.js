@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback} from 'react';
 import { useNavigate, useParams, Outlet } from 'react-router-dom';
 import DonorsData from "../DonorsData"
 import { Nav, Row, Col, Card, Container, Image } from 'react-bootstrap';
@@ -17,10 +17,10 @@ export function HomeTab() {
         googleMapsApiKey: "AIzaSyC3w9cUTNQfgH2qqCdxC2DC1rjq78Mt6a4"
     })
 
-    const [map, setMap] = React.useState(null)
-    const [isMapOpen, setIsMapOpen] = React.useState(false);
+    const [map, setMap] = useState(null)
+    const [isMapOpen, setIsMapOpen] = useState(false);
 
-    const onLoad = React.useCallback(function callback(map) {
+    const onLoad = useCallback(function callback(map) {
         // This is just an example of getting and using the map instance!!! don't just blindly copy!
         const bounds = new window.google.maps.LatLngBounds(center);
         map.fitBounds(bounds);
@@ -28,7 +28,7 @@ export function HomeTab() {
         setMap(map)
     }, [])
 
-    const onUnmount = React.useCallback(function callback(map) {
+    const onUnmount = useCallback(function callback(map) {
         setMap(null)
     }, [])
 

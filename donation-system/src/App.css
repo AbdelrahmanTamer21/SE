@@ -64,6 +64,19 @@
 }
 
 .btn-main {
+  background-color: white !important;
+  color: #438844 !important;
+  font-weight: bold !important;
+}
+
+.btn-main-inverse {
+  background-color: #438844 !important;
+  color: white !important;
+  font-weight: bold !important;
+}
+
+.btn-main-inverse:hover {
+  border: 1px solid #438844 !important;
   background-color: white !important;  /* Replace with your preferred brown color code */
   color: #438844 !important;
   font-weight: bold !important;
