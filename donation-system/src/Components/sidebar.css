@@ -20,7 +20,7 @@
     display: block;
     padding: 10px;
     border-radius: 4px;
-    color: #000; /* White */
+    color: #000 !important;
     font-weight: 500;
     text-decoration: none;
     transition: background-color 0.3s ease-out;
@@ -28,6 +28,7 @@
   
   .nav-link:hover {
     background-color: #438844;
+    color: #fff !important; /* White */
   }
   .sidebar-toggle {
     border: none !important;

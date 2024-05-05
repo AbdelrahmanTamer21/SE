@@ -11,12 +11,17 @@ import Login from './Pages/Login';
 import RegistrationType from './Pages/RegistrationType';
 import DonationForm from './Pages/Organization/DonationPosts';
 import OrganizationRegistration from './Pages/Organization/OrgRegistration';
+import DonorTypes from './Pages/VolunteerRoleSelection';
+import Cliniclocation from './Pages/Donor/ClinicLocation';
+import Subjectclass from './Pages/Donor/SubjectClassSelection';
 
 import DonorPage from './Pages/Donor/Donor';
 import DonorDashboard from './Pages/Donor/DonorDashboard';
 import DonorRegistration from './Pages/Donor/DonorRegistration';
 import ViewDonationRequests from './Pages/Donor/ViewDonationRequest';
 import DonationInfo from './Pages/Donor/DonationsInfo';
+import VolunteerRoleSelection from './Pages/VolunteerRoleSelection';
+import DocumentUpload from './Pages/Donor/DocumentUpload';
 
 import Admin from './Pages/Admin/Admin';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
@@ -45,11 +50,18 @@ function App() {
             <Route path='/OrganizationRegistration' element={<OrganizationRegistration />}></Route>
 
             <Route path='/DonorRegistration' element={<DonorRegistration />}></Route>
+            
+            <Route path='/Volunteer' element={<DonorTypes />}></Route>
+            <Route path='/Doctor' element={<Cliniclocation />}></Route>
+            <Route path='/Teacher' element={<Subjectclass />}></Route>
+
 
             <Route path='/Donor' element={<DonorPage />}>
               <Route path='' element={<DonorDashboard />}></Route>
               <Route path='DonationRequests' element={<ViewDonationRequests />}></Route>
               <Route path='Donationsinfo/:id' element={<DonationInfo />}></Route>
+              <Route path='VolunteerSelection' element={<VolunteerRoleSelection />}></Route>
+              <Route path='DocumentUpload' element={<DocumentUpload />}></Route>
             </Route>
             <Route path='/Admin' element={<Admin />}>
               <Route path='' element={<AdminDashboard />}></Route>

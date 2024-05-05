@@ -14,7 +14,7 @@ function Avatar() {
     }
     useEffect(() => {
         if (!isLoggedIn) {
-            updateUser(null, false);
+            updateUser(null, false, null);
         }
     }, [isLoggedIn, updateUser]);
 

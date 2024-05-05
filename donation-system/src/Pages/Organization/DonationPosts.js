@@ -71,7 +71,9 @@ function DonationForm() {
                       <option value="Clothing">Clothing</option>
                       <option value="Food">Food</option>
                       <option value="Toys">Toys</option>
-                      <option value="Other">Other</option> {/* Added "Other" option */}
+                      <option value="Medical Supplies">Medical Supplies</option>
+                      <option value="School Supplies">School Supplies</option>
+                      <option value="Blood Donations">Blood Donations</option>
                     </Form.Select>
                   </Col>
                 </Row>
@@ -93,7 +95,7 @@ function DonationForm() {
                     <Form.Select size='lg' name='condition' value={formData.condition} onChange={handleInputChange}>
                       <option value="">Select Condition</option>
                       <option value="New">New</option>
-                      <option value="Other">Used</option> {/* Added "Other" option */}
+                      <option value="Used">Used</option>
                     </Form.Select>
                     {/* Conditional rendering for "Other" option */}
                     {formData.condition === 'Other' && (

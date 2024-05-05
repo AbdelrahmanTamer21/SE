@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
-import styles from './SubjectSelection.css';
+import { Container, Form, Button, Card } from 'react-bootstrap';
+//import styles from './SubjectSelection.css';
 
 function ClassAndSubjectSelection() {
   const [subjects, setSubjects] = useState([]); // Array to store selected subjects
