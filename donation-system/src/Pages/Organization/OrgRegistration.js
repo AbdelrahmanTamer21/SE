@@ -64,6 +64,7 @@ function OrganizationRegistration() {
       }
       LoginData.push(newUser);
       setValidated(true);
+      navigate('/Login');
     }
     // const pdfBlob = new Blob([document], { type: 'application/pdf' });
     // const pdfUrl = URL.createObjectURL(pdfBlob);
