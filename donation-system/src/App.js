@@ -66,7 +66,7 @@ function App() {
               <Route path='VolunteerSelection' element={<VolunteerRoleSelection />}></Route>
               <Route path='DocumentUpload' element={<DocumentUpload />}></Route>
               <Route path='Delivery' element={<Delivery />}></Route>
-
+              <Route path='Organizations' element={<OrganizationList />}></Route>
             </Route>
             <Route path='/Admin' element={<Admin />}>
               <Route path='' element={<AdminDashboard />}></Route>
