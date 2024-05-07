@@ -6,6 +6,7 @@ import { RiGovernmentFill } from "react-icons/ri";
 import { CiLocationOn } from "react-icons/ci";
 import { FaUserDoctor } from "react-icons/fa6";
 import { MdEventAvailable } from "react-icons/md";
+import Doctor from '../Doctor.png';
 
 function ClinicLocation(){
     return(
@@ -37,15 +38,15 @@ function ClinicLocation(){
                 </div>
                 <div className="d-flex flex-row align-items-center mb-4">
                   <MdEventAvailable className="me-3" size='24'/>
-                  <Form.Control type='number' placeholder='Pro-bono cases' min='1' max='100' required/>
+                  <Form.Control type='number' placeholder='Pro-bono cases' required/>
                 </div>
                 
             
                
-                <Button className='mb-4' size='lg'>Submit</Button>
+                <Button variant='main-inverse'className='mb-4' size='lg'>Submit</Button>
               </Col>
               <Col md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
-                <Card.Img src='https://media.istockphoto.com/id/1353332258/photo/donation-concept-the-volunteer-giving-a-donate-box-to-the-recipient-standing-against-the-wall.jpg?s=612x612&w=0&k=20&c=9AL8Uj9TTtrbHpM78kMp9fqjT_8EqpEekjdixeKUzDw=' fluid />
+              <Card.Img width={100}height={450} variant="top" src={Doctor} />
               </Col>
             </Row>
           </Card.Body>

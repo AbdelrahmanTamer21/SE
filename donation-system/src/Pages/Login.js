@@ -36,14 +36,14 @@ function Login() {
   return (
     <section className="h-100">
       <Container className="py-5 h-100">
-        <Card style={{ padding: '20px' }} className='text-black m-5'>
-          <Card.Body style={{ padding: '20px' }}>
+        <Card style={{ padding: '15px' }} className='text-black m-5'>
+          <Card.Body style={{ padding: '15px' }}>
 
             <Row className="d-flex align-items-center justify-content-center h-100">
 
-              <Col md={8} lg={7} xl={6}>
+              <Col md={10} lg={10} xl={6}>
                 <img
-                  src="https://img.freepik.com/premium-vector/print_561236-152.jpg?w=740"
+                  src="https://i.pinimg.com/236x/7d/bd/c0/7dbdc03df87c75f679056a3a9db12e02.jpg"
                   alt="Phone"
                   className="img-fluid rounded-3 w-50"
                 />

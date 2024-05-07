@@ -8,6 +8,7 @@ const UserProvider = ({ children }) => {
   const [userRole, setUserRole] = useState(null);
   const [username,setUsername] = useState(null);
 
+
   // Load user data from localStorage on component mount
   useEffect(() => {
     const storedUserRole = localStorage.getItem('userRole');
@@ -22,7 +23,7 @@ const UserProvider = ({ children }) => {
   }, []);
 
   // Function to update user role and login status
-  const updateUser = (role, loggedIn,username) => {
+  const updateUser = (role, loggedIn,username,) => {
     setUserRole(role);
     setIsLoggedIn(loggedIn);
     setUsername(username);

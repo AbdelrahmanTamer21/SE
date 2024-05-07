@@ -67,9 +67,9 @@ function Delivery() {
               <FormGroup>
                 <Form.Label>Transportation Type:</Form.Label>
                 <FormSelect value={transportationType} onChange={handleTransportationChange}>
-                  <option value="">Select...</option>
                   <option value="car">Car</option>
                   <option value="truck">Truck</option>
+                  <option value="motorcycle">Motorcycle</option>
                   {/* Add more options as needed */}
                 </FormSelect>
               </FormGroup>
@@ -83,8 +83,8 @@ function Delivery() {
                   <FormControl type="time" value={pickupTime} onChange={handlePickupTimeChange} />
                 </InputGroup>
               </FormGroup>
-              <Button type="submit" variant="primary">
-                Schedule Pickup
+              <Button type="submit" className='mt-2' variant='main-inverse'>
+                Submit
               </Button>
             </Form>
           </Col>

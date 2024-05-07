@@ -22,6 +22,8 @@ import ViewDonationRequests from './Pages/Donor/ViewDonationRequest';
 import DonationInfo from './Pages/Donor/DonationsInfo';
 import VolunteerRoleSelection from './Pages/VolunteerRoleSelection';
 import DocumentUpload from './Pages/Donor/DocumentUpload';
+import Delivery from './Pages/Donor/Delivery'
+
 
 import Admin from './Pages/Admin/Admin';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
@@ -32,6 +34,7 @@ import DonorsInfo from './Pages/Admin/DonorsInfo';
 import OrganizationInfo from './Pages/Admin/OrganizationInfo';
 import { HomeTab, DonationsTab, ContactTab } from './Pages/Admin/OrganizationInfo';
 import { HomeTab as DonorHomeTab, DonationsTab as DonorDonationsTab, ContactTab as DonorContactTab } from './Pages/Admin/DonorsInfo';
+import AccountSettings from './Pages/Admin/AccountSettings';
 
 function App() {
   return (
@@ -62,6 +65,8 @@ function App() {
               <Route path='Donationsinfo/:id' element={<DonationInfo />}></Route>
               <Route path='VolunteerSelection' element={<VolunteerRoleSelection />}></Route>
               <Route path='DocumentUpload' element={<DocumentUpload />}></Route>
+              <Route path='Delivery' element={<Delivery />}></Route>
+              <Route path='Organizations' element={<OrganizationList />}></Route>
             </Route>
             <Route path='/Admin' element={<Admin />}>
               <Route path='' element={<AdminDashboard />}></Route>
@@ -77,7 +82,9 @@ function App() {
                 <Route path="" element={<HomeTab />} />
                 <Route path="donations" element={<DonationsTab />} />
                 <Route path="contact" element={<ContactTab />} />
+
               </Route>
+              <Route path='Settings' element={<AccountSettings/>}/>
             </Route>
             <Route path='/Organization' element={<DonationForm />}></Route>
           </Routes>
