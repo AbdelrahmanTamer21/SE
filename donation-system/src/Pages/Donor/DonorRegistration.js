@@ -65,7 +65,7 @@ function DonorRegistration() {
               <Form.Control type='password' placeholder='Confirm Password' required/>
             </div>
            
-            <Button className='mb-4' size='lg' onClick={handleRegisterClick}>Register</Button>
+            <Button variant='main-inverse' className='mb-4' size='lg' onClick={handleRegisterClick}>Register</Button>
           </Col>
           <Col md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
             <Card.Img src='https://media.istockphoto.com/id/1353332258/photo/donation-concept-the-volunteer-giving-a-donate-box-to-the-recipient-standing-against-the-wall.jpg?s=612x612&w=0&k=20&c=9AL8Uj9TTtrbHpM78kMp9fqjT_8EqpEekjdixeKUzDw=' fluid />

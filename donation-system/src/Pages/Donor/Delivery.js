@@ -83,8 +83,8 @@ function Delivery() {
                   <FormControl type="time" value={pickupTime} onChange={handlePickupTimeChange} />
                 </InputGroup>
               </FormGroup>
-              <Button type="submit" variant='main-inverse'>
-                Schedule Pickup
+              <Button type="submit" className='mt-2' variant='main-inverse'>
+                Submit
               </Button>
             </Form>
           </Col>
