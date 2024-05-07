@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import { Card, Row, Col, Form, Button } from 'react-bootstrap';
 
-const DocumentUpload = ({ onUploadSuccess }) => {
+const DocumentUpload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -19,15 +19,19 @@ const DocumentUpload = ({ onUploadSuccess }) => {
     setErrorMessage(''); // Clear any previous error messages
   };
 
-  const handleUpload = () => {
+  const handleUpload = (e) => {
     if (!selectedFile) {
       setErrorMessage('Please select a file to upload.');
       return;
     }
 
     // Simulate upload (replace with actual upload logic)
-    console.log('Uploading file:', selectedFile.name);
-    onUploadSuccess(selectedFile); // Call parent component function
+    alert('Uploading file:', selectedFile.name);
+    //onUploadSuccess(selectedFile); // Call parent component function
+
+    const file = new Blob([selectedFile], { type: 'application/pdf'});
+    const url = URL.createObjectURL(file);
+    window.open(url);
 
     setSelectedFile(null); // Clear file selection after upload
   };
@@ -45,7 +49,7 @@ const DocumentUpload = ({ onUploadSuccess }) => {
                 <Form.Control type="file" accept=".pdf" onChange={handleFileChange} />
               </div>
               {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-              <Button className="mb-4" size="lg" disabled={!selectedFile}>
+              <Button variant='main-inverse' className="mb-4" size="lg" disabled={!selectedFile} onClick={handleUpload}>
                 Upload
               </Button>
             </Form>
