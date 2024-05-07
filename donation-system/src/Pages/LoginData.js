@@ -1,15 +1,22 @@
-import OrganizationData from "./OrganizationData";
 
 let LoginData = [
     {
+        first_name: "Omar",
+        last_name: "Mosallam",
         username: "admin",
         password: "123",
-        type: "Admin"
+        type: "Admin",
+        email: "omar.m.mohamed.om@gmail.com",
+        phone: "01018677738",
+        image: undefined
     },
     {
+        first_name: "Hassan",
+        last_name: "Khaled",
         username: "donor",
         password: "123",
-        type: "Donor"
+        type: "Donor",
+        image: undefined,
     },
     {
         organizationName: "org1",
@@ -18,7 +25,8 @@ let LoginData = [
         password: "123",
         type: "Organization",
         pdf: undefined,
-        status: "pending"
+        status: "pending",
+        image: undefined
     },
     {
         organizationName: "org2",
@@ -28,6 +36,7 @@ let LoginData = [
         type: "Organization",
         pdfPath: undefined,
         status: "pending",
+        image: undefined
     }
 ]
 

@@ -32,6 +32,7 @@ import DonorsInfo from './Pages/Admin/DonorsInfo';
 import OrganizationInfo from './Pages/Admin/OrganizationInfo';
 import { HomeTab, DonationsTab, ContactTab } from './Pages/Admin/OrganizationInfo';
 import { HomeTab as DonorHomeTab, DonationsTab as DonorDonationsTab, ContactTab as DonorContactTab } from './Pages/Admin/DonorsInfo';
+import AccountSettings from './Pages/Admin/AccountSettings';
 
 function App() {
   return (
@@ -77,7 +78,9 @@ function App() {
                 <Route path="" element={<HomeTab />} />
                 <Route path="donations" element={<DonationsTab />} />
                 <Route path="contact" element={<ContactTab />} />
+
               </Route>
+              <Route path='Settings' element={<AccountSettings/>}/>
             </Route>
             <Route path='/Organization' element={<DonationForm />}></Route>
           </Routes>
