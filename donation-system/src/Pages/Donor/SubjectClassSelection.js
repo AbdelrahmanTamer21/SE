@@ -48,11 +48,11 @@ function ClassAndSubjectSelection() {
 
             <Form onSubmit={handleSubmit}>
               {/* Subject Selection */}
-              <Form.Group className="text-center">
+              <Form.Group className="text-center ">
                 <Form.Label className="text-center">
                   Select Subjects You Can Teach (Choose all that apply):
                 </Form.Label>
-                <div className="d-flex flex-wrap justify-content-center">
+                <div className="d-flex flex-wrap justify-content-center mb-3">
                   <Form.Check
                     inline
                     type="checkbox"
@@ -82,10 +82,10 @@ function ClassAndSubjectSelection() {
               </Form.Group>
 
               {/* Number of Classes */}
-              <Form.Group className="text-center" >
+              <Form.Group className="d-flex justify-content-around text-center" >
                 <Form.Label>How many Pro-bono Classes can you teach?  </Form.Label >
                 <Form.Control
-                  className="text-center"
+                  className="text-center align-items-center w-25"
                   type="number"
                   min="0"
                   name="numClasses"
@@ -95,11 +95,11 @@ function ClassAndSubjectSelection() {
               </Form.Group>
 
               {/* Number of Students */}
-              <Form.Group className="text-center">
+              <Form.Group className="d-flex justify-content-around text-center mt-4">
                 <Form.Label className="text-center">
                   How many Pro-bono Students can you give private tutoring to?
                 </Form.Label>
-                <Form.Control className="text-center"
+                <Form.Control className="text-center w-25"
                   type="number"
                   min="0"
                   name="numStudents"
@@ -108,7 +108,7 @@ function ClassAndSubjectSelection() {
                 />
               </Form.Group >
 
-              <Button className="text-center" type="submit" variant="primary" size="lg" block >
+              <Button className="text-center mt-2" type="submit" variant="main-inverse" size="lg" block >
                 Submit Selection
               </Button>
             </Form>

@@ -82,9 +82,163 @@
   font-weight: bold !important;
 }
 
+.btn-home{
+  padding: .55rem 1.5rem !important;
+  border: .125rem solid transparent !important;
+  background-color:  black !important;
+  color: white !important;
+}
+
+.btn-home:hover{
+  background-color: transparent !important;
+  border: .125rem solid black !important;
+  color: black !important;
+}
+
 .navbar a:not(.dropdown-item),
 .navbar a:hover:not(.dropdown-item),
 .navbar a:focus:not(.dropdown-item),
 .navbar a:active:not(.dropdown-item){
   color: var(--text-color) !important;
+}
+
+.prev-btn,
+.next-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+.slider {
+  overflow: hidden;
+  position: relative;
+}
+
+.slider-inner {
+  display: flex;
+  flex-wrap: nowrap;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slider-inner > * {
+  flex: 0 0 33.33%; /* adjust the width of each card */
+  margin: 10px;
+}
+
+.slider button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.slider button:first-child {
+  left: 10px;
+}
+
+.slider button:last-child {
+  right: 10px;
+}
+
+.comments::before{
+  content: "";
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 16%;
+  height: 0;
+  padding-bottom: 12%;
+  background-image: url(https://bloomerang.co/wp-content/themes/studioscience-bloomerang/_assets/images/module-assets/module-14/left-decoration.png);
+  background-size: cover;
+  background-position: top right;
+  background-repeat: no-repeat;
+}
+
+.comments{
+  background: #fde6e7 !important;
+  overflow: hidden;
+  padding: 7rem 0 6rem;
+  position: relative;
+}
+
+.comments .col-container{
+  padding: 5rem 0 0;
+}
+
+.col-container{
+  font-size: 0px;
+}
+
+.comments .headline{
+  width: 45%;
+  text-align: right;
+  padding-left: 12rem;
+}
+
+.headline h2{
+  font-family: Woodland-bold,Georgia,serif;
+  font-weight: 700;
+  font-size: 42px;
+  font-size: 2.625rem;
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+.carousel-arrows-container{
+  font-size: 1.75rem;
+  margin-bottom: .75rem;
+  margin-left: 1.25rem;
+}
+
+.carousel-arrow{
+  cursor: pointer;
+  opacity: .375;
+  transition: all ease-in-out .1s;
+}
+
+.carousel-arrow:hover{
+  opacity: 1;
+}
+.carousel-arrow .arrow-prev{
+  margin-right: 1rem;
+}
+
+.carousel-item{
+  width: 40% !important;
+  white-space: normal !important;
+  margin-right: 1.25rem !important;
+}
+
+.comment p{
+  font-size: 1rem;
+  text-align: left;
+}
+
+.commenter img{
+  align-items: start;
+}
+
+.commenter p{
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+
+.commenter p span{
+  display: block;
+  font: inherit;
+  font-weight: 300;
 }
