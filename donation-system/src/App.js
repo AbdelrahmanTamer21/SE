@@ -35,6 +35,7 @@ import OrganizationInfo from './Pages/Admin/OrganizationInfo';
 import { HomeTab, DonationsTab, ContactTab } from './Pages/Admin/OrganizationInfo';
 import { HomeTab as DonorHomeTab, DonationsTab as DonorDonationsTab, ContactTab as DonorContactTab } from './Pages/Admin/DonorsInfo';
 import AccountSettings from './Pages/Admin/AccountSettings';
+import Requests from './Pages/Admin/Requests';
 
 function App() {
   return (
@@ -85,6 +86,7 @@ function App() {
 
               </Route>
               <Route path='Settings' element={<AccountSettings/>}/>
+              <Route path='Requests' element={<Requests/>}/>
             </Route>
             <Route path='/Organization' element={<DonationForm />}></Route>
           </Routes>

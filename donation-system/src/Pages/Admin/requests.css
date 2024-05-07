@@ -1,0 +1,27 @@
+.cardReq{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+}
+
+.imgReq{
+    width: 100%;
+}
+.active{
+    z-index: 2;
+}
+
+.cardReq:not(.active){
+    z-index: 1;
+}
+
+cardReq:not(.active):last-child{
+    z-index: 0;
+}

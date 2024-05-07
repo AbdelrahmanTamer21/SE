@@ -6,18 +6,18 @@ import { UserContext } from '../../Components/UserContext';
 import LoginData from '../LoginData';
 
 const AccountSettings = () => {
-  const [activeTab, setActiveTab] = useState('account-general');
+  const [activeTab, setActiveTab] = useState('account-info');
 
   const TabLinks = ({ activeTab, setActiveTab }) => {
     return (
       <div className="list-group list-group-flush account-settings-links">
         <a
-          className={`list-group-item list-group-item-action ${activeTab === 'account-general' ? 'active' : ''}`}
+          className={`list-group-item list-group-item-action ${activeTab === 'account-info' ? 'active' : ''}`}
           data-toggle="list"
-          href="#account-general"
-          onClick={() => setActiveTab('account-general')}
+          href="#account-info"
+          onClick={() => setActiveTab('account-info')}
         >
-          General
+          Info
         </a>
         <a
           className={`list-group-item list-group-item-action ${activeTab === 'account-change-password' ? 'active' : ''}`}
@@ -28,14 +28,14 @@ const AccountSettings = () => {
           Change password
         </a>
         <a
-          className={`list-group-item list-group-item-action ${activeTab === 'account-info' ? 'active' : ''}`}
+          className={`list-group-item list-group-item-action ${activeTab === 'account-change-address' ? 'active' : ''}`}
           data-toggle="list"
-          href="#account-info"
-          onClick={() => setActiveTab('account-info')}
+          href="#account-general"
+          onClick={() => setActiveTab('account-change-address')}
         >
-          Info
+          Change address
         </a>
-        <a
+        {/* <a
           className={`list-group-item list-group-item-action ${activeTab === 'account-social-links' ? 'active' : ''}`}
           data-toggle="list"
           href="#account-social-links"
@@ -58,7 +58,7 @@ const AccountSettings = () => {
           onClick={() => setActiveTab('account-notifications')}
         >
           Notifications
-        </a>
+        </a> */}
       </div>
     );
   };
@@ -83,12 +83,12 @@ const AccountSettings = () => {
 
 const TabContent = ({ activeTab, setActiveTab }) => {
   switch (activeTab) {
-    case 'account-general':
-      return <GeneralTab />;
+    case 'account-info':
+      return <InfoTab />;
     case 'account-change-password':
       return <div><ChangePasswordTab setActiveTab={setActiveTab} /></div>;
-    case 'account-info':
-      return <div>InfoTab Component</div>; // Replace with your component
+    case 'account-change-address':
+      return <div><ChangeAddressTab setActiveTab={setActiveTab}/></div>; // Replace with your component
     case 'account-social-links':
       return <div>SocialLinksTab Component</div>; // Replace with your component
     case 'account-connections':
@@ -100,7 +100,7 @@ const TabContent = ({ activeTab, setActiveTab }) => {
   }
 };
 
-const GeneralTab = () => {
+const InfoTab = () => {
   const { username } = useContext(UserContext);
   const user = LoginData.find((user) => user.username === username);
   const [userData, setUserData] = useState({
@@ -109,6 +109,8 @@ const GeneralTab = () => {
     email: user.email,
     phone: user.phone
   });
+  
+
 
   const handleInputChange = (e) => {
     setUserData({
@@ -135,10 +137,7 @@ const GeneralTab = () => {
       }
     });
     alert('Changes saved successfully');
-    user.first_name = userData.first_name;
-    user.last_name = userData.last_name;
-    user.email = userData.email;
-    user.phone = userData.phone;
+    
 
     handleLocClick();
   };
@@ -159,6 +158,16 @@ const GeneralTab = () => {
       setPhoto("https://bootdey.com/img/Content/avatar/avatar1.png");
     }
   }
+  const handleCancel = (event) => {
+    event.preventDefault();
+    setUserData({
+      first_name: user.first_name,
+      last_name: user.last_name,
+      email: user.email,
+      phone: user.phone
+    });
+    
+  };
   return (
     <div className="tab-pane active show" id="account-general">
       <div className="card-body media align-items-center">
@@ -216,7 +225,7 @@ const GeneralTab = () => {
       </Row>
       <div className="text-right mt-3">
         <button type="submit" className="btn btn-primary m-3" onClick={(e) => handleSubmit(e)}>Save changes</button>
-        <button type="button" className="btn btn-default">Cancel</button>
+        <button type="button" className="btn btn-default" onClick={(e) => handleCancel(e)}>Cancel</button>
       </div>
     </div>
 
@@ -258,12 +267,21 @@ const ChangePasswordTab = ({ setActiveTab }) => {
         }
 
       });
-      setActiveTab('account-general');
+      setActiveTab('account-info');
     }
+  };
+  const handleCancel = (event) => {
+    event.preventDefault();
+    setFormData({
+      currentPassword: '',
+      newPassword: '',
+      repeatNewPassword: ''
+
+    });
   };
 
   return (
-    <div className="tab-pane" id="account-general">
+    <div className="tab-pane" id="account-info">
       <Form>
         <CardBody className="pb-2">
           <Form.Label>Current password</Form.Label>
@@ -283,10 +301,85 @@ const ChangePasswordTab = ({ setActiveTab }) => {
         </CardBody>
         <div className="text-right mt-3">
           <button type="submit" className="btn btn-primary m-3" onClick={(e) => handleSubmit(e)}>Save changes</button>
-          <button type="button" className="btn btn-default">Cancel</button>
+          <button type="button" className="btn btn-default" onClick={(e) => handleCancel(e)}>Cancel</button>
         </div>
       </Form>
     </div>
   );
 };
+const ChangeAddressTab = ({setActiveTab}) => {
+  const { username } = useContext(UserContext);
+  const user = LoginData.find((user) => user.username === username);
+  const [userData, setUserData] = useState({
+    city: user.address.city,
+    street: user.address.street,
+    building: user.address.building,
+    floor: user.address.floor,
+    apartment: user.address.apartment
+  });
+  const handleInputChange = (e) => {
+    setUserData({
+      ...userData,
+      [e.target.name]: e.target.value
+    });
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const updatedUser = { ...user, address: userData };
+    LoginData.forEach((u, i) => {
+      if (u.username === username) {
+        LoginData[i] = updatedUser;
+      }
+    });
+    alert('Changes saved successfully');
+    setActiveTab('account-info');
+  };
+  const handleCancel = (event) => {
+    event.preventDefault();
+    setUserData({
+      city: user.address.city,
+      street: user.address.street,
+      building: user.address.building,
+      floor: user.address.floor,
+      apartment: user.address.apartment
+    });
+  };
+  return (
+    <div className="tab-pane" id="account-info">
+      <Form>
+        <CardBody className="pb-2">
+          <Form.Label>City</Form.Label>
+          <InputGroup>
+            <Form.Control type="text" name="city" value={userData.city} onChange={handleInputChange} />
+          </InputGroup>
+
+          <Form.Label>Street</Form.Label>
+          <InputGroup>
+            <Form.Control type="text" name="street" value={userData.street} onChange={handleInputChange} />
+          </InputGroup>
+
+          <Form.Label>Building</Form.Label>
+          <InputGroup>
+            <Form.Control type="text" name="building" value={userData.building} onChange={handleInputChange} />
+          </InputGroup>
+
+          <Form.Label>Floor</Form.Label>
+          <InputGroup>
+            <Form.Control type="text" name="floor" value={userData.floor} onChange={handleInputChange} />
+          </InputGroup>
+
+          <Form.Label>Apartment</Form.Label>
+          <InputGroup>
+            <Form.Control type="text" name="apartment" value={userData.apartment} onChange={handleInputChange} />
+          </InputGroup>
+        </CardBody>
+        <div className="text-right mt-3">
+          <button type="submit" className="btn btn-primary m-3" onClick={(e) => handleSubmit(e)}>Save changes</button>
+          <button type="button" className="btn btn-default" onClick={(e) => handleCancel(e)}>Cancel</button>
+        </div>
+      </Form>
+    </div>
+  );
+};
+
 export default AccountSettings;

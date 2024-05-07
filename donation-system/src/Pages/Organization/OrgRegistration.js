@@ -59,8 +59,10 @@ function OrganizationRegistration() {
         username: username,
         password: password,
         type: "Organization",
+        orgType: form[5].value,
         pdf: document,
-        status: "pending"
+        status: "pending",
+        image: undefined
       }
       LoginData.push(newUser);
       setValidated(true);
@@ -108,10 +110,19 @@ function OrganizationRegistration() {
                       <Row className='justify-content-center align-items-center mt-2'>
                         <MdErrorOutline className='w-auto text-danger p-0' size='20' />
                         <p className='text-danger w-auto m-0'>Passwords do not match</p>
-
                       </Row>
                     }
                   </div>
+                </Row>
+                <Row>
+                  <Form.Group className="mb-4">
+                    <Form.Label>Organization Type</Form.Label>
+                    <Form.Select aria-label="Organization Type" required>
+                      <option value='Hospital'>Hospital</option>
+                      <option value='Orphanage'>Orphanage</option>
+                      <option value='School'>School</option>
+                    </Form.Select>
+                  </Form.Group>
                 </Row>
                 <Row>
                   <Form.Group className="mb-4">

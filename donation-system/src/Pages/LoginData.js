@@ -8,6 +8,13 @@ let LoginData = [
         type: "Admin",
         email: "omar.m.mohamed.om@gmail.com",
         phone: "01018677738",
+        address:{
+            city: "Cairo",
+            street: "Nasr City",
+            building: "4",
+            floor: "3",
+            apartment: "303"
+        },
         image: undefined
     },
     {
@@ -24,6 +31,7 @@ let LoginData = [
         username: "org1",
         password: "123",
         type: "Organization",
+        orgType: "Hospital",
         pdf: undefined,
         status: "pending",
         image: undefined
@@ -34,7 +42,19 @@ let LoginData = [
         username: "org2",
         password: "123",
         type: "Organization",
-        pdfPath: undefined,
+        orgType: "Orphanage",
+        pdf: undefined,
+        status: "pending",
+        image: undefined
+    },
+    {
+        organizationName: "org3",
+        organizationEmail: "org3@gmail.com",
+        username: "org3",
+        password: "123",
+        type: "Organization",
+        orgType: "School",
+        pdf: undefined,
         status: "pending",
         image: undefined
     }
