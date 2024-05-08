@@ -116,8 +116,8 @@ function Home() {
 
   return (
     <div>
-      <header className="hero bg-primary text-white text-center p-5" style={{ backgroundImage: `url(https://deijobs.in/blog/wp-content/uploads/2023/09/Mitigating-Unconscious-Bias.jpg)`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }}>
-        <h1>Welcome to Donation System</h1>
+      <header className="hero bg-primary text-white text-center text-body-emphasis  p-5" style={{ backgroundImage: `url(https://deijobs.in/blog/wp-content/uploads/2023/09/Mitigating-Unconscious-Bias.jpg)`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }}>
+        <h1>Welcome to Donation System </h1>
         <p>Connecting donors, volunteers, and organizations to make a difference.</p>
       </header>
 

@@ -61,7 +61,7 @@ function Login() {
                 <img
                   src="https://i.pinimg.com/236x/7d/bd/c0/7dbdc03df87c75f679056a3a9db12e02.jpg"
                   alt="Phone"
-                  className="img-fluid rounded-3 w-50"
+                  className="img-fluid rounded-3 w-50  mt-md-5"
                 />
               </Col>
               <Col md={7} lg={5} xl={5}>
