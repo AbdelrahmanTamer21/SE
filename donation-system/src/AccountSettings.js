@@ -2,8 +2,8 @@ import React, { useState, useContext } from 'react';
 import './Settings.css'
 import { useNavigate } from 'react-router-dom';
 import { InputGroup, Form, CardBody, Row, Col } from 'react-bootstrap';
-import { UserContext } from '../../Components/UserContext';
-import LoginData from '../LoginData';
+import { UserContext } from './Components/UserContext';
+import LoginData from './Pages/LoginData';
 
 const AccountSettings = () => {
   const [activeTab, setActiveTab] = useState('account-info');

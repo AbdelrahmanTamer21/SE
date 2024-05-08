@@ -27,16 +27,18 @@ import Delivery from './Pages/Donor/Delivery'
 
 import Admin from './Pages/Admin/Admin';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
-import AdminProfile from './Pages/Admin/AdminProfile';
+import Profile from './Profile'; 
 import DonorsList from './Pages/Admin/DonorsList';
 import OrganizationList from './Pages/Admin/OrganizationList';
 import DonorsInfo from './Pages/Admin/DonorsInfo';
 import OrganizationInfo from './Pages/Admin/OrganizationInfo';
 import { HomeTab, DonationsTab, ContactTab } from './Pages/Admin/OrganizationInfo';
 import { HomeTab as DonorHomeTab, DonationsTab as DonorDonationsTab, ContactTab as DonorContactTab } from './Pages/Admin/DonorsInfo';
-import AccountSettings from './Pages/Admin/AccountSettings';
+import AccountSettings from './AccountSettings';
 import Requests from './Pages/Admin/Requests';
+import {DonorsTab , OrganizationsTab} from './Pages/Admin/Requests';
 
+import OrganizationDashboard from './Pages/Organization/OrganizationDashboard';
 function App() {
   return (
     <div className="App">
@@ -49,13 +51,15 @@ function App() {
             <Route path='/RegistrationType' element={<RegistrationType />}></Route>
 
 
+
+
             <Route path='/Home' element={<Home />}></Route>
 
             <Route path='/OrganizationRegistration' element={<OrganizationRegistration />}></Route>
 
             <Route path='/DonorRegistration' element={<DonorRegistration />}></Route>
             
-            <Route path='/Volunteer' element={<DonorTypes />}></Route>
+            <Route path='/Volunteer/:username' element={<DonorTypes />}></Route>
             <Route path='/Doctor' element={<Cliniclocation />}></Route>
             <Route path='/Teacher' element={<Subjectclass />}></Route>
 
@@ -68,10 +72,13 @@ function App() {
               <Route path='DocumentUpload' element={<DocumentUpload />}></Route>
               <Route path='Delivery' element={<Delivery />}></Route>
               <Route path='Organizations' element={<OrganizationList />}></Route>
+              <Route path='Profile' element={<Profile />}></Route>
+              <Route path='Settings' element={<AccountSettings/>}/>
+              
+
             </Route>
             <Route path='/Admin' element={<Admin />}>
               <Route path='' element={<AdminDashboard />}></Route>
-              <Route path='/AdminProfile' element={<AdminProfile />}></Route>
               <Route path='Donors' element={<DonorsList />}></Route>
               <Route path='Organizations' element={<OrganizationList />}></Route>
               <Route path='DonorsInfo/:donor_id' element={<DonorsInfo />}>
@@ -85,11 +92,21 @@ function App() {
                 <Route path="contact" element={<ContactTab />} />
 
               </Route>
+              <Route path='Profile' element={<Profile />}></Route>
+
               <Route path='Settings' element={<AccountSettings/>}/>
-              <Route path='Requests' element={<Requests/>}/>
+              <Route path='Requests' element={<Requests/>}>
+                <Route path='Donors' element={<DonorsTab/>}></Route>
+                <Route path='' element={<OrganizationsTab />}></Route>
+              </Route>
+
+
             </Route>
             <Route path='/Organization' element={<DonationForm />}></Route>
+            <Route path='/OrganizationDashboard' element={<OrganizationDashboard />}></Route>
+
           </Routes>
+
         </SideBarProvider>
       </UserProvider>
     </div>

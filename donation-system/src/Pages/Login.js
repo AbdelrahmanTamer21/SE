@@ -22,10 +22,26 @@ function Login() {
           navigate("/Admin");
           break;
         case "Donor":
-          navigate("/Donor");
+          if(user.status === "pending"){
+            alert("Your account is still pending approval");
+          }
+          else if(user.status === "rejected"){
+            alert("Your account has been rejected");
+          }
+          else{
+            navigate("/Donor");
+          }
           break;
         case "Organization":
-          navigate("/Organization");
+          if(user.status === "pending"){  
+            alert("Your account is still pending approval");
+          }
+          else if(user.status === "rejected"){
+            alert("Your account has been rejected");
+          }
+          else{
+          navigate("/OrganizationDashboard");
+          }
           break;
         default:
           navigate("/Login");

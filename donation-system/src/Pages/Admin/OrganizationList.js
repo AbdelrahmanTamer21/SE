@@ -9,6 +9,10 @@ import OrganizationData from "../OrganizationData";
 
 function OrganizationList() {
     const navigate = useNavigate();
+    const updatedOrganizationData = OrganizationData.map((org, index) => ({
+        ...org,
+        id: index + 1, // This will generate a unique ID for each organization
+    }));
 
     const handleRowClick = (org_id) => {
         navigate(`/Admin/OrganizationInfo/${org_id}`);
@@ -120,36 +124,34 @@ function OrganizationList() {
                 text
             ),
     });
-
     const columns = [
         {
             title: '#',
-            dataIndex: 'org_id',
-            key: 'org_id',
+            key: 'index',
             width: '10%',
-            ...getColumnSearchProps('org_id'),
+            render: (text, record, index) => index + 1,
         },
-        {
-            title: 'First Name',
-            dataIndex: 'first_name',
-            key: 'first_name',
-            width: '30%',
-            ...getColumnSearchProps('first_name'),
+    {
+        title: 'Name',
+            dataIndex: 'organizationName',
+                key: 'name',
+                    width: '30%',
+            ...getColumnSearchProps('name'),
         },
-        {
-            title: 'Last Name',
-            dataIndex: 'last_name',
-            key: 'last_name',
-            width: '30%',
-            ...getColumnSearchProps('last_name'),
+    {
+        title: 'Type',
+            dataIndex: 'orgType',
+                key: 'type',
+                    width: '30%',
+            ...getColumnSearchProps('type'),
         },
-        {
-            title: 'Email',
-            dataIndex: 'email',
-            key: 'email',
+    {
+        title: 'Email',
+            dataIndex: 'organizationEmail',
+                key: 'email',
             ...getColumnSearchProps('email'),
             sorter: (a, b) => a.email.length - b.email.length,
-            sortDirections: ['descend', 'ascend'],
+                sortDirections: ['descend', 'ascend'],
         }
     ];
     return (
@@ -157,7 +159,7 @@ function OrganizationList() {
             <h1>Organization List</h1>
             <Table className="mt-4"
                 columns={columns}
-                dataSource={OrganizationData}
+                dataSource={updatedOrganizationData}
                 onRow={(record, rowIndex) => {
                     return {
                         onClick: () => handleRowClick(record.org_id), // click row

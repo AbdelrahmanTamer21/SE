@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Container, Row, Col, Card, CardBody} from 'react-bootstrap';
-import { UserContext } from '../../Components/UserContext';
-import LoginData from '../LoginData';
+import { UserContext } from './Components/UserContext';
+import LoginData from './Pages/LoginData';
 
 const ProfileCard = () => {
   const { username } = useContext(UserContext);
