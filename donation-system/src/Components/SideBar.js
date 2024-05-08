@@ -22,8 +22,10 @@ const Sidebar = () => {
 
         {userRole === 'Admin'?(      
           <>
-            <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}/Donors`)} className="nav-link">Donors</Nav.Link>
-            <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}/Organizations`)} className="nav-link">Organizations</Nav.Link>
+            <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}/Donors`)} className="nav-link">View Donors</Nav.Link>
+            <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}/Organizations`)} className="nav-link">View Organizations</Nav.Link>
+            <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}/Requests`)} className="nav-link">Requests</Nav.Link>
+
             </>
         ):null}
         {userRole === 'Donor' || userRole === 'Organization'?(
@@ -39,8 +41,7 @@ const Sidebar = () => {
             <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}/Organizations`)} className="nav-link">Organizations</Nav.Link>
           </>
         ):null}
-        <Nav.Link eventKey="link-3" className="nav-link">Profile</Nav.Link>
-        <Nav.Link eventKey="link-4" className="nav-link">Settings</Nav.Link>
+        
       </Nav>
     </>
   );
