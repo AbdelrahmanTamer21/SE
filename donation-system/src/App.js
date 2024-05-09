@@ -27,6 +27,7 @@ import DocumentUpload from './Pages/Donor/DocumentUpload';
 import Delivery from './Pages/Donor/Delivery';
 import TeachingPosts from './Pages/Donor/ViewTeachingPosts';
 import MedicalCasesTable from './Pages/Donor/MedicalCasesTable';
+import MedicalCasesInfo from './Pages/Donor/MedicalCaseInfo';
 
 
 import Admin from './Pages/Admin/Admin';
@@ -81,6 +82,7 @@ function App() {
               <Route path='Settings' element={<AccountSettings/>}/>
               <Route path='Teaching' element={<TeachingPosts/>}/>
               <Route path='MedicalCases' element={<MedicalCasesTable/>}></Route>
+              <Route path='MedicalCasesInfo/:id' element={<MedicalCasesInfo/>}></Route>
               
 
             </Route>

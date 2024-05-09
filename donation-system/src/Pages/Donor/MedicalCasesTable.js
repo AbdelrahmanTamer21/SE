@@ -122,11 +122,11 @@ function MedicalCasesTable() {
         },
         {
             title: 'Address',
-            dataIndex: 'adress',
+            dataIndex: 'address',
             key: 'address',
             width: '15%',
             ...getColumnSearchProps('address'),
-            filteredValue: filteredInfo.area || null,
+            filteredValue: filteredInfo.address || null,
         },
         /*{
             title: 'Governorate',

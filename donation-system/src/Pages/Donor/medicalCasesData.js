@@ -9,7 +9,7 @@ let medicalCasesData = [
       location:"",
       address:"Tagamoaa",
       organizationName:"57357",
-      medicalSpeciality:"Blood Cancer",
+      medicalSpecialty:"Blood Cancer",
       caseDesc:"Has high level of blood cancer"
     },
     {
