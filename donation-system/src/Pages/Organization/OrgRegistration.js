@@ -6,6 +6,8 @@ import { MdOutlineMail, MdErrorOutline } from "react-icons/md";
 import { FaKey, FaRegUser } from "react-icons/fa";
 import { Checkbox } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css'; // Import Leaflet CSS
 import LoginData from '../LoginData';
 
 function OrganizationRegistration() {
@@ -18,6 +20,7 @@ function OrganizationRegistration() {
   const [repeatPassword, setRepeatPassword] = useState('');
   const [passwordsMatch, setPasswordsMatch] = useState(true);
   const [document, setDocument] = useState();
+  const [markerPosition, setMarkerPosition] = useState(null);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -47,6 +50,10 @@ function OrganizationRegistration() {
     }
   }
 
+  function handleMapClick(e) {
+    setMarkerPosition(e.latlng);
+  }
+
   function handleSubmit(e) {
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
@@ -62,17 +69,14 @@ function OrganizationRegistration() {
         orgType: form[5].value,
         pdf: document,
         status: "pending",
-        image: undefined
+        image: undefined,
+        location: markerPosition,
       }
       console.log(newUser);
       LoginData.push(newUser);
       setValidated(true);
       navigate('/Login');
     }
-    // const pdfBlob = new Blob([document], { type: 'application/pdf' });
-    // const pdfUrl = URL.createObjectURL(pdfBlob);
-    // window.open(pdfUrl);
-    // console.log(LoginData);
   }
 
   return (
@@ -141,7 +145,21 @@ function OrganizationRegistration() {
                 </Row>
               </Col>
               <Col md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
-                <Card.Img src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp' fluid />
+                <div style={{ border: '2px solid black', width: '100%', height: '400px' }}>
+                  <MapContainer center={[30.020882, 31.526789]} zoom={13} style={{ width: '100%', height: '100%' }} onclick={handleMapClick}>
+                    <TileLayer
+                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    />
+                    {markerPosition && (
+                      <Marker position={markerPosition}>
+                        <Popup>
+                          Your location
+                        </Popup>
+                      </Marker>
+                    )}
+                  </MapContainer>
+                </div>
               </Col>
             </Row>
           </Form>
