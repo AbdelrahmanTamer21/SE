@@ -7,7 +7,7 @@ function DonationsInfo() {
     const donation = DonationsData.find(donation => donation.id === Number(id));
     
     const goBack = () => {
-        navigate('/Donor/DonationRequests');
+        navigate(-1);
     }
 
     return (
