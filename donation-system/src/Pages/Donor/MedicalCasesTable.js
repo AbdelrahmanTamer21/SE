@@ -121,21 +121,21 @@ function MedicalCasesTable() {
             filteredValue: filteredInfo.organizationName || null,
         },
         {
-            title: 'Area',
-            dataIndex: 'area',
-            key: 'area',
+            title: 'Address',
+            dataIndex: 'adress',
+            key: 'address',
             width: '15%',
-            ...getColumnSearchProps('area'),
+            ...getColumnSearchProps('address'),
             filteredValue: filteredInfo.area || null,
         },
-        {
+        /*{
             title: 'Governorate',
             dataIndex: 'governorate',
             key: 'governorate',
             width: '15%',
             ...getColumnSearchProps('governorate'),
             filteredValue: filteredInfo.governorate || null,
-        },
+        },*/
         {
             title: 'Location',
             dataIndex: 'location',
@@ -150,6 +150,10 @@ function MedicalCasesTable() {
             render: (record) => <Button onClick={() => handleRowClick(record.id)}>Details</Button>,
         },
     ];
+    const clearAll = () => {
+        setFilteredInfo({});
+        setSearchText('');
+    };
 
     return (
         <>
