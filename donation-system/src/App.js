@@ -41,6 +41,8 @@ import Requests from './Pages/Admin/Requests';
 import {DonorsTab , OrganizationsTab} from './Pages/Admin/Requests';
 
 import OrganizationDashboard from './Pages/Organization/OrganizationDashboard';
+import OrgViewDonationRequest from './Pages/Organization/OrgViewDonationRequests';
+
 function App() {
   return (
     <div className="App">
@@ -51,9 +53,6 @@ function App() {
             <Route path='/' element={<Home />}></Route>
             <Route path='/Login' element={<Login />}></Route>
             <Route path='/RegistrationType' element={<RegistrationType />}></Route>
-
-
-
 
             <Route path='/Home' element={<Home />}></Route>
 
@@ -106,6 +105,7 @@ function App() {
             </Route>
             <Route path='/Organization' element={<DonationForm />}></Route>
             <Route path='/OrganizationDashboard' element={<OrganizationDashboard />}></Route>
+            <Route path='/OrgViewRequests' element={<OrgViewDonationRequest />}></Route>
 
           </Routes>
 

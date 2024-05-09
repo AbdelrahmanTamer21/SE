@@ -14,10 +14,6 @@ function DonorRegistration() {
 
   const navigate = useNavigate();
 
-  const handleRegisterClick = () => {
-    navigate(`/Volunteer/${username}`);
-  };
-
   const [validated, setValidated] = useState(false);
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
@@ -73,15 +69,14 @@ function DonorRegistration() {
 
   function handleSubmit(e) {
     const form = e.currentTarget;
-    console.log(passwordsMatch + ' ' + form.checkValidity());
     if (form.checkValidity() === false) {
       e.preventDefault();
       e.stopPropagation();
     } else if (passwordsMatch) {
-      let newUser = { 
+      let newUser = {
         first_name: first_name,
         last_name: last_name,
-        email: email,
+        donorEmail: email,
         contact: contact,
         address: address,
         area: area,
@@ -89,14 +84,14 @@ function DonorRegistration() {
         username: username,
         password: password,
         volunteerRole: undefined,
+        don_Type: "Donor",
         type: "Donor",
         status: "pending",
         image: undefined
       }
-      console.log(newUser);
       LoginData.push(newUser);
       setValidated(true);
-      navigate('/Login');
+      navigate(`/Volunteer/${username}`);
     }
     // const pdfBlob = new Blob([document], { type: 'application/pdf' });
     // const pdfUrl = URL.createObjectURL(pdfBlob);
@@ -191,7 +186,7 @@ function DonorRegistration() {
                   </Col>
                 </Row>
                 <Row>
-                  <Button variant='main-inverse' className='mb-4' size='lg' onClick={handleRegisterClick}>Register</Button>
+                  <Button variant='main-inverse' className='mb-4' size='lg' type='sumbit'>Register</Button>
                 </Row>
               </Col>
               <Col md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
