@@ -1,35 +1,63 @@
 import React, { useState, useRef } from "react";
+import donationData from "../donationData";
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { useNavigate } from 'react-router-dom';
 import { Container } from "react-bootstrap";
-import OrganizationData from "../OrganizationData";
 
-
-function OrganizationList() {
+function ViewDonationRequest() {
     const navigate = useNavigate();
-    const updatedOrganizationData = OrganizationData.map((org, index) => ({
-        ...org,
-        id: index + 1, // This will generate a unique ID for each organization
-    }));
 
-    const handleRowClick = (org_id) => {
-        navigate(`/Admin/OrganizationInfo/${org_id}`);
-    }
-
+    const [editingItemId, setEditingItemId] = useState(null);
+    const [editedItem, setEditedItem] = useState({});
+    const [deletedItemIds, setDeletedItemIds] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
+
+    const handleRowClick = (id) => {
+        console.log(id);
+        setEditingItemId(id);
+    }
+
+    const handleEditChange = (key, value) => {
+        setEditedItem({
+            ...editedItem,
+            [key]: value
+        });
+    };
+
+    const handleSave = () => {
+        // Save editedItem
+        console.log("Save item:", editedItem);
+        // Clear editing state
+        setEditingItemId(null);
+        setEditedItem({});
+    };
+
+    const handleBack = () => {
+        // Clear editing state
+        setEditingItemId(null);
+        setEditedItem({});
+    };
+
+    const handleDelete = (id) => {
+        // Mark item as deleted
+        setDeletedItemIds([...deletedItemIds, id]);
+    };
+
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
         setSearchText(selectedKeys[0]);
         setSearchedColumn(dataIndex);
     };
+
     const handleReset = (clearFilters) => {
         clearFilters();
         setSearchText('');
     };
+
     const getColumnSearchProps = (dataIndex) => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
             <div
@@ -39,7 +67,6 @@ function OrganizationList() {
                 onKeyDown={(e) => e.stopPropagation()}
             >
                 <Input
-                    ref={searchInput}
                     placeholder={`Search ${dataIndex}`}
                     value={selectedKeys[0]}
                     onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
@@ -77,8 +104,6 @@ function OrganizationList() {
                             confirm({
                                 closeDropdown: false,
                             });
-                            setSearchText(selectedKeys[0]);
-                            setSearchedColumn(dataIndex);
                         }}
                     >
                         Filter
@@ -90,7 +115,7 @@ function OrganizationList() {
                             close();
                         }}
                     >
-                        close
+                        Close
                     </Button>
                 </Space>
             </div>
@@ -124,45 +149,82 @@ function OrganizationList() {
                 text
             ),
     });
+
     const columns = [
         {
             title: '#',
-            key: 'index',
+            dataIndex: 'id',
+            key: 'id',
             width: '10%',
-            render: (text, record, index) => index + 1,
+            ...getColumnSearchProps('id'),
         },
-    {
-        title: 'Name',
-            dataIndex: 'organizationName',
-                key: 'name',
-                    width: '30%',
-            ...getColumnSearchProps('name'),
+        {
+            title: 'Item Name',
+            dataIndex: 'itemName',
+            key: 'itemName',
+            width: '30%',
+            ...getColumnSearchProps('itemName'),
         },
-    {
-        title: 'Type',
-            dataIndex: 'orgType',
-                key: 'type',
-                    width: '30%',
-            ...getColumnSearchProps('type'),
+        {
+            title: 'Category',
+            dataIndex: 'category',
+            key: 'category',
+            width: '30%',
+            filters: [
+                { text: 'Clothing', value: 'Clothing' },
+                { text: 'Food', value: 'Food' },
+                { text: 'Toys', value: 'Toys' },
+                { text: 'Medical Supplies', value: 'Medical Supplies' },
+                { text: 'Blood Donations', value: 'Blood Donations' },
+                { text: 'School Supplies', value: 'School Supplies' },
+            ],
+            filterSearch: true,
+            onFilter: (value, record) => record.category.startsWith(value),
         },
-    {
-        title: 'Email',
-            dataIndex: 'organizationEmail',
-                key: 'email',
-            ...getColumnSearchProps('email'),
-            sorter: (a, b) => a.email.length - b.email.length,
-                sortDirections: ['descend', 'ascend'],
-        }
+        {
+            title: 'Condition',
+            dataIndex: 'condition',
+            key: 'condition',
+            filters: [
+                { text: 'New', value: 'New' },
+                { text: 'Used', value: 'Used' },
+            ],
+            filterSearch: true,
+            onFilter: (value, record) => record.condition.startsWith(value),
+        },
+        {
+            title: 'Actions',
+            key: 'actions',
+            render: (text, record) => (
+                <Space size="middle">
+                    {editingItemId === record.id ? (
+                        <>
+                            <Input value={editedItem.itemName} onChange={(e) => handleEditChange('itemName', e.target.value)} />
+                            <Input value={editedItem.category} onChange={(e) => handleEditChange('category', e.target.value)} />
+                            <Input value={editedItem.condition} onChange={(e) => handleEditChange('condition', e.target.value)} />
+                            <Button onClick={handleSave}>Save</Button>
+                            <Button onClick={handleBack}>Back</Button>
+                        </>
+                    ) : (
+                        <Space size="middle">
+                            <Button onClick={() => handleDelete(record.id)} type="danger">Delete</Button>
+                            <Button onClick={() => setEditingItemId(record.id)}>Edit</Button>
+                        </Space>
+                    )}
+                </Space>
+            ),
+        },
     ];
+
     return (
         <Container className="pt-3">
-            <h1>Organization List</h1>
+            <h1>Donation List</h1>
             <Table className="mt-4"
                 columns={columns}
-                dataSource={updatedOrganizationData}
+                dataSource={donationData.filter(item => !deletedItemIds.includes(item.id))}
                 onRow={(record, rowIndex) => {
                     return {
-                        onClick: () => handleRowClick(record.org_id), // click row
+                        onClick: () => handleRowClick(record.id), // click row
                     };
                 }}
             />
@@ -170,4 +232,4 @@ function OrganizationList() {
     );
 }
 
-export default OrganizationList;
+export default ViewDonationRequest;

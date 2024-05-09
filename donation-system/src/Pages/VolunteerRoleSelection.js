@@ -3,9 +3,10 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Doctor from './Doctor.png';
 import donorImage from './donorr.jpg';
-import Teacher from '../Teacher.png'
+import Teacher from './Teacher.png';
+import LoginData from './LoginData';
 
-function VolunteerRoleSelection() {
+function VolunteerRoleSelection({username}) {
   const navigate = useNavigate();
 
   const handleDoctorClick = () => {
@@ -15,6 +16,10 @@ function VolunteerRoleSelection() {
   const handleTeacherClick = () => {
     navigate('/Teacher');
   };
+
+  const handleDonorClick = () => {
+    navigate('/Login');
+  }
 
   return (
     <Container>
@@ -57,7 +62,7 @@ function VolunteerRoleSelection() {
                 Register as a donor to donate items to organizations.
               </Card.Text>
               <div className="text-center">
-                <Button variant="success" >Select</Button>
+                <Button variant="success" onClick={handleDonorClick}>Select</Button>
               </div>
             </Card.Body>
           </Card>

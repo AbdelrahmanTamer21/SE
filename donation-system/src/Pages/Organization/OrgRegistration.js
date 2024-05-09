@@ -64,6 +64,7 @@ function OrganizationRegistration() {
         status: "pending",
         image: undefined
       }
+      console.log(newUser);
       LoginData.push(newUser);
       setValidated(true);
       navigate('/Login');

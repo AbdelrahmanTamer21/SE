@@ -25,3 +25,8 @@
 cardReq:not(.active):last-child{
     z-index: 0;
 }
+.reqTab-links {
+    width: 75vw;
+    margin: auto;
+    margin-top: 2rem;
+}

@@ -1,24 +1,26 @@
+import { BsTypeH6 } from "react-icons/bs";
+
 let OrganizationData  = [ 
     {
         key: 1,
         org_id: 1,
-        first_name: 'John',
-        last_name: 'Doe',
-        email: 'john.doe@gmail.com'
+        organizationName: 'NIS',
+        orgType: 'School',
+        organizationEmail: 'nermin.ismail@nis-egypt.com'
     },
     {
         key: 2,
         org_id: 2,
-        first_name: 'Jane',
-        last_name: 'Smith',
-        email: 'jane.smith@gmail.com'
+        organizationName: 'Al Gawwy',
+        orgType: 'Hospital',
+        organizationEmail: 'algawwy.hospital@gmail.com'
     },
     {
         key: 3,
         org_id: 3,
-        first_name: 'James',
-        last_name: 'Johnson',
-        email: 'james.johnson@gmail.com'
+        organizationName: 'Al Orman',
+        orgType: 'Orphanage',
+        organizationEmail: 'alorman.system@gmail.com'
     }
 ];
 export default OrganizationData;

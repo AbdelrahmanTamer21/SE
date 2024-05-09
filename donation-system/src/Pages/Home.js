@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Carousel, Container, Col, Row, Button, Image } from 'react-bootstrap';
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
+import '../Home.css';
 
 function Home() {
   const [activeTab, setActiveTab] = useState('');
@@ -91,11 +92,32 @@ function Home() {
   function handleSelect(index) {
     setCurrentIndex(index);
   }
+  useEffect(() => {
+
+	
+
+    const timer = setInterval(() => {
+
+	
+
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length);
+
+	
+
+    }, 3000); 
+
+	
+
+    return () => clearInterval(timer);
+
+	
+
+  }, [cards.length])
 
   return (
     <div>
-      <header className="hero bg-primary text-white text-center p-5" style={{ backgroundImage: `url(https://deijobs.in/blog/wp-content/uploads/2023/09/Mitigating-Unconscious-Bias.jpg)`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }}>
-        <h1>Welcome to Donation System</h1>
+      <header className="hero bg-primary text-white text-center text-body-emphasis  p-5" style={{ backgroundImage: `url(https://deijobs.in/blog/wp-content/uploads/2023/09/Mitigating-Unconscious-Bias.jpg)`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }}>
+        <h1>Welcome to Donation System </h1>
         <p>Connecting donors, volunteers, and organizations to make a difference.</p>
       </header>
 
@@ -241,6 +263,18 @@ function Home() {
           </Row>
         </Container>
       </section> */}
+      <section id="about-us" className="bg-light p-5 text-center">
+        <Container>
+          <Row>
+            <Col>
+              <h2>About Us</h2>
+              <p>
+                We are committed to connecting donors, volunteers, and organizations to make a positive impact on society. Our platform strives to facilitate seamless interactions and collaborations for the betterment of communities worldwide.
+              </p>
+            </Col>
+          </Row>
+        </Container>
+      </section>
 
       <footer className="bg-light p-3 text-center">
         <p>&copy; 2022 Donation System. All rights reserved.</p>

@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-import { RiLockPasswordLine } from "react-icons/ri";
-import { MdOutlineMail } from "react-icons/md";
-import { FaKey } from "react-icons/fa";
+import { RiLockPasswordLine, RiGovernmentFill } from "react-icons/ri";
+import { MdOutlineMail, MdErrorOutline } from "react-icons/md";
 import { IoIosPerson } from "react-icons/io";
 import { FaPhone } from "react-icons/fa6";
-import { FaHome } from "react-icons/fa";
-import { FaCity } from "react-icons/fa";
-import { RiGovernmentFill } from "react-icons/ri";
+import { FaHome, FaCity, FaRegUser, FaKey } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
+import LoginData from '../LoginData';
 
 
 
@@ -17,63 +15,193 @@ function DonorRegistration() {
   const navigate = useNavigate();
 
   const handleRegisterClick = () => {
-    navigate('/Volunteer');
+    navigate(`/Volunteer/${username}`);
   };
+
+  const [validated, setValidated] = useState(false);
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [contact, setContact] = useState('');
+  const [address, setAddress] = useState('');
+  const [area, setArea] = useState('');
+  const [government, setGovernment] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    switch (name) {
+      case 'first_name':
+        setFirstName(value);
+        break;
+      case 'last_name':
+        setLastName(value);
+        break;
+      case 'email':
+        setEmail(value);
+        break;
+      case 'contact':
+        setContact(value);
+        break;
+      case 'address':
+        setAddress(value);
+        break;
+      case 'area':
+        setArea(value);
+        break;
+      case 'government':
+        setGovernment(value);
+        break;
+      case 'username':
+        setUsername(value);
+        break;
+      case 'password':
+        setPassword(value);
+        setPasswordsMatch(value === repeatPassword);
+        break;
+      case 'repeatPassword':
+        setRepeatPassword(value);
+        setPasswordsMatch(password === value);
+        break;
+      default:
+        break;
+    }
+  }
+
+  function handleSubmit(e) {
+    const form = e.currentTarget;
+    console.log(passwordsMatch + ' ' + form.checkValidity());
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    } else if (passwordsMatch) {
+      let newUser = { 
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        contact: contact,
+        address: address,
+        area: area,
+        government: government,
+        username: username,
+        password: password,
+        volunteerRole: undefined,
+        type: "Donor",
+        status: "pending",
+        image: undefined
+      }
+      console.log(newUser);
+      LoginData.push(newUser);
+      setValidated(true);
+      navigate('/Login');
+    }
+    // const pdfBlob = new Blob([document], { type: 'application/pdf' });
+    // const pdfUrl = URL.createObjectURL(pdfBlob);
+    // window.open(pdfUrl);
+    // console.log(LoginData);
+  }
 
   return (
     <Container fluid>
-    <Card className='text-black m-5' style={{ borderRadius: '25px' }}>
-      <Card.Body>
-        <Row>
-          <Col md='10' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center'>
-            <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Donor Registeration</p>
-            <div className="d-flex flex-row align-items-center mb-4 ">
-              <IoIosPerson className="me-3" size='24'/>
-              <Form.Control type='text' placeholder='First Name' className='w-100' required />
-            </div>
-            <div className="d-flex flex-row align-items-center mb-4">
-              <IoIosPerson className="me-3" size='24'/>
-              <Form.Control type='text' placeholder='Last Name' required/>
-            </div>
-
-            <div className="d-flex flex-row align-items-center mb-4">
-              <MdOutlineMail className="me-3" size='24'/>
-              <Form.Control type='email' placeholder='E-mail' required/>
-            </div>
-            <div className="d-flex flex-row align-items-center mb-4">
-              <FaPhone className="me-3" size='24'/>
-              <Form.Control type='tel' placeholder='Contact Number' pattern="[0]{1}[1]{1}[0-2]{1}[0-9]{8}" required/>
-            </div>
-            <div className="d-flex flex-row align-items-center mb-4">
-              <FaHome className="me-3" size='24'/>
-              <Form.Control type='text' placeholder='Address' required/>
-            </div>
-            <div className="d-flex flex-row align-items-center mb-4">
-              <FaCity className="me-3" size='24'/>
-              <Form.Control type='text' placeholder='Area' required/>
-            </div>
-            <div className="d-flex flex-row align-items-center mb-4">
-              <RiGovernmentFill className="me-3" size='24'/>
-              <Form.Control type='text' placeholder='Government' required/>
-            </div>
-            <div className="d-flex flex-row align-items-center mb-4">
-              <RiLockPasswordLine className="me-3" size='24'/>
-              <Form.Control type='password' placeholder='Password' required/>
-            </div>
-            <div className="d-flex flex-row align-items-center mb-4">
-              <FaKey className="me-3" size='24'/>
-              <Form.Control type='password' placeholder='Confirm Password' required/>
-            </div>
-           
-            <Button variant='main-inverse' className='mb-4' size='lg' onClick={handleRegisterClick}>Register</Button>
-          </Col>
-          <Col md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
-            <Card.Img src='https://media.istockphoto.com/id/1353332258/photo/donation-concept-the-volunteer-giving-a-donate-box-to-the-recipient-standing-against-the-wall.jpg?s=612x612&w=0&k=20&c=9AL8Uj9TTtrbHpM78kMp9fqjT_8EqpEekjdixeKUzDw=' fluid />
-          </Col>
-        </Row>
-      </Card.Body>
-    </Card>
-  </Container>
+      <Card className='text-black m-5' style={{ borderRadius: '25px' }}>
+        <Card.Body>
+          <Form validated={validated} onSubmit={handleSubmit}>
+            <Row>
+              <Col md='10' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center'>
+                <Row>
+                  <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Donor Registeration</p>
+                </Row>
+                <Row>
+                  <Col>
+                    <div className="d-flex flex-row align-items-center mb-4 ">
+                      <IoIosPerson className="me-3" size='24' />
+                      <Form.Control type='text' placeholder='First Name' className='w-100' name='first_name' onChange={(e) => handleChange(e)} required />
+                    </div>
+                  </Col>
+                  <Col>
+                    <div className="d-flex flex-row align-items-center mb-4">
+                      <IoIosPerson className="me-3" size='24' />
+                      <Form.Control type='text' placeholder='Last Name' name='last_name' onChange={(e) => handleChange(e)} required />
+                    </div>
+                  </Col>
+                </Row>
+                <Row style={{ width: '84%' }}>
+                  <div className="d-flex flex-row align-items-center mb-4">
+                    <FaRegUser className="me-3" size='24' />
+                    <Form.Control type='text' placeholder='Username' name='username' onChange={(e) => handleChange(e)} required />
+                  </div>
+                </Row>
+                <Row>
+                  <Col>
+                    <div className="d-flex flex-row align-items-center mb-4">
+                      <MdOutlineMail className="me-3" size='24' />
+                      <Form.Control type='email' placeholder='E-mail' name='email' onChange={(e) => handleChange(e)} required />
+                    </div>
+                  </Col>
+                  <Col>
+                    <div className="d-flex flex-row align-items-center mb-4">
+                      <FaPhone className="me-3" size='24' />
+                      <Form.Control type='tel' placeholder='Contact Number' name='contact' pattern="[0]{1}[1]{1}[0-2]{1}[0-9]{8}" onChange={(e) => handleChange(e)} required />
+                    </div>
+                  </Col>
+                </Row>
+                <Row style={{ width: '84%' }}>
+                  <div className="d-flex flex-row align-items-center mb-4">
+                    <FaHome className="me-3" size='24' />
+                    <Form.Control type='text' placeholder='Address' name='address' onChange={(e) => handleChange(e)} required />
+                  </div>
+                </Row>
+                <Row>
+                  <Col>
+                    <div className="d-flex flex-row align-items-center mb-4">
+                      <FaCity className="me-3" size='24' />
+                      <Form.Control type='text' placeholder='Area' name='area' onChange={(e) => handleChange(e)} required />
+                    </div>
+                  </Col>
+                  <Col>
+                    <div className="d-flex flex-row align-items-center mb-4">
+                      <RiGovernmentFill className="me-3" size='24' />
+                      <Form.Control type='text' placeholder='Government' name='government' onChange={(e) => handleChange(e)} required />
+                    </div>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <div className="d-flex flex-row align-items-center mb-4">
+                      <RiLockPasswordLine className="me-3" size='24' />
+                      <Form.Control type='password' placeholder='Password' name='password' onChange={(e) => handleChange(e)} required />
+                    </div>
+                  </Col>
+                  <Col>
+                    <div className={!passwordsMatch ? "mb-2" : "mb-4"}>
+                      <div className="d-flex align-items-center">
+                        <FaKey className="me-3" size='22' />
+                        <Form.Control type='password' placeholder='Repeat password' name='repeatPassword' onChange={(e) => handleChange(e)} required />
+                      </div>
+                      {!passwordsMatch &&
+                        <Row className='justify-content-center align-items-center mt-2'>
+                          <MdErrorOutline className='w-auto text-danger p-0' size='20' />
+                          <p className='text-danger w-auto m-0'>Passwords do not match</p>
+                        </Row>
+                      }
+                    </div>
+                  </Col>
+                </Row>
+                <Row>
+                  <Button variant='main-inverse' className='mb-4' size='lg' onClick={handleRegisterClick}>Register</Button>
+                </Row>
+              </Col>
+              <Col md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
+                <Card.Img src='https://media.istockphoto.com/id/1353332258/photo/donation-concept-the-volunteer-giving-a-donate-box-to-the-recipient-standing-against-the-wall.jpg?s=612x612&w=0&k=20&c=9AL8Uj9TTtrbHpM78kMp9fqjT_8EqpEekjdixeKUzDw=' fluid />
+              </Col>
+            </Row>
+          </Form>
+        </Card.Body>
+      </Card>
+    </Container>
   );
 }
 

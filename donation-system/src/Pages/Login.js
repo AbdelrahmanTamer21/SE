@@ -22,10 +22,26 @@ function Login() {
           navigate("/Admin");
           break;
         case "Donor":
-          navigate("/Donor");
+          if(user.status === "pending"){
+            alert("Your account is still pending approval");
+          }
+          else if(user.status === "rejected"){
+            alert("Your account has been rejected");
+          }
+          else{
+            navigate("/Donor");
+          }
           break;
         case "Organization":
-          navigate("/Organization");
+          if(user.status === "pending"){  
+            alert("Your account is still pending approval");
+          }
+          else if(user.status === "rejected"){
+            alert("Your account has been rejected");
+          }
+          else{
+          navigate("/OrganizationDashboard");
+          }
           break;
         default:
           navigate("/Login");
@@ -45,7 +61,7 @@ function Login() {
                 <img
                   src="https://i.pinimg.com/236x/7d/bd/c0/7dbdc03df87c75f679056a3a9db12e02.jpg"
                   alt="Phone"
-                  className="img-fluid rounded-3 w-50"
+                  className="img-fluid rounded-3 w-50  mt-md-5"
                 />
               </Col>
               <Col md={7} lg={5} xl={5}>

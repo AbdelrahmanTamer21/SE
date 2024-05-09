@@ -36,6 +36,6 @@ function ViewDonationRequest() {
             <Outlet />
         </Container>
     );
-}
-
-export default ViewDonationRequest;
+  };
+  
+  export default ViewDonationRequest;

@@ -13,9 +13,9 @@ export function HomeTab() {
     return (
         <div>
             <h1>Organization Information</h1>
-            <p>First Name: {Organization?.first_name}</p>
-            <p>Last Name: {Organization?.last_name}</p>
-            <p>Email: {Organization?.email}</p>
+            <p>Organization Name: {Organization?.organizationName}</p>
+            <p>Type: {Organization?.orgType}</p>
+            <p>Email: {Organization?.organizationEmail}</p>
         </div>
     );
 }

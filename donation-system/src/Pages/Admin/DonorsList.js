@@ -124,10 +124,9 @@ function DonorsList() {
     const columns = [
         {
             title: '#',
-            dataIndex: 'donor_id',
-            key: 'donor_id',
+            key: 'index',
             width: '10%',
-            ...getColumnSearchProps('donor_id'),
+            render: (text, record, index) => index + 1,
         },
         {
             title: 'First Name',
@@ -145,7 +144,7 @@ function DonorsList() {
         },
         {
             title: 'Email',
-            dataIndex: 'email',
+            dataIndex: 'donorEmail',
             key: 'email',
             ...getColumnSearchProps('email'),
             sorter: (a, b) => a.email.length - b.email.length,

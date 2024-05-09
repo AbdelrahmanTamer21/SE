@@ -115,8 +115,8 @@ function DonationForm() {
                 <hr className="mx-n3" />
                 <Row className='justify-content-center align-items-center'>
                   <Col md='6' className='text-center'>
-                    <Button className='my-4 mx-2' size='lg' type='submit'>Submit</Button>
-                    <Button className='my-4 mx-2' size='lg' variant='secondary' onClick={handleReset}>Reset</Button>
+                    <Button variant="main-inverse" className='my-4 mx-2' size='lg' type='submit'>Submit</Button>
+                    <Button  variant="main" className='my-4 mx-2 border-dark' size='lg'  onClick={handleReset}>Reset</Button>
                   </Col>
                 </Row>
               </Form>
