@@ -59,7 +59,7 @@ let LoginData = [
         type: "Organization",
         orgType: "Hospital",
         pdf: undefined,
-        status: "pending",
+        status: "approved",
         image: undefined
     },
     {

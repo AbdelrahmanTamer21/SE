@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Avatar from './Avatar';
 import { SideBarContext } from './SideBarContext';
+import "./Login.css" 
 
 function TopBar() {
   const { isLoggedIn } = useContext(UserContext);
@@ -45,7 +46,7 @@ function TopBar() {
           {isLoggedIn === true ? (
             <Avatar />
           ) : <Nav>
-            <Button variant="" className="btn-main" onClick={handleLogin}>Login</Button>
+            <Button variant="main" className="btnLogIn" onClick={handleLogin}>Login</Button>
           </Nav>
           }
         </Navbar.Collapse>
