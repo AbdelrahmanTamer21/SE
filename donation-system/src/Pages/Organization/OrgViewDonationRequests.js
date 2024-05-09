@@ -99,7 +99,10 @@ function OrgViewDonationRequest() {
 
     const handleDelete = (id) => {
         // Mark item as deleted
-        setData(data.filter(item => item.id !== id));
+        if (window.confirm("Are you sure you want to delete this item?")) {
+            setData(data.filter(item => item.id !== id));
+            };
+        
     };
 
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -340,5 +343,6 @@ function OrgViewDonationRequest() {
         </Container>
     );
 }
+
 
 export default OrgViewDonationRequest;

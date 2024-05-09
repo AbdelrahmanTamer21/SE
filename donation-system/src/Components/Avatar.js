@@ -1,16 +1,18 @@
 import React from "react";
 import { Button, Dropdown, Image } from "react-bootstrap";
 import "./avatar.css";
-import {UserContext} from './UserContext';
-import {useContext, useEffect} from 'react';
+import { UserContext } from './UserContext';
+import { useContext, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 function Avatar() {
     const { isLoggedIn, userRole, updateUser } = useContext(UserContext);
     const navigate = useNavigate();
     const handleLogout = () => {
-        updateUser(null,false);
-        navigate("/");
+        if (window.confirm("Are you sure you want to logout?")) {
+            updateUser(null, false);
+            navigate("/");
+        }
     }
     useEffect(() => {
         if (!isLoggedIn) {
@@ -26,11 +28,11 @@ function Avatar() {
             </Dropdown.Toggle>
             <Dropdown.Menu>
                 <Dropdown.Item as={Link} to={`/${userRole}/Profile`}>Profile</Dropdown.Item>
-                <Dropdown.Item  as={Link} to={`/${userRole}/Settings`}>Settings</Dropdown.Item>
+                <Dropdown.Item as={Link} to={`/${userRole}/Settings`}>Settings</Dropdown.Item>
                 <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item>
-                    <Button variant="danger" onClick={handleLogout} className="w-100" >Logout</Button>
+                    <Button variant="danger" onClick={handleLogout} className=" w-100" >Logout</Button>
                 </Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>

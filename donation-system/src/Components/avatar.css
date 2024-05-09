@@ -1,3 +1,7 @@
 .dropdown-image-button {
     appearance: none; /* Hide default arrow icon */
   }
+
+  .btnLogOut:focus{
+    outline: none;
+  }
