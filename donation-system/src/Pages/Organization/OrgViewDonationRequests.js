@@ -6,13 +6,12 @@ import Highlighter from 'react-highlight-words';
 import { useNavigate } from 'react-router-dom';
 import { Container } from "react-bootstrap";
 import { Form, InputNumber } from 'antd';
+import { Typography, Popconfirm } from 'antd';
 
 
 function OrgViewDonationRequest() {
     const navigate = useNavigate();
 
-    const [editingItemId, setEditingItemId] = useState(null);
-    const [editedItem, setEditedItem] = useState({});
     const [deletedItemIds, setDeletedItemIds] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
@@ -68,31 +67,36 @@ function OrgViewDonationRequest() {
         );
     };
 
+    const cancel = () => {
+        setEditingKey('');
+    };
+    
+    const save = async (key) => {
+        try {
+            const row = await form.validateFields();
+            const newData = [...data];
+            const index = newData.findIndex((item) => key === item.key);
+            if (index > -1) {
+                const item = newData[index];
+                newData.splice(index, 1, {
+                    ...item,
+                    ...row,
+                });
+                setData(newData);
+                setEditingKey('');
+            } else {
+                newData.push(row);
+                setData(newData);
+                setEditingKey('');
+            }
+        } catch (errInfo) {
+            console.log('Validate Failed:', errInfo);
+        }
+    };
+
     const handleRowClick = (id) => {
         console.log(id);
-        setEditingItemId(id);
     }
-
-    const handleEditChange = (key, value) => {
-        setEditedItem({
-            ...editedItem,
-            [key]: value
-        });
-    };
-
-    const handleSave = () => {
-        // Save editedItem
-        console.log("Save item:", editedItem);
-        // Clear editing state
-        setEditingItemId(null);
-        setEditedItem({});
-    };
-
-    const handleBack = () => {
-        // Clear editing state
-        setEditingItemId(null);
-        setEditedItem({});
-    };
 
     const handleDelete = (id) => {
         // Mark item as deleted
@@ -216,6 +220,7 @@ function OrgViewDonationRequest() {
             key: 'itemName',
             width: '30%',
             ...getColumnSearchProps('itemName'),
+            editable: true,
         },
         {
             title: 'Category',
@@ -232,6 +237,7 @@ function OrgViewDonationRequest() {
             ],
             filterSearch: true,
             onFilter: (value, record) => record.category.startsWith(value),
+            editable: true,
         },
         {
             title: 'Condition',
@@ -243,43 +249,81 @@ function OrgViewDonationRequest() {
             ],
             filterSearch: true,
             onFilter: (value, record) => record.condition.startsWith(value),
+            editable: true,
         },
         {
             title: 'Actions',
             key: 'actions',
-            render: (text, record) => (
-                <Space size="middle">
-                    {editingItemId === record.id ? (
-                        <>
-                            <Input value={editedItem.itemName} onChange={(e) => handleEditChange('itemName', e.target.value)} />
-                            <Input value={editedItem.category} onChange={(e) => handleEditChange('category', e.target.value)} />
-                            <Input value={editedItem.condition} onChange={(e) => handleEditChange('condition', e.target.value)} />
-                            <Button onClick={handleSave}>Save</Button>
-                            <Button onClick={handleBack}>Back</Button>
-                        </>
-                    ) : (
-                        <Space size="middle">
-                            <Button onClick={() => handleDelete(record.id)} type="danger">Delete</Button>
-                            <Button onClick={() => setEditingItemId(record.id)}>Edit</Button>
-                        </Space>
-                    )}
-                </Space>
-            ),
+            width: '20%',
+            render: (_, record) => {
+                const editable = isEditing(record);
+                return editable ? (
+                    <Space size="middle">
+                        <Button onClick={()=>handleDelete(record.id)}>
+                            Delete
+                        </Button>
+                        <Button
+                            onClick={() => save(record.key)}
+                            style={{
+                                marginRight: 8,
+                            }}
+                        >
+                            Save
+                        </Button>
+                        <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
+                            <a>Cancel</a>
+                        </Popconfirm>
+                    </Space>
+                ) : (
+                    <Space size="middle">
+                        <Button onClick={()=>handleDelete(record.id)}>
+                            Delete
+                        </Button>
+                        <Button disabled={editingKey !== ''} onClick={() => edit(record)}>
+                            Edit
+                        </Button>
+                    </Space>
+                );
+            },
         },
     ];
+
+    const mergedColumns = columns.map((col) => {
+        if (!col.editable) {
+            return col;
+        }
+        return {
+            ...col,
+            onCell: (record) => ({
+                record,
+                inputType: col.dataIndex === 'age' ? 'number' : 'text',
+                dataIndex: col.dataIndex,
+                title: col.title,
+                editing: isEditing(record),
+            }),
+        };
+    });
 
     return (
         <Container className="pt-3">
             <h1>Donation List</h1>
-            <Table className="mt-4"
-                columns={columns}
-                dataSource={donationData.filter(item => !deletedItemIds.includes(item.id))}
-                onRow={(record, rowIndex) => {
-                    return {
-                        onClick: () => handleRowClick(record.id), // click row
-                    };
-                }}
-            />
+            <Form form={form} component={false}>
+                <Table className="mt-4"
+                    components={{
+                        body: {
+                            cell: EditableCell,
+                        },
+                    }}
+                    columns={mergedColumns}
+                    rowClassName="editable-row"
+                    dataSource={donationData.filter(item => !deletedItemIds.includes(item.id))}
+                    onRow={(record, rowIndex) => {
+                        return {
+                            onClick: () => handleRowClick(record.id), // click row
+                        };
+                    }}
+                />
+            </Form>
         </Container>
     );
 }
