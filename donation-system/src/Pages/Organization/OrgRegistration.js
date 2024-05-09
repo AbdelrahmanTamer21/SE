@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import { PiWarehouse } from "react-icons/pi";
 import { RiLockPasswordLine } from "react-icons/ri";
@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // Import Leaflet CSS
 import LoginData from '../LoginData';
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 function OrganizationRegistration() {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ function OrganizationRegistration() {
   const [passwordsMatch, setPasswordsMatch] = useState(true);
   const [document, setDocument] = useState();
   const [markerPosition, setMarkerPosition] = useState(null);
+  const mapRef = useRef(null);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -52,6 +54,14 @@ function OrganizationRegistration() {
 
   function handleMapClick(e) {
     setMarkerPosition(e.latlng);
+  }
+
+  function handleSetLocation() {
+    const map = mapRef.current;
+    if (map) {
+      const center = map.getCenter();
+      setMarkerPosition(center);
+    }
   }
 
   function handleSubmit(e) {
@@ -146,7 +156,8 @@ function OrganizationRegistration() {
               </Col>
               <Col md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
                 <div style={{ border: '2px solid black', width: '100%', height: '400px' }}>
-                  <MapContainer center={[30.020882, 31.526789]} zoom={13} style={{ width: '100%', height: '100%' }} onclick={handleMapClick}>
+                <MapContainer center={  [30.020882, 31.526789]} zoom={13} style={{ width: '100%', height: '100%' }} onclick={handleMapClick} ref={mapRef}>
+
                     <TileLayer
                       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -160,6 +171,9 @@ function OrganizationRegistration() {
                     )}
                   </MapContainer>
                 </div>
+                <Row className='justify-content-center mt-3'>
+                  <Button variant='main-inverse' onClick={handleSetLocation}><FaMapMarkerAlt /> Set Location</Button>
+                </Row>
               </Col>
             </Row>
           </Form>
