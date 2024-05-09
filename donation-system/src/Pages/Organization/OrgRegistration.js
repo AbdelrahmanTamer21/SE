@@ -7,6 +7,8 @@ import { FaKey, FaRegUser } from "react-icons/fa";
 import { Checkbox } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+import markerIcon from './marker.png'; // Import your marker icon
 import 'leaflet/dist/leaflet.css'; // Import Leaflet CSS
 import LoginData from '../LoginData';
 import { FaMapMarkerAlt } from "react-icons/fa";
@@ -23,6 +25,12 @@ function OrganizationRegistration() {
   const [document, setDocument] = useState();
   const [markerPosition, setMarkerPosition] = useState(null);
   const mapRef = useRef(null);
+
+  // Create custom marker icon
+  const customMarkerIcon = L.icon({
+    iconUrl: markerIcon,
+    iconSize: [32, 32], // Adjust the size of your marker icon
+  });
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -155,25 +163,25 @@ function OrganizationRegistration() {
                 </Row>
               </Col>
               <Col md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
-                <div style={{ border: '2px solid black', width: '100%', height: '400px' }}>
-                <MapContainer center={  [30.020882, 31.526789]} zoom={13} style={{ width: '100%', height: '100%' }} onclick={handleMapClick} ref={mapRef}>
-
+                <div style={{ border: '2px solid black', width: '100%', height: '400px', position: 'relative' }}>
+                  <MapContainer center={[30.020882, 31.526789]} zoom={13} style={{ width: '100%', height: '100%' }} onclick={handleMapClick} ref={mapRef}>
+                  
                     <TileLayer
                       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     />
                     {markerPosition && (
-                      <Marker position={markerPosition}>
+                      <Marker position={markerPosition} icon={customMarkerIcon}>
                         <Popup>
                           Your location
                         </Popup>
                       </Marker>
                     )}
                   </MapContainer>
+                  <Row className='justify-content-center' style={{ position: 'absolute', bottom: '-70px', left: '50%', transform: 'translateX(-50%)' }}>
+                    <Button variant='main-inverse' onClick={handleSetLocation}><FaMapMarkerAlt /> Set Location</Button>
+                  </Row>
                 </div>
-                <Row className='justify-content-center mt-3'>
-                  <Button variant='main-inverse' onClick={handleSetLocation}><FaMapMarkerAlt /> Set Location</Button>
-                </Row>
               </Col>
             </Row>
           </Form>
