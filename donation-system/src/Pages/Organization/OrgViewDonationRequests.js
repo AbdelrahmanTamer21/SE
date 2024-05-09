@@ -12,7 +12,6 @@ import { Typography, Popconfirm } from 'antd';
 function OrgViewDonationRequest() {
     const navigate = useNavigate();
 
-    const [deletedItemIds, setDeletedItemIds] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
@@ -70,7 +69,7 @@ function OrgViewDonationRequest() {
     const cancel = () => {
         setEditingKey('');
     };
-    
+
     const save = async (key) => {
         try {
             const row = await form.validateFields();
@@ -100,7 +99,7 @@ function OrgViewDonationRequest() {
 
     const handleDelete = (id) => {
         // Mark item as deleted
-        setDeletedItemIds([...deletedItemIds, id]);
+        setData(data.filter(item => item.id !== id));
     };
 
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -236,8 +235,7 @@ function OrgViewDonationRequest() {
                 { text: 'School Supplies', value: 'School Supplies' },
             ],
             filterSearch: true,
-            onFilter: (value, record) => record.category.startsWith(value),
-            editable: true,
+            onFilter: (value, record) => record.category.startsWith(value)
         },
         {
             title: 'Condition',
@@ -248,8 +246,7 @@ function OrgViewDonationRequest() {
                 { text: 'Used', value: 'Used' },
             ],
             filterSearch: true,
-            onFilter: (value, record) => record.condition.startsWith(value),
-            editable: true,
+            onFilter: (value, record) => record.condition.startsWith(value)
         },
         {
             title: 'Actions',
@@ -316,7 +313,7 @@ function OrgViewDonationRequest() {
                     }}
                     columns={mergedColumns}
                     rowClassName="editable-row"
-                    dataSource={donationData.filter(item => !deletedItemIds.includes(item.id))}
+                    dataSource={data}
                     onRow={(record, rowIndex) => {
                         return {
                             onClick: () => handleRowClick(record.id), // click row
