@@ -59,9 +59,13 @@ let donationData = [
     id: 7,
     category: 'Clothing',
     itemName: 'Assorted clothes for children',
-    condition: 'Used',
+    condition: 'New',
     description: 'A collection of gently used clothing items for children.',
-    gender: 'Female'
+    age: 13,
+    gender: 'Female',
+    season: 'Spring',
+    material: 'Cotton',
+    quantity: 30
   },
   {
     key: 8,
