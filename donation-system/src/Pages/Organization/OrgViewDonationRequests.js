@@ -5,8 +5,10 @@ import { Button, Input, Space, Table } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { useNavigate } from 'react-router-dom';
 import { Container } from "react-bootstrap";
+import { Form, InputNumber } from 'antd';
 
-function ViewDonationRequest() {
+
+function OrgViewDonationRequest() {
     const navigate = useNavigate();
 
     const [editingItemId, setEditingItemId] = useState(null);
@@ -15,6 +17,56 @@ function ViewDonationRequest() {
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
+
+    const [form] = Form.useForm();
+    const [data, setData] = useState(donationData);
+    const [editingKey, setEditingKey] = useState('');
+    const isEditing = (record) => record.key === editingKey;
+    const edit = (record) => {
+        form.setFieldsValue({
+            name: '',
+            age: '',
+            address: '',
+            ...record,
+        });
+        setEditingKey(record.key);
+    };
+
+
+    const EditableCell = ({
+        editing,
+        dataIndex,
+        title,
+        inputType,
+        record,
+        index,
+        children,
+        ...restProps
+    }) => {
+        const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
+        return (
+            <td {...restProps}>
+                {editing ? (
+                    <Form.Item
+                        name={dataIndex}
+                        style={{
+                            margin: 0,
+                        }}
+                        rules={[
+                            {
+                                required: true,
+                                message: `Please Input ${title}!`,
+                            },
+                        ]}
+                    >
+                        {inputNode}
+                    </Form.Item>
+                ) : (
+                    children
+                )}
+            </td>
+        );
+    };
 
     const handleRowClick = (id) => {
         console.log(id);
@@ -232,4 +284,4 @@ function ViewDonationRequest() {
     );
 }
 
-export default ViewDonationRequest;
+export default OrgViewDonationRequest;

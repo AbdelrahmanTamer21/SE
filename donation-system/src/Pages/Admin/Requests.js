@@ -17,7 +17,8 @@ import donorr from '../donorr.jpg';
 
 
 export function DonorsTab() {
-    const [donors, setDonors] = useState(LoginData.filter((donor) => donor.status === "pending" && donor.type === "Donor"));
+    const [donors, setDonors] = useState(LoginData.filter((donor) => donor.type === "Donor" && donor.status === "pending"));
+    console.log(LoginData);
     const handleAccept = (donor) => {
         LoginData.forEach((d) => {
             if (d.username === donor.username) {
@@ -112,7 +113,6 @@ export function OrganizationsTab() {
         window.open(url);
     }
 
-    console.log(orgs);
     return (
         <Container>
             <h1>Organizations Requests</h1>

@@ -17,7 +17,7 @@ function OrganizationDashboard() {
   };
 
   const handleOrgViewDonationRequestsClick = () => {
-    navigate('/OrgViewDonationRequests');
+    navigate('/OrgViewRequests');
   };
 
   return (
