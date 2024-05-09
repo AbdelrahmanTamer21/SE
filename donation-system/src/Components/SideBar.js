@@ -4,13 +4,16 @@ import { SideBarContext } from './SideBarContext';
 import { UserContext } from './UserContext';
 import './sidebar.css';
 import { useNavigate } from 'react-router-dom';
-
+import LoginData from '../Pages/LoginData';
 const Sidebar = () => {
   const navigate = useNavigate();
 
-  const { userRole } = useContext(UserContext);
+  const { userRole,username } = useContext(UserContext);
 
   const { isOpen } = useContext(SideBarContext);
+  const user  = LoginData.find((u)=>u.username===username); 
+  console.log(user);
+  console.log(user.don_Type);
 
   return (
     <>
@@ -37,6 +40,13 @@ const Sidebar = () => {
           <>
             <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}/Delivery`)} className="nav-link">Schedule Pickup</Nav.Link>
             <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}/Organizations`)} className="nav-link">Organizations</Nav.Link>
+
+            {user.don_Type ==='Teacher'?(
+               <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}/Teaching`)} className="nav-link">Teaching Posts</Nav.Link>
+            ):user.don_Type==='Doctor'?(
+              <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}/MedicalCases`)} className="nav-link">Medical Cases</Nav.Link>
+            ):null}
+
           </>
         ):null}
         

@@ -52,6 +52,17 @@ let LoginData = [
 
     },
     {
+        organizationName: "org",
+        organizationEmail: "org@gmail.com",
+        username: "org",
+        password: "123",
+        type: "Organization",
+        orgType: "Hospital",
+        pdf: undefined,
+        status: "approved",
+        image: undefined
+    },
+    {
         organizationName: "org1",
         organizationEmail: "org1@gmail.com",
         username: "org1",

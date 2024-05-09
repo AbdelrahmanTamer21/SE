@@ -14,6 +14,9 @@ function TopBar() {
   const handleLogin = () => {
     navigate("/Login");
   }
+  const handleRegister = () =>{
+    navigate("RegistrationType");
+  }
 
   const { isOpen, toggleSidebar } = useContext(SideBarContext);
 
@@ -46,7 +49,8 @@ function TopBar() {
           {isLoggedIn === true ? (
             <Avatar />
           ) : <Nav>
-            <Button variant="main" className="btnLogIn" onClick={handleLogin}>Login</Button>
+            <Button variant="" className="btn-main" onClick={handleLogin}>Login</Button>
+            <Button variant="" className="btn-main ms-2" onClick={handleRegister}>Register</Button>
           </Nav>
           }
         </Navbar.Collapse>

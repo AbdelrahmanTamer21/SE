@@ -25,6 +25,8 @@ import DonationInfo from './Pages/Donor/DonationsInfo';
 import VolunteerRoleSelection from './Pages/VolunteerRoleSelection';
 import DocumentUpload from './Pages/Donor/DocumentUpload';
 import Delivery from './Pages/Donor/Delivery';
+import TeachingPosts from './Pages/Donor/ViewTeachingPosts';
+import MedicalCasesTable from './Pages/Donor/MedicalCasesTable';
 
 
 import Admin from './Pages/Admin/Admin';
@@ -77,6 +79,8 @@ function App() {
               <Route path='Organizations' element={<OrganizationList />}></Route>
               <Route path='Profile' element={<Profile />}></Route>
               <Route path='Settings' element={<AccountSettings/>}/>
+              <Route path='Teaching' element={<TeachingPosts/>}/>
+              <Route path='MedicalCases' element={<MedicalCasesTable/>}></Route>
               
 
             </Route>
