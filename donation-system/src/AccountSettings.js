@@ -88,7 +88,7 @@ const TabContent = ({ activeTab, setActiveTab }) => {
     case 'account-change-password':
       return <div><ChangePasswordTab setActiveTab={setActiveTab} /></div>;
     case 'account-change-address':
-      return <div><ChangeAddressTab setActiveTab={setActiveTab}/></div>; // Replace with your component
+      return <div><ChangeAddressTab setActiveTab={setActiveTab} /></div>; // Replace with your component
     case 'account-social-links':
       return <div>SocialLinksTab Component</div>; // Replace with your component
     case 'account-connections':
@@ -109,7 +109,7 @@ const InfoTab = () => {
     email: user.email,
     phone: user.phone
   });
-  
+
 
 
   const handleInputChange = (e) => {
@@ -126,9 +126,9 @@ const InfoTab = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const updatedUser = { ...user, ...userData };
-    if(photo !== "https://bootdey.com/img/Content/avatar/avatar1.png"){
+    if (photo !== "https://bootdey.com/img/Content/avatar/avatar1.png") {
       updatedUser.image = file;
-    }else{
+    } else {
       updatedUser.image = undefined;
     }
     LoginData.forEach((u, i) => {
@@ -137,12 +137,12 @@ const InfoTab = () => {
       }
     });
     alert('Changes saved successfully');
-    
+
 
     handleLocClick();
   };
 
-  const [photo, setPhoto] = useState(user.image === undefined ?"https://bootdey.com/img/Content/avatar/avatar1.png":URL.createObjectURL(user.image));
+  const [photo, setPhoto] = useState(user.image === undefined ? "https://bootdey.com/img/Content/avatar/avatar1.png" : URL.createObjectURL(user.image));
   const [file, setFile] = useState(null);
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
@@ -166,7 +166,7 @@ const InfoTab = () => {
       email: user.email,
       phone: user.phone
     });
-    
+
   };
   return (
     <div className="tab-pane active show" id="account-general">
@@ -307,7 +307,7 @@ const ChangePasswordTab = ({ setActiveTab }) => {
     </div>
   );
 };
-const ChangeAddressTab = ({setActiveTab}) => {
+const ChangeAddressTab = ({ setActiveTab }) => {
   const { username } = useContext(UserContext);
   const user = LoginData.find((user) => user.username === username);
   const [userData, setUserData] = useState({
