@@ -273,11 +273,27 @@ function OrgViewDonationRequest() {
                     </Space>
                 ) : (
                     <Space size="middle">
-                        <Button onClick={()=>handleDelete(record.id)}>
+                        <Button onClick={()=>handleDelete(record.id)} style={
+                            {
+                                backgroundColor: '#da0808',
+                                color: 'white',
+                            }
+                        }>
                             Delete
                         </Button>
-                        <Button disabled={editingKey !== ''} onClick={() => edit(record)}>
-                            Edit
+                        <Button disabled={editingKey !== ''} onClick={() => edit(record)}style={{
+                                backgroundColor: 'green',
+                                color: 'white',
+                                transition: 'background-color 0.3s ease, color 0.3s ease',
+                                
+                                ':hover': {
+                                    backgroundColor: 'white',
+                                    color: 'green',
+                                    
+                           }}}
+                       
+                        >
+                            Update
                         </Button>
                     </Space>
                 );
