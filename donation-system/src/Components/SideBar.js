@@ -37,6 +37,7 @@ const Sidebar = () => {
           <>
             <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}/Delivery`)} className="nav-link">Schedule Pickup</Nav.Link>
             <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}/Organizations`)} className="nav-link">Organizations</Nav.Link>
+            <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}/Teaching`)} className="nav-link">Teaching Posts</Nav.Link>
           </>
         ):null}
         
