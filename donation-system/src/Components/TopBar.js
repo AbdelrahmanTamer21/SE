@@ -8,15 +8,22 @@ import Avatar from './Avatar';
 import { SideBarContext } from './SideBarContext';
 import "./Login.css" 
 
+
 function TopBar() {
   const { isLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
   const handleLogin = () => {
     navigate("/Login");
   }
+  const handlehome = () =>{
+    navigate("Home");
+  }
   const handleRegister = () =>{
     navigate("RegistrationType");
   }
+  const goBack = () => {
+    navigate(-1);
+}
 
   const { isOpen, toggleSidebar } = useContext(SideBarContext);
 
@@ -31,19 +38,11 @@ function TopBar() {
         <Navbar.Brand href="/" >Donation System</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+        <Nav className="me-auto">
             {isLoggedIn === true ? (
-              <><Nav.Link href="#home">Home</Nav.Link><Nav.Link href="#link">Link</Nav.Link><NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown></>
+              <> <Nav.Link style={{ transition: 'font-size 0.2s' }} className="btn ms-5" onMouseEnter={e => e.target.style.fontSize = '1.2em'} onMouseLeave={e => e.target.style.fontSize = '1em'} onClick={goBack}>Back</Nav.Link>
+
+              </>
             ) : null}
           </Nav>
           {isLoggedIn === true ? (
