@@ -73,7 +73,7 @@ export function HomeTab() {
                         <p>Email: {donor?.email}</p>
                     </Col>
                     <Col>
-                        <p>Phone Number: {donor?.phone_number}</p>
+                        <p>Phone Number: {donor?.phone}</p>
                     </Col>
                 </Row>
                 <Row className="mt-1">

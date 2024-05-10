@@ -22,9 +22,15 @@ export function DonorsTab() {
     const handleAccept = (donor) => {
         LoginData.forEach((d) => {
             if (d.username === donor.username) {
-                donor.status = "accepted";
+                donor.status = "approved";
                 setDonors(donors.filter(donor => donor !== d));
+                const currentDate = new Date();
+                d.joined_date = currentDate.toISOString().split('T')[0];
+                const maxId = Math.max( ...DonorsData.map(d => d.donor_id));
+                d.donor_id = maxId + 1;
                 DonorsData.push(donor);
+
+
                 return;
             }
         });
@@ -53,14 +59,14 @@ export function DonorsTab() {
                                 <Card.Body>
                                     {donor.image !== undefined ?
 
-                                        <img src={donor.image   } alt="donor" className="imgReq" />
+                                        <img src={donor.image} alt="donor" className="imgReq" />
                                         :
                                         donor.don_Type === "Teacher" ?
                                             <img src={teacher} alt="donor" className="imgReq" />
                                             : donor.don_Type === "Doctor" ?
                                                 <img src={doctor} alt="donor" className="imgReq" />
                                                 : <img src={donorr} alt="donor" className="imgReq" />
-                                                
+
 
                                     }
                                     <h2>{donor.first_name + " " + donor.last_name}</h2>
@@ -87,9 +93,16 @@ export function OrganizationsTab() {
     const handleAccept = (org) => {
         LoginData.forEach((o) => {
             if (o.username === org.username) {
-                o.status = "accepted";
+                o.status = "approved";
                 setOrgs(orgs.filter(o => o !== org));
+                const currentDate = new Date();
+                o.joined_date = currentDate.toISOString().split('T')[0];
+                const maxId = Math.max(...OrganizationData.map(o => o.org_id));
+                o.org_id = maxId + 1;
                 OrganizationData.push(o);
+                console.log(OrganizationData);
+
+
                 return;
             }
         });
@@ -101,6 +114,8 @@ export function OrganizationsTab() {
             if (o.username === org.username) {
                 o.status = "rejected";
                 setOrgs(orgs.filter(o => o !== org));
+
+
                 return;
             }
         });
@@ -163,24 +178,24 @@ function Requests() {
 
     return (
         <>
-        <div className="reqTab-links">
-            <Nav variant="tabs" defaultActiveKey="/Organizations">
-                <Nav.Item>
-                    <Nav.Link
-                        onClick={() => handleTabClick("")}
-                        className={activeTab === "" ? "Organizations" : ""}>
-                        Organizations
-                    </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link
-                        onClick={() => handleTabClick("Donors")}
-                        className={activeTab === "Donors" ? "active" : ""}>
-                        Donors
-                    </Nav.Link>
-                </Nav.Item>
-            </Nav>
-            <Outlet />
+            <div className="reqTab-links">
+                <Nav variant="tabs" defaultActiveKey="/Organizations">
+                    <Nav.Item>
+                        <Nav.Link
+                            onClick={() => handleTabClick("")}
+                            className={activeTab === "" ? "Organizations" : ""}>
+                            Organizations
+                        </Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item>
+                        <Nav.Link
+                            onClick={() => handleTabClick("Donors")}
+                            className={activeTab === "Donors" ? "active" : ""}>
+                            Donors
+                        </Nav.Link>
+                    </Nav.Item>
+                </Nav>
+                <Outlet />
             </div>
         </>
     );
