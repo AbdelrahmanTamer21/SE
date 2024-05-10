@@ -7,6 +7,7 @@ import { FaPhone } from "react-icons/fa6";
 import { FaHome, FaCity, FaRegUser, FaKey } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import LoginData from '../LoginData';
+import DonorsData from '../DonorsData';
 
 
 
@@ -26,6 +27,7 @@ function DonorRegistration() {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const [usernameMatch, setUsernameMatch] = useState(false);
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -53,6 +55,7 @@ function DonorRegistration() {
         break;
       case 'username':
         setUsername(value);
+        setUsernameMatch(LoginData.some(user => user.username === value));
         break;
       case 'password':
         setPassword(value);
@@ -67,13 +70,29 @@ function DonorRegistration() {
     }
   }
 
+  function getRandomLocation() {
+    const minLat = 30.0; // Minimum latitude value
+    const maxLat = 31.0; // Maximum latitude value
+    const minLng = 30.0; // Minimum longitude value
+    const maxLng = 31.0; // Maximum longitude value
+
+    const lat = Math.random() * (maxLat - minLat) + minLat;
+    const lng = Math.random() * (maxLng - minLng) + minLng;
+
+    return { lat, lng };
+}
+
   function handleSubmit(e) {
     const form = e.currentTarget;
-    if (form.checkValidity() === false) {
+    if (form.checkValidity() === false || !passwordsMatch || usernameMatch) {
       e.preventDefault();
       e.stopPropagation();
-    } else if (passwordsMatch) {
+    } else if (passwordsMatch && !usernameMatch) {
+      const maxKey = DonorsData.reduce((max, donor) => Math.max(max, donor.key), 0);
+      const maxDonorID = DonorsData.reduce((max, donor) => Math.max(max, donor.donor_id), 0);
+      const loc = getRandomLocation();
       let newUser = {
+        donor_id: maxDonorID,
         first_name: first_name,
         last_name: last_name,
         donorEmail: email,
@@ -87,9 +106,21 @@ function DonorRegistration() {
         don_Type: "Donor",
         type: "Donor",
         status: "pending",
-        image: undefined
+        image: undefined,
+        location: loc
+      }
+      let newDonor = {
+        key: maxKey,
+        donor_id: maxDonorID,
+        first_name: first_name,
+        last_name: last_name,
+        email: email,
+        phone: contact,
+        address: address,
+        location: loc
       }
       LoginData.push(newUser);
+      DonorsData.push(newDonor);
       setValidated(true);
       navigate(`/Volunteer/${username}`);
     }
@@ -123,9 +154,17 @@ function DonorRegistration() {
                   </Col>
                 </Row>
                 <Row style={{ width: '84%' }}>
-                  <div className="d-flex flex-row align-items-center mb-4">
-                    <FaRegUser className="me-3" size='24' />
-                    <Form.Control type='text' placeholder='Username' name='username' onChange={(e) => handleChange(e)} required />
+                  <div className={usernameMatch ? 'mb-2' : 'mb-4'}>
+                    <div className="d-flex flex-row align-items-center">
+                      <FaRegUser className="me-3" size='24' />
+                      <Form.Control type='text' placeholder='Username' name='username' onChange={(e) => handleChange(e)} required />
+                    </div>
+                    {usernameMatch &&
+                      <Row className='justify-content-center align-items-center mt-2'>
+                        <MdErrorOutline className='w-auto text-danger p-0' size='20' />
+                        <p className='text-danger w-auto m-0'>Username Alreday exists</p>
+                      </Row>
+                    }
                   </div>
                 </Row>
                 <Row>

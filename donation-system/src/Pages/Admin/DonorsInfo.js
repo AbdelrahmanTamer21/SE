@@ -1,41 +1,21 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate, useParams, Outlet } from 'react-router-dom';
 import DonorsData from "../DonorsData"
 import { Nav, Row, Col, Card, Container, Image } from 'react-bootstrap';
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { Button } from 'antd';
 import { AimOutlined } from '@ant-design/icons';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+import markerIcon from '../marker.png'; // Import your marker icon
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 export function HomeTab() {
     const { donor_id } = useParams();
 
     const donor = DonorsData.find(donor => donor.donor_id === Number(donor_id));
 
-    const { isLoaded } = useJsApiLoader({
-        id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyC3w9cUTNQfgH2qqCdxC2DC1rjq78Mt6a4"
-    })
-
-    const [map, setMap] = useState(null)
     const [isMapOpen, setIsMapOpen] = useState(false);
-    
-    const center = {
-        lat: -3.745,
-        lng: -38.523
-    };
-
-    const onLoad = useCallback(function callback(map) {
-        // This is just an example of getting and using the map instance!!! don't just blindly copy!
-        const bounds = new window.google.maps.LatLngBounds(center);
-        map.fitBounds(bounds);
-
-        setMap(map)
-    }, [])
-
-    const onUnmount = useCallback(function callback(map) {
-        setMap(null)
-    }, [])
 
     const containerStyle = {
         width: '70%',
@@ -47,6 +27,13 @@ export function HomeTab() {
         setIsMapOpen(!isMapOpen);
     }
 
+    const mapRef = useRef(null);
+
+    // Create custom marker icon
+    const customMarkerIcon = L.icon({
+        iconUrl: markerIcon,
+        iconSize: [22, 32], // Adjust the size of your marker icon
+    });
 
     return (
         <Card>
@@ -91,18 +78,18 @@ export function HomeTab() {
                     </Col>
                 </Row>
                 <Row className={`${isMapOpen ? "map" : "d-none"} mt-2 mb-3 justify-content-center me-2`}>
-                    {isLoaded ? (
-                        <GoogleMap
-                            className={isMapOpen ? 'map' : 'd-none'}
-                            mapContainerStyle={containerStyle}
-                            center={center}
-                            zoom={10}
-                            onLoad={onLoad}
-                            onUnmount={onUnmount}
+                    <MapContainer center={donor.location} zoom={13} style={containerStyle} ref={mapRef}>
+
+                        <TileLayer
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                         />
-                    ) : (
-                        <>Loading...</>
-                    )}
+                        <Marker position={donor.location} icon={customMarkerIcon}>
+                            <Popup>
+                                Donor location
+                            </Popup>
+                        </Marker>
+                    </MapContainer>
                 </Row>
             </Container>
         </Card>

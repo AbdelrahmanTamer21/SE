@@ -8,8 +8,7 @@ import { Checkbox } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import markerIcon from './marker.png'; // Import your marker icon
-import 'leaflet/dist/leaflet.css'; // Import Leaflet CSS
+import markerIcon from '../marker.png'; // Import your marker icon
 import LoginData from '../LoginData';
 import { FaMapMarkerAlt } from "react-icons/fa";
 
@@ -22,6 +21,7 @@ function OrganizationRegistration() {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const [usernameMatch, setUsernameMatch] = useState(false);
   const [document, setDocument] = useState();
   const [markerPosition, setMarkerPosition] = useState(null);
   const mapRef = useRef(null);
@@ -29,7 +29,7 @@ function OrganizationRegistration() {
   // Create custom marker icon
   const customMarkerIcon = L.icon({
     iconUrl: markerIcon,
-    iconSize: [32, 32], // Adjust the size of your marker icon
+    iconSize: [ 22, 32 ], // Adjust the size of your marker icon
   });
 
   function handleChange(e) {
@@ -43,6 +43,7 @@ function OrganizationRegistration() {
         break;
       case 'username':
         setUsername(value);
+        setUsernameMatch(LoginData.some(user => user.username === value));
         break;
       case 'password':
         setPassword(value);
@@ -68,16 +69,17 @@ function OrganizationRegistration() {
     const map = mapRef.current;
     if (map) {
       const center = map.getCenter();
+      console.log(center);
       setMarkerPosition(center);
     }
   }
 
   function handleSubmit(e) {
     const form = e.currentTarget;
-    if (form.checkValidity() === false) {
+    if (form.checkValidity() === false || !passwordsMatch || usernameMatch) {
       e.preventDefault();
       e.stopPropagation();
-    } else if (passwordsMatch) {
+    } else if (passwordsMatch && !usernameMatch) {
       let newUser = {
         organizationName: organizationName,
         organizationEmail: organizationEmail,
@@ -97,7 +99,7 @@ function OrganizationRegistration() {
   }
 
   return (
-    <Container fluid="true">
+    <Container fluid>
       <Card className='text-black m-5' style={{ borderRadius: '25px' }}>
         <Card.Body>
           <Form validated={validated} onSubmit={handleSubmit}>
@@ -115,9 +117,17 @@ function OrganizationRegistration() {
                     <MdOutlineMail className="me-3" size='24' />
                     <Form.Control type='email' placeholder='Organization Email' name='organizationEmail' onChange={(e) => handleChange(e)} required />
                   </div>
-                  <div className="d-flex flex-row align-items-center mb-4">
-                    <FaRegUser className="me-3" size='24' />
-                    <Form.Control type='text' placeholder='Username' name='username' onChange={(e) => handleChange(e)} required />
+                  <div className={usernameMatch ? 'mb-2' : 'mb-4'}>
+                    <div className="d-flex flex-row align-items-center">
+                      <FaRegUser className="me-3" size='24' />
+                      <Form.Control type='text' placeholder='Username' name='username' onChange={(e) => handleChange(e)} required />
+                    </div>
+                    {usernameMatch &&
+                      <Row className='justify-content-center align-items-center mt-2'>
+                        <MdErrorOutline className='w-auto text-danger p-0' size='20' />
+                        <p className='text-danger w-auto m-0'>Username Alreday exists</p>
+                      </Row>
+                    }
                   </div>
                   <div className="d-flex flex-row align-items-center mb-4">
                     <RiLockPasswordLine className="me-3" size='24' />
@@ -137,7 +147,7 @@ function OrganizationRegistration() {
                   </div>
                 </Row>
                 <Row>
-                  <Form.Group className="mb-4">
+                  <Form.Group className="mb-4 w-100">
                     <Form.Label>Organization Type</Form.Label>
                     <Form.Select aria-label="Organization Type" required>
                       <option value='Hospital'>Hospital</option>
@@ -164,7 +174,7 @@ function OrganizationRegistration() {
               <Col md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
                 <div style={{ border: '2px solid black', width: '100%', height: '400px', position: 'relative' }}>
                   <MapContainer center={[30.020882, 31.526789]} zoom={13} style={{ width: '100%', height: '100%' }} onclick={handleMapClick} ref={mapRef}>
-                  
+
                     <TileLayer
                       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -178,7 +188,7 @@ function OrganizationRegistration() {
                     )}
                   </MapContainer>
                   <Row className='justify-content-center' style={{ position: 'absolute', bottom: '-70px', left: '50%', transform: 'translateX(-50%)' }}>
-                    <Button variant='main-inverse' onClick={handleSetLocation}><FaMapMarkerAlt /> Set Location</Button>
+                    <Button variant='main-inverse' onClick={handleSetLocation} ><FaMapMarkerAlt /> Set Location on current center</Button>
                   </Row>
                 </div>
               </Col>

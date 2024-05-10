@@ -1,3 +1,14 @@
+function getRandomLocation() {
+    const minLat = 30.0; // Minimum latitude value
+    const maxLat = 31.0; // Maximum latitude value
+    const minLng = 30.0; // Minimum longitude value
+    const maxLng = 31.0; // Maximum longitude value
+
+    const lat = Math.random() * (maxLat - minLat) + minLat;
+    const lng = Math.random() * (maxLng - minLng) + minLng;
+
+    return { lat, lng };
+}
 
 let LoginData = [
     {
@@ -15,9 +26,11 @@ let LoginData = [
             floor: "3",
             apartment: "303"
         },
-        image: undefined
+        image: undefined,
+        location: getRandomLocation()
     },
     {
+        donor_id: 1,
         first_name: "Hassan",
         last_name: "Khaled",
         email: "Hk2003@gmail.com",
@@ -28,9 +41,11 @@ let LoginData = [
         type: "Donor",
         status: "pending",
         image: undefined,
+        location: getRandomLocation(),
         joined_date: undefined
     },
     {
+        donor_id: 2,
         first_name: "Ahmed",
         last_name: "Ali",
         email: "Ah2003@gmail.com",
@@ -41,10 +56,12 @@ let LoginData = [
         type: "Donor",
         status: "pending",
         image: undefined,
+        location: getRandomLocation(),
         joined_date: undefined
         
     },
     {
+        donor_id: 3,
         first_name: "Mohamed",
         last_name: "Khaled",
         email: "Mk2004@gmail.com",
@@ -55,10 +72,12 @@ let LoginData = [
         type: "Donor",
         status: "approved",
         image: undefined,
+        location: getRandomLocation(),
         joined_date: "2024-1-4"
 
     },
     {
+        org_id: 1,
         organizationName: "org",
         organizationEmail: "org@gmail.com",
         username: "org",
@@ -68,9 +87,11 @@ let LoginData = [
         pdf: undefined,
         status: "approved",
         image: undefined,
+        location: getRandomLocation(),
         joined_date: "2024-1-6"
     },
     {
+        org_id: 2,
         organizationName: "org1",
         organizationEmail: "org1@gmail.com",
         username: "org1",
@@ -80,9 +101,11 @@ let LoginData = [
         pdf: undefined,
         status: "approved",
         image: undefined,
-        joined_date: "2024-1-5"
+        location: getRandomLocation(),
+        joined_date: "2024-2-5"
     },
     {
+        org_id: 3,
         organizationName: "org2",
         organizationEmail: "org2@gmail.com",
         username: "org2",
@@ -92,9 +115,11 @@ let LoginData = [
         pdf: undefined,
         status: "pending",
         image: undefined,
+        location: getRandomLocation(),
         joined_date: undefined
     },
     {
+        org_id: 4,
         organizationName: "org3",
         organizationEmail: "org3@gmail.com",
         username: "org3",
@@ -104,6 +129,7 @@ let LoginData = [
         pdf: undefined,
         status: "pending",
         image: undefined,
+        location: getRandomLocation(),
         joined_date: undefined
     }
 ]

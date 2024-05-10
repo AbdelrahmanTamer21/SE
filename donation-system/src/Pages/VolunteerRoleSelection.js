@@ -1,20 +1,21 @@
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Doctor from './Doctor.png';
 import donorImage from './donorr.jpg';
 import Teacher from './Teacher.png';
 import LoginData from './LoginData';
 
-function VolunteerRoleSelection({username}) {
+function VolunteerRoleSelection() {
   const navigate = useNavigate();
+  const {username} = useParams();
 
   const handleDoctorClick = () => {
-    navigate('/Doctor');
+    navigate(`/Doctor/${username}`);
   };
 
   const handleTeacherClick = () => {
-    navigate('/Teacher');
+    navigate(`/Teacher/${username}`);
   };
 
   const handleDonorClick = () => {

@@ -8,6 +8,7 @@ import { Chart, CategoryScale } from 'chart.js/auto';
 import React, { useState, useEffect } from 'react';
 import LoginData from '../LoginData';
 import "./dashboard.css";
+import donationsData from '../DonationsData';
 
 const Dashboard = () => {
     const [chartData, setChartData] = useState({});
@@ -35,17 +36,17 @@ const Dashboard = () => {
     useEffect(() => {
         const approvedDonors = LoginData.filter(item => item.status === 'approved' && item.type === 'Donor');
         const approvedOrgs = LoginData.filter(item => item.status === 'approved' && item.type === 'Organization');
-    
+
         const donorCounts = countPerDay(approvedDonors);
         const orgCounts = countPerDay(approvedOrgs);
-    
+
         // Create a set of all unique dates
         const allDates = new Set([...Object.keys(donorCounts), ...Object.keys(orgCounts)]);
-    
+
         // Sort the dates
         const sortedDates = Array.from(allDates).sort();
-    
-        console.log(donorCounts, orgCounts);
+
+        //console.log(donorCounts, orgCounts);
         setChartData({
             labels: sortedDates, // Use the sorted dates as labels
             datasets: [
@@ -71,32 +72,48 @@ const Dashboard = () => {
             <Row className='pt-3' xl>
                 {/* 1st Card */}
                 <Col>
-                    <Card className='shadow rounded-0'>
-                        <Card.Body>
-                            <h4>Total number of donations</h4>
+                    <Card className='shadow rounded-0 h-100'>
+                        <Card.Body className='d-flex align-items-center'>
+                            <Row>
+                                <Col md="auto" className='pe-0'>
+                                    <div class="code-copy">
+                                        <svg id="sv" xmlns="http://www.w3.org/2000/svg" width="70" height="70" style={{fill: '#438844'}} viewBox="-10 -10 120 120" >
+                                            <path class="st0" stroke='#438844' stroke-width="5" d="M18.2,81.8C10,73.7,5,62.4,5,50C5,25.1,25.1,5,50,5s45,20.1,45,45c0,12.4-5,23.7-13.2,31.8l3.5,3.5
+	c9-9,14.6-21.5,14.6-35.4c0-27.6-22.4-50-50-50S0,22.4,0,50c0,13.8,5.6,26.3,14.6,35.4L18.2,81.8z"/>
+                                            <path class="st1" stroke='#438844' stroke-width="5" d="M50,5c24.9,0,45,20.1,45,45c0,12.4-5,23.7-13.2,31.8c-1,1-1,2.6,0,3.5s2.6,1,3.5,0c9-9,14.6-21.5,14.6-35.4
+	c0-27.6-22.4-50-50-50C22.4,0,0,22.4,0,50c0,13.8,5.6,26.3,14.6,35.4c1,1,2.6,1,3.5,0s1-2.6,0-3.5C10,73.7,5,62.4,5,50
+	C5,25.1,25.1,5,50,5z"/>
+                                        </svg>
+                                        <span>{donationsData.length}</span>
+                                    </div>
+                                </Col>
+                                <Col>
+                                    <h4 style={{marginTop: '0.2rem'}}>Total number of donations</h4>
+                                </Col>
+                            </Row>
                         </Card.Body>
                     </Card>
                 </Col>
                 {/* 2nd Card */}
                 <Col>
-                    <Card className='shadow rounded-0'>
-                        <Card.Body>
+                    <Card className='shadow rounded-0 h-100'>
+                        <Card.Body className='d-flex align-items-center'>
                             <h4>Number of donors and Organization Requests</h4>
                         </Card.Body>
                     </Card>
                 </Col>
                 {/*3rd Card */}
                 <Col>
-                    <Card className='shadow rounded-0'>
-                        <Card.Body>
+                    <Card className='shadow rounded-0 h-100'>
+                        <Card.Body className='d-flex align-items-center'>
                             <h4>Number of Donors and Organizations</h4>
                         </Card.Body>
                     </Card>
                 </Col>
                 {/* 4th Card */}
                 <Col>
-                    <Card className='shadow rounded-0'>
-                        <Card.Body>
+                    <Card className='shadow rounded-0 h-100'>
+                        <Card.Body className='d-flex align-items-center'>
 
                         </Card.Body>
                     </Card>
@@ -105,30 +122,31 @@ const Dashboard = () => {
             <Row className='pt-3'>
                 <Col className='shadow d-flex justify-contents-center'>
                     <div className="chart-container">
-                    {chartData && chartData.labels && chartData.datasets && (
-                        <Bar
-                            data={chartData}
-                            options={{
-                                responsive: true,
-                                maintainAspectRatio: false,
-                                scales: {
-                                    y: {
-                                        beginAtZero: true,
-                                        ticks: {
-                                            callback: function (value) {
-                                                if (value % 1 === 0) {
-                                                    return value;
+                        {chartData && chartData.labels && chartData.datasets && (
+                            <Bar
+                                data={chartData}
+                                options={{
+                                    responsive: true,
+                                    maintainAspectRatio: false,
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true,
+                                            ticks: {
+                                                callback: function (value) {
+                                                    if (value % 1 === 0) {
+                                                        return value;
+                                                    }
                                                 }
                                             }
-                                        }
+                                        },
+                                        x: {
+
+                                            type: 'category'
+                                        },
                                     },
-                                    x: { 
-                                        
-                                        type: 'category' },
-                                },
-                            }}
-                        />
-                )}
+                                }}
+                            />
+                        )}
                     </div>
                 </Col>
             </Row>

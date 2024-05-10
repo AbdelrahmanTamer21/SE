@@ -5,6 +5,7 @@ import TopBar from './Components/TopBar';
 import { SideBarProvider } from './Components/SideBarContext';
 
 import { Routes, Route } from 'react-router-dom';
+import 'leaflet/dist/leaflet.css'; // Import Leaflet CSS
 
 import Home from './Pages/Home';
 import Login from './Pages/Login';
@@ -69,8 +70,8 @@ function App() {
 
             <Route path='/DonorRegistration' element={<DonorRegistration />} />
             <Route path='/Volunteer/:username' element={<DonorTypes />} />
-            <Route path='/Doctor' element={<Cliniclocation />} />
-            <Route path='/Teacher' element={<Subjectclass />} />
+            <Route path='/Doctor/:username' element={<Cliniclocation />} />
+            <Route path='/Teacher/:username' element={<Subjectclass />} />
 
 
             <Route path='/Donor' element={<DonorPage />}>

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Container, Form, Button, Card } from 'react-bootstrap';
+import LoginData from '../LoginData';
+import { useNavigate, useParams } from 'react-router-dom';
 //import styles from './SubjectSelection.css';
 
 function ClassAndSubjectSelection() {
+  const navigate = useNavigate();
+  const { username } = useParams();
   const [subjects, setSubjects] = useState([]); // Array to store selected subjects
   const [numClasses, setNumClasses] = useState(0); // Number of pro-bono classes
   const [numStudents, setNumStudents] = useState(0); // Number of pro-bono students
@@ -31,12 +35,14 @@ function ClassAndSubjectSelection() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    LoginData.forEach((user) => user.username === username ? user.type = 'Teacher' : null)
 
     // Implement logic to submit selection data (e.g., send to server)
     alert(`Thank you for your willingness to help! You selected: 
       Subjects: ${subjects.join(', ')}
       Number of Pro-bono Classes: ${numClasses}
       Number of Pro-bono Students: ${numStudents}`);
+    navigate("/Login")
   };
 
   return (
@@ -108,7 +114,7 @@ function ClassAndSubjectSelection() {
                 />
               </Form.Group >
 
-              <Button className="text-center mt-2" type="submit" variant="main-inverse" size="lg" block >
+              <Button className="text-center mt-2" type="submit" variant="main-inverse" size="lg" >
                 Submit Selection
               </Button>
             </Form>
