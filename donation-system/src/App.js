@@ -26,6 +26,7 @@ import VolunteerRoleSelection from './Pages/VolunteerRoleSelection';
 import DocumentUpload from './Pages/Donor/DocumentUpload';
 import Delivery from './Pages/Donor/Delivery';
 import TeachingPosts from './Pages/Donor/ViewTeachingPosts';
+import TeachingPostsInfo from './Pages/Donor/TeachingPostsInfo' ;
 import MedicalCasesTable from './Pages/Donor/MedicalCasesTable';
 import MedicalCasesInfo from './Pages/Donor/MedicalCaseInfo';
 
@@ -83,6 +84,7 @@ function App() {
               <Route path='Teaching' element={<TeachingPosts/>}/>
               <Route path='MedicalCases' element={<MedicalCasesTable/>}></Route>
               <Route path='MedicalCasesInfo/:id' element={<MedicalCasesInfo/>}></Route>
+              <Route path='TeachingPostsInfo/:id' element={<TeachingPostsInfo/>}></Route>
               
 
             </Route>
