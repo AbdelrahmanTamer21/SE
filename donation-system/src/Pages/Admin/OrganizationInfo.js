@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams, Outlet } from 'react-router-dom';
 import OrganizationData from '../OrganizationData';
-import LoginData from '../LoginData';
 import './Info.css';
 import { Nav, Row ,Col} from 'react-bootstrap';
 import { IoMdArrowRoundBack } from "react-icons/io";

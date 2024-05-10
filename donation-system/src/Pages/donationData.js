@@ -1,5 +1,3 @@
-import { MdBloodtype } from "react-icons/md";
-
 let donationData = [
   {
     key: 1,
@@ -61,6 +59,7 @@ let donationData = [
     address: 'Al Tagamoa El Khames, Cairo',
     patientName: 'Jane Doe',
     bloodtype: 'O+',
+    quantity: 2
   },
   {
     key: 6,
@@ -140,15 +139,17 @@ let donationData = [
     address: 'Al Nasr Street, Nasr City, Cairo',
     patientName: 'John Doe',
     bloodtype: 'RH-',
+    quantity: 4
   },
   {
     key: 12,
     id: 12,
     category: 'School Supplies',
-    itemName: 'Canned goods and non-perishable items',
+    itemName: 'New pens for students',
     condition: 'New',
     description: 'A stationary item for school.',
     type: 'Stationary',
+    itemType: 'Pens',
     quantity: 50
   },
   {
@@ -163,6 +164,16 @@ let donationData = [
     season: 'Summer',
     material: 'Silk',
     quantity: 20
+  },
+  {
+    key: 14,
+    id: 14,
+    category: 'Food',
+    itemName: 'Fresh food items',
+    condition: 'New',
+    description: 'Fresh fruits and vegetables.',
+    categoryFood: 'fruits and vegetables',
+    quantity: 15
   }
 
 ];

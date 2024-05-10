@@ -11,6 +11,7 @@ import "./dashboard.css";
 
 const Dashboard = () => {
     const [chartData, setChartData] = useState({});
+    Chart.register(CategoryScale);
 
     const countPerDay = (data) => {
         return data.reduce((acc, item) => {

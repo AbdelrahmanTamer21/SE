@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import donationData from "../donationData";
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 import Highlighter from 'react-highlight-words';

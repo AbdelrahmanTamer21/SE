@@ -1,4 +1,4 @@
-import React, { useState, useCallback} from 'react';
+import React, { useState, useCallback } from 'react';
 import { useNavigate, useParams, Outlet } from 'react-router-dom';
 import DonorsData from "../DonorsData"
 import { Nav, Row, Col, Card, Container, Image } from 'react-bootstrap';
@@ -19,6 +19,11 @@ export function HomeTab() {
 
     const [map, setMap] = useState(null)
     const [isMapOpen, setIsMapOpen] = useState(false);
+    
+    const center = {
+        lat: -3.745,
+        lng: -38.523
+    };
 
     const onLoad = useCallback(function callback(map) {
         // This is just an example of getting and using the map instance!!! don't just blindly copy!
@@ -36,11 +41,6 @@ export function HomeTab() {
         width: '70%',
         height: '300px',
         borderRadius: '15px'
-    };
-
-    const center = {
-        lat: -3.745,
-        lng: -38.523
     };
 
     function handleMap() {
