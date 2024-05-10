@@ -164,7 +164,7 @@ function GeneralTable() {
             width: '30%',
             ...getColumnSearchProps('itemName'),
             filteredValue: filteredInfo.itemName || null,
-            sortOrder
+            sortOrder: sortedInfo.columnKey === 'itemName' ? sortedInfo.order : null,
         },
         {
             title: 'Category',
@@ -181,7 +181,8 @@ function GeneralTable() {
             ],
             filterSearch: true,
             filteredValue: filteredInfo.category || null,
-            onFilter: (value, record) => record.category.startsWith(value)
+            onFilter: (value, record) => record.category.startsWith(value),
+            sortOrder: sortedInfo.columnKey === 'category' ? sortedInfo.order : null,
         },
         {
             title: 'Condition',
@@ -193,7 +194,8 @@ function GeneralTable() {
             ],
             filterSearch: true,
             filteredValue: filteredInfo.condition || null,
-            onFilter: (value, record) => record.condition.startsWith(value)
+            onFilter: (value, record) => record.condition.startsWith(value),
+            sortOrder: sortedInfo.columnKey === 'condition' ? sortedInfo.order : null,
         },
         {
             title: 'Details',
