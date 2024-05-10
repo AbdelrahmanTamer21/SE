@@ -49,28 +49,28 @@ function Home() {
     {
       id: 1,
       title: 'User 1',
-      description: 'This is the first card with a comment from a satisfied user.',
+      description: 'The interface design looks really clean and user-friendly',
       commenterName: 'John Doe',
       commenterRole: 'Donor',
     },
     {
       id: 2,
       title: 'User 2',
-      description: 'This is the second card with a comment from a successful organization.',
+      description: 'Im impressed by how smoothly the donation process works.',
       commenterName: 'Jane Smith',
       commenterRole: 'Organization',
     },
     {
       id: 3,
       title: 'User 3',
-      description: 'This is the third card with a comment from an active volunteer.',
+      description: 'I like how the donation tracker shows real-time progress.',
       commenterName: 'Mike Johnson',
       commenterRole: 'Volunteer',
     },
     {
       id: 4,
       title: 'User 4',
-      description: 'This is the fourth card with a comment from a happy user.',
+      description: 'Overall, a great initiative and a well-executed platform',
       commenterName: 'Sara Brown',
       commenterRole: 'Donor',
     },
@@ -88,10 +88,17 @@ function Home() {
     sliderRef.current.prev();
     setCurrentIndex(currentIndex - 1 < 0 ? cards.length - 1 : currentIndex - 1);
   };
+    const scrollDown = () => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
 
   function handleSelect(index) {
     setCurrentIndex(index);
   }
+  
   useEffect(() => {
 
 	
@@ -190,7 +197,7 @@ function Home() {
           <Col md={3} className='headline'>
             <h2>Comments from users of the system</h2>
             <div className='d-flex'>
-              <Button variant='home' className='rounded-5'>Check about us</Button>
+              <Button variant='home' className='rounded-5' onClick={scrollDown}>Check about us</Button>
             </div>
           </Col>
           <Col>

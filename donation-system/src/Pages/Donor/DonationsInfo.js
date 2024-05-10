@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import DonationsData from "../donationData";
+import { Button } from 'react-bootstrap';
 
 function DonationsInfo() {
     const navigate = useNavigate();
@@ -17,8 +18,8 @@ function DonationsInfo() {
             <p>Category: {donation?.category}</p>
             <p>Condition: {donation?.condition}</p>
             <p>Details: {donation?.description}</p>  
-            <button onClick={goBack}>Back</button>
-            <button >Donate</button>          
+            <Button variant='main-inverse' onClick={goBack}>Back</Button>
+            <Button variant='main-inverse' className='ms-2'>Donate</Button>          
         </div>
     );
 }
