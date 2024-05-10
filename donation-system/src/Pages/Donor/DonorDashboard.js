@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
-import { Chart as ChartJS, CategoryScale, LinearScale, PieElement, Title, Tooltip, Legend } from 'chart.js';
+import React, { useState } from 'react';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { Pie } from 'react-chartjs-2';
 
 function GucStudentDashboard() {

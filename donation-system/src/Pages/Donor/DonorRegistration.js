@@ -96,7 +96,6 @@ function DonorRegistration() {
     // const pdfBlob = new Blob([document], { type: 'application/pdf' });
     // const pdfUrl = URL.createObjectURL(pdfBlob);
     // window.open(pdfUrl);
-    // console.log(LoginData);
   }
 
   return (

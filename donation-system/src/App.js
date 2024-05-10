@@ -21,6 +21,11 @@ import DonorRegistration from './Pages/Donor/DonorRegistration';
 import ViewDonationRequest from './Pages/Donor/ViewDonationRequest';
 import GeneralTable from './Pages/Donor/GeneralTable';
 import ClothingTable from './Pages/Donor/ClothingTable';
+import FoodTable from './Pages/Donor/FoodTable';
+import ToysTable from './Pages/Donor/ToysTable';
+import MedicalSuppliesTable from './Pages/Donor/MedicalSuppliesTable';
+import BloodDonationsTable from './Pages/Donor/BloodDonationsTable';
+import SchoolSuppliesTable from './Pages/Donor/SchoolSuppliesTable';
 import DonationInfo from './Pages/Donor/DonationsInfo';
 import VolunteerRoleSelection from './Pages/VolunteerRoleSelection';
 import DocumentUpload from './Pages/Donor/DocumentUpload';
@@ -53,43 +58,47 @@ function App() {
         <SideBarProvider>
           <TopBar />
           <Routes basename="/my-app">
-            <Route path='/' element={<Home />}></Route>
-            <Route path='/Login' element={<Login />}></Route>
-            <Route path='/RegistrationType' element={<RegistrationType />}></Route>
+            <Route path='/' element={<Home />} />
+            <Route path='/Login' element={<Login />} />
+            <Route path='/RegistrationType' element={<RegistrationType />} />
 
-            <Route path='/Home' element={<Home />}></Route>
+            <Route path='/Home' element={<Home />} />
 
-            <Route path='/OrganizationRegistration' element={<OrganizationRegistration />}></Route>
+            <Route path='/OrganizationRegistration' element={<OrganizationRegistration />} />
 
-            <Route path='/DonorRegistration' element={<DonorRegistration />}></Route>
-            <Route path='/Volunteer/:username' element={<DonorTypes />}></Route>
-            <Route path='/Doctor' element={<Cliniclocation />}></Route>
-            <Route path='/Teacher' element={<Subjectclass />}></Route>
+            <Route path='/DonorRegistration' element={<DonorRegistration />} />
+            <Route path='/Volunteer/:username' element={<DonorTypes />} />
+            <Route path='/Doctor' element={<Cliniclocation />} />
+            <Route path='/Teacher' element={<Subjectclass />} />
 
 
             <Route path='/Donor' element={<DonorPage />}>
-              <Route path='' element={<DonorDashboard />}></Route>
+              <Route path='' element={<DonorDashboard />} />
               <Route path='DonationRequests' element={<ViewDonationRequest />}>
                 <Route path='' element={<GeneralTable />} />
                 <Route path='Clothing' element={<ClothingTable />} />
+                <Route path='Food' element={<FoodTable />} />
+                <Route path='Toys' element={<ToysTable />} />
+                <Route path='MedicalSupplies' element={<MedicalSuppliesTable />} />
+                <Route path='BloodDonations' element={<BloodDonationsTable />} />
+                <Route path='SchoolSupplies' element={<SchoolSuppliesTable />} />
               </Route>
-              <Route path='Donationsinfo/:id' element={<DonationInfo />}></Route>
-              <Route path='VolunteerSelection' element={<VolunteerRoleSelection />}></Route>
-              <Route path='DocumentUpload' element={<DocumentUpload />}></Route>
-              <Route path='Delivery' element={<Delivery />}></Route>
-              <Route path='Organizations' element={<OrganizationList />}></Route>
-              <Route path='Profile' element={<Profile />}></Route>
-              <Route path='Settings' element={<AccountSettings/>}/>
-              <Route path='Teaching' element={<TeachingPosts/>}/>
-              <Route path='MedicalCases' element={<MedicalCasesTable/>}></Route>
-              <Route path='MedicalCasesInfo/:id' element={<MedicalCasesInfo/>}></Route>
-              
-
+              <Route path='Donationsinfo/:id' element={<DonationInfo />} />
+              <Route path='VolunteerSelection' element={<VolunteerRoleSelection />} />
+              <Route path='DocumentUpload' element={<DocumentUpload />} />
+              <Route path='Delivery' element={<Delivery />} />
+              <Route path='Organizations' element={<OrganizationList />} />
+              <Route path='Profile' element={<Profile />} />
+              <Route path='Settings' element={<AccountSettings/>} />
+              <Route path='Teaching' element={<TeachingPosts/>} />
+              <Route path='MedicalCases' element={<MedicalCasesTable/>} />
+              <Route path='MedicalCasesInfo/:id' element={<MedicalCasesInfo/>} />
             </Route>
+
             <Route path='/Admin' element={<Admin />}>
-              <Route path='' element={<AdminDashboard />}></Route>
-              <Route path='Donors' element={<DonorsList />}></Route>
-              <Route path='Organizations' element={<OrganizationList />}></Route>
+              <Route path='' element={<AdminDashboard />} />
+              <Route path='Donors' element={<DonorsList />} />
+              <Route path='Organizations' element={<OrganizationList />} />
               <Route path='DonorsInfo/:donor_id' element={<DonorsInfo />}>
                 <Route path="" element={<DonorHomeTab />} />
                 <Route path="donations" element={<DonorDonationsTab />} />
@@ -99,20 +108,17 @@ function App() {
                 <Route path="" element={<HomeTab />} />
                 <Route path="donations" element={<DonationsTab />} />
                 <Route path="contact" element={<ContactTab />} />
-
               </Route>
-              <Route path='Profile' element={<Profile />}></Route>
-
-              <Route path='Settings' element={<AccountSettings/>}/>
+              <Route path='Profile' element={<Profile />} />
+              <Route path='Settings' element={<AccountSettings/>} />
               <Route path='Requests' element={<Requests/>}>
-                <Route path='Donors' element={<DonorsTab/>}></Route>
-                <Route path='' element={<OrganizationsTab />}></Route>
+                <Route path='' element={<OrganizationsTab />} />
+                <Route path='Donors' element={<DonorsTab/>} />
               </Route>
             </Route>
-            <Route path='/Organization' element={<DonationForm />}></Route>
-            <Route path='/OrganizationDashboard' element={<OrganizationDashboard />}></Route>
-            <Route path='/OrgViewRequests' element={<OrgViewDonationRequest />}></Route>
-
+            <Route path='/Organization' element={<DonationForm />} />
+            <Route path='/OrganizationDashboard' element={<OrganizationDashboard />} />
+            <Route path='/OrgViewRequests' element={<OrgViewDonationRequest />} />
           </Routes>
 
         </SideBarProvider>

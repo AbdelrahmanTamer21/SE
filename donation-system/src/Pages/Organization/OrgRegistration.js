@@ -90,7 +90,6 @@ function OrganizationRegistration() {
         image: undefined,
         location: markerPosition,
       }
-      console.log(newUser);
       LoginData.push(newUser);
       setValidated(true);
       navigate('/Login');

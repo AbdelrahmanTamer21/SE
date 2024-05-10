@@ -5,23 +5,23 @@ import { Button, Input, Space, Table } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { useNavigate } from 'react-router-dom';
 
-function GeneralTable() {
+function SchoolSuppliesTable() {
     const navigate = useNavigate();
 
     const handleRowClick = (id) => {
         navigate(`/Donor/DonationsInfo/${id}`);
     }
 
+    const data = donationData.filter((item) => item.category === 'School Supplies');
+
     const [filteredInfo, setFilteredInfo] = useState({});
-    const [sortedInfo, setSortedInfo] = useState({});
     const handleChange = (pagination, filters, sorter) => {
+        console.log('Various parameters', pagination, filters, sorter);
         setFilteredInfo(filters);
-        setSortedInfo(sorter);
     };
 
     const clearAll = () => {
         setFilteredInfo({});
-        setSortedInfo({});
         setSearchText('');
     };
 
@@ -147,15 +147,13 @@ function GeneralTable() {
         },
     };
 
-    const generalColumns = [
+    const schoolSuppliesColumns = [
         {
             title: '#',
             dataIndex: 'id',
             key: 'id',
             width: '10%',
             filteredValue: filteredInfo.id || null,
-            sorter: (a, b) => a.id - b.id,
-            sortOrder: sortedInfo.columnKey === 'id' ? sortedInfo.order : null,
         },
         {
             title: 'Item Name',
@@ -164,24 +162,18 @@ function GeneralTable() {
             width: '30%',
             ...getColumnSearchProps('itemName'),
             filteredValue: filteredInfo.itemName || null,
-            sortOrder
         },
         {
-            title: 'Category',
-            dataIndex: 'category',
-            key: 'category',
+            title: 'Type',
+            dataIndex: 'type',
+            key: 'type',
             width: '30%',
             filters: [
-                { text: 'Clothing', value: 'Clothing' },
-                { text: 'Food', value: 'Food' },
-                { text: 'Toys', value: 'Toys' },
-                { text: 'Medical Supplies', value: 'Medical Supplies' },
-                { text: 'Blood Donations', value: 'Blood Donations' },
-                { text: 'School Supplies', value: 'School Supplies' },
+                { text: 'Stationary', value: 'Stationary' },
+                { text: 'Books', value: 'Books' }
             ],
-            filterSearch: true,
-            filteredValue: filteredInfo.category || null,
-            onFilter: (value, record) => record.category.startsWith(value)
+            filteredValue: filteredInfo.type || null,
+            onFilter: (value, record) => record.type.startsWith(value),
         },
         {
             title: 'Condition',
@@ -191,9 +183,8 @@ function GeneralTable() {
                 { text: 'New', value: 'New' },
                 { text: 'Used', value: 'Used' },
             ],
-            filterSearch: true,
             filteredValue: filteredInfo.condition || null,
-            onFilter: (value, record) => record.condition.startsWith(value)
+            onFilter: (value, record) => record.condition.startsWith(value),
         },
         {
             title: 'Details',
@@ -206,9 +197,9 @@ function GeneralTable() {
     return (
         <>
             <Button onClick={clearAll} className="mb-3">Clear Filters</Button>
-            <Table bordered className="mt-4" columns={generalColumns} dataSource={donationData} rowSelection={rowSelection} onChange={handleChange} />
+            <Table bordered className="mt-4" columns={schoolSuppliesColumns} dataSource={data} rowSelection={rowSelection} onChange={handleChange} />
         </>
     );
 };
 
-export default GeneralTable;
+export default SchoolSuppliesTable;

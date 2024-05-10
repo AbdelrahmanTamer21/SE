@@ -1,5 +1,3 @@
-import { BsTypeH6 } from "react-icons/bs";
-
 let OrganizationData  = [ 
     {
         key: 1,

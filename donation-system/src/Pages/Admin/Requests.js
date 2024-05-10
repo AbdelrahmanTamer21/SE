@@ -18,7 +18,6 @@ import donorr from '../donorr.jpg';
 
 export function DonorsTab() {
     const [donors, setDonors] = useState(LoginData.filter((donor) => donor.type === "Donor" && donor.status === "pending"));
-    console.log(LoginData);
     const handleAccept = (donor) => {
         LoginData.forEach((d) => {
             if (d.username === donor.username) {

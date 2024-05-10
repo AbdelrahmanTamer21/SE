@@ -13,12 +13,18 @@ function MedicalCasesTable() {
     }
 
     const [filteredInfo, setFilteredInfo] = useState({});
+    const handleChange = (pagination, filters, sorter) => {
+        console.log('Various parameters', pagination, filters, sorter);
+        setFilteredInfo(filters);
+    };
     const [searchText, setSearchText] = useState('');
+    const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
 
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
         setSearchText(selectedKeys[0]);
+        setSearchedColumn(dataIndex);
     };
 
     const handleReset = (clearFilters) => {
@@ -27,15 +33,23 @@ function MedicalCasesTable() {
     };
 
     const getColumnSearchProps = (dataIndex) => ({
-        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
-            <div style={{ padding: 8 }}>
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+            <div
+                style={{
+                    padding: 8,
+                }}
+                onKeyDown={(e) => e.stopPropagation()}
+            >
                 <Input
                     ref={searchInput}
                     placeholder={`Search ${dataIndex}`}
                     value={selectedKeys[0]}
                     onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
                     onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                    style={{ width: 188, marginBottom: 8, display: 'block' }}
+                    style={{
+                        marginBottom: 8,
+                        display: 'block',
+                    }}
                 />
                 <Space>
                     <Button
@@ -43,30 +57,67 @@ function MedicalCasesTable() {
                         onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
                         icon={<SearchOutlined />}
                         size="small"
-                        style={{ width: 90 }}
+                        style={{
+                            width: 90,
+                        }}
                     >
                         Search
                     </Button>
-                    <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+                    <Button
+                        onClick={() => clearFilters && handleReset(clearFilters)}
+                        size="small"
+                        style={{
+                            width: 90,
+                        }}
+                    >
                         Reset
+                    </Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        onClick={() => {
+                            confirm({
+                                closeDropdown: false,
+                            });
+                            setSearchText(selectedKeys[0]);
+                            setSearchedColumn(dataIndex);
+                        }}
+                    >
+                        Filter
+                    </Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        onClick={() => {
+                            close();
+                        }}
+                    >
+                        close
                     </Button>
                 </Space>
             </div>
         ),
         filterIcon: (filtered) => (
-            <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
+            <SearchOutlined
+                style={{
+                    color: filtered ? '#1677ff' : undefined,
+                }}
+            />
         ),
         onFilter: (value, record) =>
             record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
-        onFilterDropdownVisibleChange: (visible) => {
+        onFilterDropdownOpenChange: (visible) => {
             if (visible) {
-                setTimeout(() => searchInput.current.select());
+                setTimeout(() => searchInput.current?.select(), 100);
             }
         },
         render: (text) =>
-            searchText ? (
+            searchedColumn === dataIndex ? (
                 <Highlighter
-                    highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+                    highlightStyle={{
+                        backgroundColor: '#ffc069',
+                        padding: 0,
+                    }}
                     searchWords={[searchText]}
                     autoEscape
                     textToHighlight={text ? text.toString() : ''}
@@ -141,7 +192,7 @@ function MedicalCasesTable() {
             dataIndex: 'location',
             key: 'location',
             width: '15%',
-            render: (text) => <EnvironmentOutlined style={{ fontSize: '16px' }} />,
+            render: (text) => <Button icon={<EnvironmentOutlined style={{ fontSize: '16px' }} />}></Button>,
         },
         {
             title: 'Details',
@@ -158,7 +209,7 @@ function MedicalCasesTable() {
     return (
         <>
             <Button onClick={clearAll} className="mb-3">Clear Filters</Button>
-            <Table className="mt-4" columns={medicalCasesColumns} dataSource={medicalCasesData} rowSelection={rowSelection} />
+            <Table className="mt-4" columns={medicalCasesColumns} dataSource={medicalCasesData} rowSelection={rowSelection} onChange={handleChange}/>
         </>
     );
 };

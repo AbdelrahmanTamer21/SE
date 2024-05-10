@@ -3,14 +3,14 @@ import donationData from "../donationData";
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 import Highlighter from 'react-highlight-words';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import { Container } from "react-bootstrap";
 import { Form, InputNumber } from 'antd';
-import { Typography, Popconfirm } from 'antd';
+import { Popconfirm } from 'antd';
 
 
 function OrgViewDonationRequest() {
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
@@ -101,8 +101,8 @@ function OrgViewDonationRequest() {
         // Mark item as deleted
         if (window.confirm("Are you sure you want to delete this item?")) {
             setData(data.filter(item => item.id !== id));
-            };
-        
+        };
+
     };
 
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
@@ -259,24 +259,7 @@ function OrgViewDonationRequest() {
                 const editable = isEditing(record);
                 return editable ? (
                     <Space size="middle">
-                        <Button onClick={()=>handleDelete(record.id)}>
-                            Delete
-                        </Button>
-                        <Button
-                            onClick={() => save(record.key)}
-                            style={{
-                                marginRight: 8,
-                            }}
-                        >
-                            Save
-                        </Button>
-                        <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-                            <a>Cancel</a>
-                        </Popconfirm>
-                    </Space>
-                ) : (
-                    <Space size="middle">
-                        <Button onClick={()=>handleDelete(record.id)} style={
+                        <Button onClick={() => handleDelete(record.id)} style={
                             {
                                 backgroundColor: '#da0808',
                                 color: 'white',
@@ -284,17 +267,48 @@ function OrgViewDonationRequest() {
                         }>
                             Delete
                         </Button>
-                        <Button disabled={editingKey !== ''} onClick={() => edit(record)}style={{
+                        <Button
+                            onClick={() => save(record.key)}
+                            style={{
                                 backgroundColor: 'green',
                                 color: 'white',
                                 transition: 'background-color 0.3s ease, color 0.3s ease',
-                                
+    
                                 ':hover': {
                                     backgroundColor: 'white',
                                     color: 'green',
-                                    
-                           }}}
-                       
+    
+                                }
+                            }}
+                        >
+                            Save
+                        </Button>
+                        <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
+                            <Button>Cancel</Button>
+                        </Popconfirm>
+                    </Space>
+                ) : (
+                    <Space size="middle">
+                        <Button onClick={() => handleDelete(record.id)} style={
+                            {
+                                backgroundColor: '#da0808',
+                                color: 'white',
+                            }
+                        }>
+                            Delete
+                        </Button>
+                        <Button disabled={editingKey !== ''} onClick={() => edit(record)} style={{
+                            backgroundColor: 'green',
+                            color: 'white',
+                            transition: 'background-color 0.3s ease, color 0.3s ease',
+
+                            ':hover': {
+                                backgroundColor: 'white',
+                                color: 'green',
+
+                            }
+                        }}
+
                         >
                             Update
                         </Button>

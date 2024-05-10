@@ -11,9 +11,7 @@ const Sidebar = () => {
   const { userRole,username } = useContext(UserContext);
 
   const { isOpen } = useContext(SideBarContext);
-  const user  = LoginData.find((u)=>u.username===username); 
-  console.log(user);
-  console.log(user.don_Type);
+  const user  = LoginData.find((u)=>u.username===username);
 
   return (
     <>

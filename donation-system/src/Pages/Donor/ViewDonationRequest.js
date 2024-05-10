@@ -5,8 +5,8 @@ function ViewDonationRequest() {
     const navigate = useNavigate();
 
     const handleChangeCategory = (value) => {
-        let categorString = String(value).replace(' ', '_');
-        if(categorString === 'All_Requests'){
+        let categorString = String(value).replace(' ', '');
+        if(categorString === 'AllRequests'){
             categorString = ''
         }
         navigate(`/Donor/DonationRequests/${categorString}`);

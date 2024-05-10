@@ -6,7 +6,7 @@ import { Button, Input, Space, Table } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { useNavigate } from 'react-router-dom';
 
-function ClothingTable() {
+function ToysTable() {
     const navigate = useNavigate();
 
     const handleRowClick = (id) => {
@@ -26,7 +26,7 @@ function ClothingTable() {
         setSearchText('');
     };
 
-    const data = donationData.filter(d => d.category === 'Clothing');
+    const data = donationData.filter(d => d.category === 'Toys');
 
     const [state, setState] = useState({
         left: 0,
@@ -247,7 +247,7 @@ function ClothingTable() {
         },
     };
 
-    const clothingColumns = [
+    const toysColumns = [
         {
             title: '#',
             dataIndex: 'id',
@@ -289,19 +289,21 @@ function ClothingTable() {
             sortOrder: sortedInfo.columnKey === 'gender' ? sortedInfo.order : null,
         },
         {
-            title: 'Season',
-            dataIndex: 'season',
-            key: 'season',
+            title: 'Toys Category',
+            dataIndex: 'categoryToy',
+            key: 'categoryToy',
             width: '15%',
             filters: [
-                { text: 'Summer', value: 'Summer' },
-                { text: 'Winter', value: 'Winter' },
-                { text: 'Spring', value: 'Spring' },
-                { text: 'Fall', value: 'Fall' },
+                { text: 'Board Games', value: 'board games' },
+                { text: 'Stuffed Toys', value: 'stuffed toys' },
+                { text: 'Dolls', value: 'dolls' },
+                { text: 'Sports', value: 'sports' },
+                { text: 'Cars', value: 'cars' },
+                { text: 'Outdoor', value: 'outdoor' },
             ],
-            filteredValue: filteredInfo.season || null,
-            onFilter: (value, record) => record.season.startsWith(value),
-            sortOrder: sortedInfo.columnKey === 'season' ? sortedInfo.order : null,
+            filteredValue: filteredInfo.categoryToy || null,
+            onFilter: (value, record) => record.categoryToy.startsWith(value),
+            sortOrder: sortedInfo.columnKey === 'categoryToy' ? sortedInfo.order : null,
         },
         {
             title: 'Condition',
@@ -327,9 +329,9 @@ function ClothingTable() {
     return (
         <>
             <Button onClick={clearAll} className="mb-3">Clear Filters</Button>
-            <Table bordered className="mt-4" columns={clothingColumns} dataSource={data} rowSelection={rowSelection} onChange={handleChange} />
+            <Table bordered className="mt-4" columns={toysColumns} dataSource={data} rowSelection={rowSelection} onChange={handleChange} />
         </>
     );
 };
 
-export default ClothingTable;
+export default ToysTable;

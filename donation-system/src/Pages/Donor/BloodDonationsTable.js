@@ -5,23 +5,22 @@ import { Button, Input, Space, Table } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { useNavigate } from 'react-router-dom';
 
-function GeneralTable() {
+function BloodDonationsTable() {
     const navigate = useNavigate();
 
     const handleRowClick = (id) => {
         navigate(`/Donor/DonationsInfo/${id}`);
     }
 
+    const data = donationData.filter(d => d.category === 'Blood Donations');
+
     const [filteredInfo, setFilteredInfo] = useState({});
-    const [sortedInfo, setSortedInfo] = useState({});
     const handleChange = (pagination, filters, sorter) => {
         setFilteredInfo(filters);
-        setSortedInfo(sorter);
     };
 
     const clearAll = () => {
         setFilteredInfo({});
-        setSortedInfo({});
         setSearchText('');
     };
 
@@ -147,68 +146,60 @@ function GeneralTable() {
         },
     };
 
-    const generalColumns = [
+    const bloodDonationsColumns = [
         {
             title: '#',
             dataIndex: 'id',
             key: 'id',
-            width: '10%',
+            width: '8%',
             filteredValue: filteredInfo.id || null,
-            sorter: (a, b) => a.id - b.id,
-            sortOrder: sortedInfo.columnKey === 'id' ? sortedInfo.order : null,
         },
         {
             title: 'Item Name',
             dataIndex: 'itemName',
             key: 'itemName',
-            width: '30%',
+            width: '20%',
             ...getColumnSearchProps('itemName'),
             filteredValue: filteredInfo.itemName || null,
-            sortOrder
         },
         {
-            title: 'Category',
-            dataIndex: 'category',
-            key: 'category',
-            width: '30%',
-            filters: [
-                { text: 'Clothing', value: 'Clothing' },
-                { text: 'Food', value: 'Food' },
-                { text: 'Toys', value: 'Toys' },
-                { text: 'Medical Supplies', value: 'Medical Supplies' },
-                { text: 'Blood Donations', value: 'Blood Donations' },
-                { text: 'School Supplies', value: 'School Supplies' },
-            ],
-            filterSearch: true,
-            filteredValue: filteredInfo.category || null,
-            onFilter: (value, record) => record.category.startsWith(value)
+            title: 'Hospital',
+            dataIndex: 'hospital',
+            key: 'hospital',
+            width: '15%',
+            ...getColumnSearchProps('hospital'),
+            filteredValue: filteredInfo.hospital || null,
         },
         {
-            title: 'Condition',
-            dataIndex: 'condition',
-            key: 'condition',
-            filters: [
-                { text: 'New', value: 'New' },
-                { text: 'Used', value: 'Used' },
-            ],
-            filterSearch: true,
-            filteredValue: filteredInfo.condition || null,
-            onFilter: (value, record) => record.condition.startsWith(value)
+            title: 'Governorate',
+            dataIndex: 'governorate',
+            key: 'governorate',
+            width: '15%',
+            ...getColumnSearchProps('governorate'),
+            filteredValue: filteredInfo.governorate || null,
+        },
+        {
+            title: 'Area',
+            dataIndex: 'area',
+            key: 'area',
+            width: '20%',
+            ...getColumnSearchProps('area'),
+            filteredValue: filteredInfo.area || null,
         },
         {
             title: 'Details',
             dataIndex: '',
             key: 'x',
-            render: (record) => <Button onClick={()=>handleRowClick(record.id)}>Details</Button>
+            render: (record) => <Button onClick={() => handleRowClick(record.id)}>Details</Button>
         }
     ];
 
     return (
         <>
             <Button onClick={clearAll} className="mb-3">Clear Filters</Button>
-            <Table bordered className="mt-4" columns={generalColumns} dataSource={donationData} rowSelection={rowSelection} onChange={handleChange} />
+            <Table bordered className="mt-4" columns={bloodDonationsColumns} dataSource={data} rowSelection={rowSelection} onChange={handleChange} />
         </>
     );
 };
 
-export default GeneralTable;
+export default BloodDonationsTable;
