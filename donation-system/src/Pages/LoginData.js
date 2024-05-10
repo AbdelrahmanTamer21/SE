@@ -20,35 +20,42 @@ let LoginData = [
     {
         first_name: "Hassan",
         last_name: "Khaled",
-        donorEmail: "Hk2003@gmail.com",
+        email: "Hk2003@gmail.com",
+        phone: "01265478932",
         username: "donor1",
         password: "123",
         don_Type: "Teacher",
         type: "Donor",
         status: "pending",
         image: undefined,
+        joined_date: undefined
     },
     {
         first_name: "Ahmed",
         last_name: "Ali",
-        donorEmail: "Ah2003@gmail.com",
+        email: "Ah2003@gmail.com",
+        phone: "01265478932",
         username: "donor2",
         password: "123",
         don_Type: "Doctor",
         type: "Donor",
         status: "pending",
         image: undefined,
+        joined_date: undefined
+        
     },
     {
         first_name: "Mohamed",
         last_name: "Khaled",
-        donorEmail: "Mk2004@gmail.com",
+        email: "Mk2004@gmail.com",
+        phone: "01265478932",
         username: "donor3",
         password: "123",
         don_Type: "Donor",
         type: "Donor",
         status: "approved",
         image: undefined,
+        joined_date: "2024-1-4"
 
     },
     {
@@ -60,7 +67,8 @@ let LoginData = [
         orgType: "Hospital",
         pdf: undefined,
         status: "approved",
-        image: undefined
+        image: undefined,
+        joined_date: "2024-1-6"
     },
     {
         organizationName: "org1",
@@ -71,7 +79,8 @@ let LoginData = [
         orgType: "Hospital",
         pdf: undefined,
         status: "approved",
-        image: undefined
+        image: undefined,
+        joined_date: "2024-1-5"
     },
     {
         organizationName: "org2",
@@ -82,7 +91,8 @@ let LoginData = [
         orgType: "Orphanage",
         pdf: undefined,
         status: "pending",
-        image: undefined
+        image: undefined,
+        joined_date: undefined
     },
     {
         organizationName: "org3",
@@ -93,7 +103,8 @@ let LoginData = [
         orgType: "School",
         pdf: undefined,
         status: "pending",
-        image: undefined
+        image: undefined,
+        joined_date: undefined
     }
 ]
 

@@ -144,7 +144,7 @@ function DonorsList() {
         },
         {
             title: 'Email',
-            dataIndex: 'donorEmail',
+            dataIndex: 'email',
             key: 'email',
             ...getColumnSearchProps('email'),
             sorter: (a, b) => a.email.length - b.email.length,

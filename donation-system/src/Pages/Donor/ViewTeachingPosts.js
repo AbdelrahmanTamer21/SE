@@ -10,7 +10,7 @@ function GeneralTable() {
     const navigate = useNavigate();
 
     const handleRowClick = (id) => {
-        navigate(`/Donor/DonationsInfo/${id}`);
+        navigate(`/Donor/TeachingPostsInfo/${id}`);
     }
 
     const [filteredInfo, setFilteredInfo] = useState({});
@@ -177,7 +177,14 @@ function GeneralTable() {
             width: '30%',
             ...getColumnSearchProps('Government'),
             filteredValue: filteredInfo.Government || null,
+        },
+        {
+            title: 'Details',
+            dataIndex: '',
+            key: 'x',
+            render: (record) => <Button onClick={()=>handleRowClick(record.id)}>Details</Button>
         }
+
     ];
 
     return (

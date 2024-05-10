@@ -8,7 +8,9 @@ let TeachingPostsData  = [
         area:'Nasr City',
         Government:'Cairo',
         phone_number: '123-456-7890',
-        address: '1234 Elm St, Springfield, IL 62701'
+        address: '1234 Elm St, Springfield, IL 62701',
+        Number_of_students : 20,
+        map :''
     },
     {
         key: 2,
@@ -19,7 +21,9 @@ let TeachingPostsData  = [
         area:'Street 101',
         Government:'Alexandria',
         phone_number: '234-567-8901',
-        address: '2345 Oak St, Springfield, IL 62702'
+        address: '2345 Oak St, Springfield, IL 62702',
+        Number_of_students : 30,
+        map :''
     },
     {
         key: 3,
@@ -30,7 +34,9 @@ let TeachingPostsData  = [
         Government:'Cairo',
         Email: 'sama.school@sis-egypt.com',
         phone_number: '345-678-9012',
-        address: '3456 Pine St, Springfield, IL 62703'
+        address: '3456 Pine St, Springfield, IL 62703',
+        Number_of_students : 10,
+        map :''
     }
 ];
 export default TeachingPostsData;

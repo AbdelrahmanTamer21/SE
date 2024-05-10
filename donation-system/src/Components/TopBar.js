@@ -49,8 +49,8 @@ function TopBar() {
           {isLoggedIn === true ? (
             <Avatar />
           ) : <Nav>
-            <Button variant="" className="btn-main" onClick={handleLogin}>Login</Button>
-            <Button variant="" className="btn-main ms-2" onClick={handleRegister}>Register</Button>
+            <Button variant="" className="btn-main btnLogIn" onClick={handleLogin}>Login</Button>
+            <Button variant="" className="btn-main btnLogIn ms-2" onClick={handleRegister}>Register</Button>
           </Nav>
           }
         </Navbar.Collapse>
