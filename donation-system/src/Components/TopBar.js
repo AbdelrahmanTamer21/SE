@@ -6,7 +6,8 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Avatar from './Avatar';
 import { SideBarContext } from './SideBarContext';
-import "./Login.css" 
+import "./Login.css";
+import { FaArrowLeft } from "react-icons/fa6";
 
 
 function TopBar() {
@@ -15,34 +16,33 @@ function TopBar() {
   const handleLogin = () => {
     navigate("/Login");
   }
-  const handlehome = () =>{
+  const handlehome = () => {
     navigate("Home");
   }
-  const handleRegister = () =>{
+  const handleRegister = () => {
     navigate("RegistrationType");
   }
   const goBack = () => {
     navigate(-1);
-}
+  }
 
   const { isOpen, toggleSidebar } = useContext(SideBarContext);
 
   return (
     <Navbar expand="lg" className="navbar sticky-top">
       {isLoggedIn === true ? (
-        <button onClick={toggleSidebar} className={`sidebar-toggle ${isOpen ? 'open' : ''} ms-3`}>
-          <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQbMdpEOk1eHL8V9GHwWliqKfwb4V37ZxQZlJTMxIAOBmG674h4" alt="Toggle Sidebar" className="sidebar-toggle-icon" />
-        </button>
+        <>
+         <FaArrowLeft className="ms-2" style={{ color: 'white' }} onMouseEnter={e => e.target.style.fontSize = '1.2em'} onMouseLeave={e => e.target.style.fontSize = '1em'} onClick={goBack}>Back</FaArrowLeft>
+          <button onClick={toggleSidebar} className={`sidebar-toggle ${isOpen ? 'open' : ''} ms-3`}>
+            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQbMdpEOk1eHL8V9GHwWliqKfwb4V37ZxQZlJTMxIAOBmG674h4" alt="Toggle Sidebar" className="sidebar-toggle-icon" />
+          </button>
+        </>
       ) : null}
       <Container>
         <Navbar.Brand href="/" >Donation System</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="me-auto">
-            {isLoggedIn === true ? (
-              <> <Nav.Link style={{ transition: 'font-size 0.2s' }} className="btn ms-2" onMouseEnter={e => e.target.style.fontSize = '1.2em'} onMouseLeave={e => e.target.style.fontSize = '1em'} onClick={goBack}>Back</Nav.Link>
-              </>
-            ) : null}
+          <Nav className="me-auto">
           </Nav>
           {isLoggedIn === true ? (
             <Avatar />
