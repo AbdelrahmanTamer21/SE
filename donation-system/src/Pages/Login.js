@@ -46,6 +46,8 @@ function Login() {
         default:
           navigate("/Login");
       }
+    }else{
+      alert("User does not exist")
     }
   }
   

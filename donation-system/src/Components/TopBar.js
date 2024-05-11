@@ -28,7 +28,7 @@ function TopBar() {
   const { isOpen, toggleSidebar } = useContext(SideBarContext);
 
   return (
-    <Navbar expand="lg" className="navbar">
+    <Navbar expand="lg" className="navbar sticky-top">
       {isLoggedIn === true ? (
         <button onClick={toggleSidebar} className={`sidebar-toggle ${isOpen ? 'open' : ''} ms-3`}>
           <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQbMdpEOk1eHL8V9GHwWliqKfwb4V37ZxQZlJTMxIAOBmG674h4" alt="Toggle Sidebar" className="sidebar-toggle-icon" />
@@ -40,8 +40,7 @@ function TopBar() {
         <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
             {isLoggedIn === true ? (
-              <> <Nav.Link style={{ transition: 'font-size 0.2s' }} className="btn ms-5" onMouseEnter={e => e.target.style.fontSize = '1.2em'} onMouseLeave={e => e.target.style.fontSize = '1em'} onClick={goBack}>Back</Nav.Link>
-
+              <> <Nav.Link style={{ transition: 'font-size 0.2s' }} className="btn ms-2" onMouseEnter={e => e.target.style.fontSize = '1.2em'} onMouseLeave={e => e.target.style.fontSize = '1em'} onClick={goBack}>Back</Nav.Link>
               </>
             ) : null}
           </Nav>

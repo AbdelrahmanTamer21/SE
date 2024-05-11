@@ -35,7 +35,7 @@ import TeachingPosts from './Pages/Donor/ViewTeachingPosts';
 import TeachingPostsInfo from './Pages/Donor/TeachingPostsInfo' ;
 import MedicalCasesTable from './Pages/Donor/MedicalCasesTable';
 import MedicalCasesInfo from './Pages/Donor/MedicalCaseInfo';
-
+import Donate from './Pages/Donor/Donate';
 
 import Admin from './Pages/Admin/Admin';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
@@ -52,6 +52,7 @@ import {DonorsTab , OrganizationsTab} from './Pages/Admin/Requests';
 
 import OrganizationDashboard from './Pages/Organization/OrganizationDashboard';
 import OrgViewDonationRequest from './Pages/Organization/OrgViewDonationRequests';
+import MyDonations from './Pages/Donor/MyDonations';
 
 function App() {
   return (
@@ -86,6 +87,7 @@ function App() {
                 <Route path='SchoolSupplies' element={<SchoolSuppliesTable />} />
               </Route>
               <Route path='Donationsinfo/:id' element={<DonationInfo />} />
+              <Route path='Donate/:request_id' element={<Donate />} />
               <Route path='VolunteerSelection' element={<VolunteerRoleSelection />} />
               <Route path='DocumentUpload' element={<DocumentUpload />} />
               <Route path='Delivery' element={<Delivery />} />
@@ -96,6 +98,7 @@ function App() {
               <Route path='MedicalCases' element={<MedicalCasesTable/>} />
               <Route path='MedicalCasesInfo/:id' element={<MedicalCasesInfo/>} />
               <Route path='TeachingPostsInfo/:id' element={<TeachingPostsInfo/>} />
+              <Route path='MyDonations' element={<MyDonations />} />
             </Route>
 
             <Route path='/Admin' element={<Admin />}>

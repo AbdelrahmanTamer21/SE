@@ -88,8 +88,8 @@ function DonorRegistration() {
       e.preventDefault();
       e.stopPropagation();
     } else if (passwordsMatch && !usernameMatch) {
-      const maxKey = DonorsData.reduce((max, donor) => Math.max(max, donor.key), 0);
-      const maxDonorID = DonorsData.reduce((max, donor) => Math.max(max, donor.donor_id), 0);
+      const maxKey = DonorsData.reduce((max, donor) => Math.max(max, donor.key), 0) + 1;
+      const maxDonorID = DonorsData.reduce((max, donor) => Math.max(max, donor.donor_id), 0) + 1;
       const loc = getRandomLocation();
       let newUser = {
         donor_id: maxDonorID,

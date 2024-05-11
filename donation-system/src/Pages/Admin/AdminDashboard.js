@@ -9,10 +9,28 @@ import React, { useState, useEffect } from 'react';
 import LoginData from '../LoginData';
 import "./dashboard.css";
 import donationsData from '../DonationsData';
+import donationData from '../donationData';
+import DonorsData from '../DonorsData';
+import OrganizationData from '../OrganizationData';
 
 const Dashboard = () => {
     const [chartData, setChartData] = useState({});
     Chart.register(CategoryScale);
+
+    function circleData(data) {
+        return (
+            <div className="code-copy">
+                <svg id="sv" xmlns="http://www.w3.org/2000/svg" width="70" height="70" style={{ fill: '#438844' }} viewBox="-10 -10 120 120" >
+                    <path class="st0" stroke='#438844' stroke-width="5" d="M18.2,81.8C10,73.7,5,62.4,5,50C5,25.1,25.1,5,50,5s45,20.1,45,45c0,12.4-5,23.7-13.2,31.8l3.5,3.5
+	c9-9,14.6-21.5,14.6-35.4c0-27.6-22.4-50-50-50S0,22.4,0,50c0,13.8,5.6,26.3,14.6,35.4L18.2,81.8z"/>
+                    <path class="st1" stroke='#438844' stroke-width="5" d="M50,5c24.9,0,45,20.1,45,45c0,12.4-5,23.7-13.2,31.8c-1,1-1,2.6,0,3.5s2.6,1,3.5,0c9-9,14.6-21.5,14.6-35.4
+	c0-27.6-22.4-50-50-50C22.4,0,0,22.4,0,50c0,13.8,5.6,26.3,14.6,35.4c1,1,2.6,1,3.5,0s1-2.6,0-3.5C10,73.7,5,62.4,5,50
+	C5,25.1,25.1,5,50,5z"/>
+                </svg>
+                <span>{data}</span>
+            </div>
+        )
+    }
 
     const countPerDay = (data) => {
         return data.reduce((acc, item) => {
@@ -75,20 +93,11 @@ const Dashboard = () => {
                     <Card className='shadow rounded-0 h-100'>
                         <Card.Body className='d-flex align-items-center'>
                             <Row>
-                                <Col md="auto" className='pe-0'>
-                                    <div class="code-copy">
-                                        <svg id="sv" xmlns="http://www.w3.org/2000/svg" width="70" height="70" style={{fill: '#438844'}} viewBox="-10 -10 120 120" >
-                                            <path class="st0" stroke='#438844' stroke-width="5" d="M18.2,81.8C10,73.7,5,62.4,5,50C5,25.1,25.1,5,50,5s45,20.1,45,45c0,12.4-5,23.7-13.2,31.8l3.5,3.5
-	c9-9,14.6-21.5,14.6-35.4c0-27.6-22.4-50-50-50S0,22.4,0,50c0,13.8,5.6,26.3,14.6,35.4L18.2,81.8z"/>
-                                            <path class="st1" stroke='#438844' stroke-width="5" d="M50,5c24.9,0,45,20.1,45,45c0,12.4-5,23.7-13.2,31.8c-1,1-1,2.6,0,3.5s2.6,1,3.5,0c9-9,14.6-21.5,14.6-35.4
-	c0-27.6-22.4-50-50-50C22.4,0,0,22.4,0,50c0,13.8,5.6,26.3,14.6,35.4c1,1,2.6,1,3.5,0s1-2.6,0-3.5C10,73.7,5,62.4,5,50
-	C5,25.1,25.1,5,50,5z"/>
-                                        </svg>
-                                        <span>{donationsData.length}</span>
-                                    </div>
+                                <Col md="auto" className='pe-0 align-content-center'>
+                                    {circleData(donationsData.length)}
                                 </Col>
                                 <Col>
-                                    <h4 style={{marginTop: '0.2rem'}}>Total number of donations</h4>
+                                    <h4 style={{ marginTop: '0.2rem' }}>Total number of donations</h4>
                                 </Col>
                             </Row>
                         </Card.Body>
@@ -98,7 +107,14 @@ const Dashboard = () => {
                 <Col>
                     <Card className='shadow rounded-0 h-100'>
                         <Card.Body className='d-flex align-items-center'>
-                            <h4>Number of donors and Organization Requests</h4>
+                            <Row>
+                                <Col md="auto" className='pe-0 align-content-center'>
+                                    {circleData(donationData.length)}
+                                </Col>
+                                <Col>
+                                    <h4>Number of donors and Organization Requests</h4>
+                                </Col>
+                            </Row>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -106,7 +122,14 @@ const Dashboard = () => {
                 <Col>
                     <Card className='shadow rounded-0 h-100'>
                         <Card.Body className='d-flex align-items-center'>
-                            <h4>Number of Donors and Organizations</h4>
+                            <Row>
+                                <Col md="auto" className='pe-0 align-content-center'>
+                                    {circleData(DonorsData.length + OrganizationData.length)}
+                                </Col>
+                                <Col>
+                                    <h4>Number of Donors and Organizations</h4>
+                                </Col>
+                            </Row>
                         </Card.Body>
                     </Card>
                 </Col>

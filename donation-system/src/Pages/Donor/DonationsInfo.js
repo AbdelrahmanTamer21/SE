@@ -13,7 +13,7 @@ function DonationsInfo() {
     }
 
     const donate = () => {
-        navigate('/Donor/Delivery');
+        navigate(`/Donor/Donate/${donation.id}`);
     }
 
     return (

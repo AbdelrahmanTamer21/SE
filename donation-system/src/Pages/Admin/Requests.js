@@ -77,7 +77,7 @@ export function DonorsTab() {
                                     <h2>{donor.first_name + " " + donor.last_name}</h2>
                                     <p>{donor.donorEmail}</p>
                                     <p>{donor.don_Type}</p>
-                                    <Button variant='main-inverse' className="btn-primary  w-100" onClick={() => handleViewDocument(donor)}>View Document</Button>
+                                    <Button variant='main-inverse' className="w-100" onClick={() => handleViewDocument(donor)}>View Document</Button>
                                     <Button className="btn-success m-3" style={{ borderRadius: '50%', width: '3rem', height: '3rem' }} onClick={() => handleAccept(donor)}>
                                         <BiCheck size={25} />
                                     </Button>
@@ -157,7 +157,7 @@ export function OrganizationsTab() {
                                 <h2>{org.organizationName}</h2>
                                 <p>{org.organizationEmail}</p>
                                 <p>{org.orgType}</p>
-                                <Button variant='main-inverse' className="btn-primary  w-100" onClick={() => handleViewDocument(org)}>View Document</Button>
+                                <Button variant='main-inverse' className="w-100" onClick={() => handleViewDocument(org)}>View Document</Button>
                                 <Button className="btn-success m-3" style={{ borderRadius: '50%', width: '3rem', height: '3rem' }} onClick={() => handleAccept(org)}>
                                     <BiCheck size={25} />
                                 </Button>

@@ -13,8 +13,8 @@ import { Navigate } from 'react-router-dom';
 const MainPage = () => {
 
     const { isOpen } = useContext(SideBarContext);
-    const { isLoggedIn } = useContext(UserContext);
-    if(isLoggedIn === false){
+    const { isLoggedIn, userRole } = useContext(UserContext);
+    if(isLoggedIn === false || userRole !== 'Admin'){
         return <Navigate to='/Login' />
     }
 
