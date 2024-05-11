@@ -6,6 +6,8 @@ import { FaMoneyBillWave } from "react-icons/fa";
 import { FaPeopleCarry } from "react-icons/fa";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { Container, Row, Col, Card } from "react-bootstrap";
+import SideBar from '../../Components/SideBar';
+import { SideBarContext } from '../../Components/SideBarContext';
 
 
 function OrganizationDashboard() {
@@ -86,6 +88,7 @@ function OrganizationDashboard() {
   return (
     <Container fluid>
       <Row>
+      
         <Col lg="3" sm="6">
           <Card className="card-stats">
             <Card.Body>
