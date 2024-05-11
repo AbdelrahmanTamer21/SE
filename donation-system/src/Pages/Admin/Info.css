@@ -26,12 +26,12 @@
 }
 
 .mapBtn{
-    background: white;
-    border-color: #438844;
+    background: white ;
+    border-color: #438844 ;
     color: #438844;
 }
 
 .mapBtn:hover{
     background: #438844 !important;
-    color: white;
+    color: white ;
 }

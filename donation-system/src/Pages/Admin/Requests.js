@@ -19,6 +19,7 @@ import donorr from '../donorr.jpg';
 export function DonorsTab() {
     const [donors, setDonors] = useState(LoginData.filter((donor) => donor.type === "Donor" && donor.status === "pending"));
     const handleAccept = (donor) => {
+        if (window.confirm("Are you sure you want to accept this donor")) {
         LoginData.forEach((d) => {
             if (d.username === donor.username) {
                 donor.status = "approved";
@@ -28,15 +29,17 @@ export function DonorsTab() {
                 const maxId = Math.max( ...DonorsData.map(d => d.donor_id));
                 d.donor_id = maxId + 1;
                 DonorsData.push(donor);
-
+                
 
                 return;
             }
         });
     }
+    }
 
     const handleReject = (donor) => {
         // Add logic to reject the organization
+        if (window.confirm("Are you sure you want to reject this donor")) {
         LoginData.forEach((d) => {
             if (d.username === donor.username) {
                 donor.status = "rejected";
@@ -45,11 +48,6 @@ export function DonorsTab() {
             }
         });
     }
-    const handleViewDocument = (donor) => {
-        // Add logic to view the organization's document
-        const pdf = new Blob([donor.pdf], { type: 'application/pdf' });
-        const url = URL.createObjectURL(pdf);
-        window.open(url);
     }
 
     return (
@@ -77,7 +75,6 @@ export function DonorsTab() {
                                     <h2>{donor.first_name + " " + donor.last_name}</h2>
                                     <p>{donor.donorEmail}</p>
                                     <p>{donor.don_Type}</p>
-                                    <Button variant='main-inverse' className="btn-primary  w-100" onClick={() => handleViewDocument(donor)}>View Document</Button>
                                     <Button className="btn-success m-3" style={{ borderRadius: '50%', width: '3rem', height: '3rem' }} onClick={() => handleAccept(donor)}>
                                         <BiCheck size={25} />
                                     </Button>
@@ -97,6 +94,7 @@ export function DonorsTab() {
 export function OrganizationsTab() {
     const [orgs, setOrgs] = useState(LoginData.filter((org) => org.status === "pending" && org.type !== "Donor"));
     const handleAccept = (org) => {
+        if (window.confirm("Are you sure you want to accept this organization")) {
         LoginData.forEach((o) => {
             if (o.username === org.username) {
                 o.status = "approved";
@@ -113,9 +111,11 @@ export function OrganizationsTab() {
             }
         });
     }
+    }
 
     const handleReject = (org) => {
         // Add logic to reject the organization
+        if (window.confirm("Are you sure you want to reject this organization")) {
         LoginData.forEach((o) => {
             if (o.username === org.username) {
                 o.status = "rejected";
@@ -125,6 +125,7 @@ export function OrganizationsTab() {
                 return;
             }
         });
+    }
     }
 
     const handleViewDocument = (org) => {
@@ -157,7 +158,7 @@ export function OrganizationsTab() {
                                 <h2>{org.organizationName}</h2>
                                 <p>{org.organizationEmail}</p>
                                 <p>{org.orgType}</p>
-                                <Button variant='main-inverse' className="btn-primary  w-100" onClick={() => handleViewDocument(org)}>View Document</Button>
+                                <Button variant="main-inverse" className="w-100" onClick={() => handleViewDocument(org)}>View Document</Button>
                                 <Button className="btn-success m-3" style={{ borderRadius: '50%', width: '3rem', height: '3rem' }} onClick={() => handleAccept(org)}>
                                     <BiCheck size={25} />
                                 </Button>
