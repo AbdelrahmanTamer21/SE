@@ -20,34 +20,40 @@ export function DonorsTab() {
     const [donors, setDonors] = useState(LoginData.filter((donor) => donor.type === "Donor" && donor.status === "pending"));
     const handleAccept = (donor) => {
         if (window.confirm("Are you sure you want to accept this donor")) {
-        LoginData.forEach((d) => {
-            if (d.username === donor.username) {
-                donor.status = "approved";
-                setDonors(donors.filter(donor => donor !== d));
-                const currentDate = new Date();
-                d.joined_date = currentDate.toISOString().split('T')[0];
-                const maxId = Math.max( ...DonorsData.map(d => d.donor_id));
-                d.donor_id = maxId + 1;
-                DonorsData.push(donor);
-                
+            LoginData.forEach((d) => {
+                if (d.username === donor.username) {
+                    donor.status = "approved";
+                    setDonors(donors.filter(donor => donor !== d));
+                    const currentDate = new Date();
+                    d.joined_date = currentDate.toISOString().split('T')[0];
+                    const maxId = Math.max(...DonorsData.map(d => d.donor_id));
+                    d.donor_id = maxId + 1;
+                    DonorsData.push(donor);
 
-                return;
-            }
-        });
+
+                    return;
+                }
+            });
+        }
     }
+    const handleViewDocument = (org) => {
+        // Add logic to view the organization's document
+        const pdf = new Blob([org.pdf], { type: 'application/pdf' });
+        const url = URL.createObjectURL(pdf);
+        window.open(url);
     }
 
     const handleReject = (donor) => {
         // Add logic to reject the organization
         if (window.confirm("Are you sure you want to reject this donor")) {
-        LoginData.forEach((d) => {
-            if (d.username === donor.username) {
-                donor.status = "rejected";
-                setDonors(donors.filter(donor => donor !== d));
-                return;
-            }
-        });
-    }
+            LoginData.forEach((d) => {
+                if (d.username === donor.username) {
+                    donor.status = "rejected";
+                    setDonors(donors.filter(donor => donor !== d));
+                    return;
+                }
+            });
+        }
     }
 
     return (
@@ -96,37 +102,37 @@ export function OrganizationsTab() {
     const [orgs, setOrgs] = useState(LoginData.filter((org) => org.status === "pending" && org.type !== "Donor"));
     const handleAccept = (org) => {
         if (window.confirm("Are you sure you want to accept this organization")) {
-        LoginData.forEach((o) => {
-            if (o.username === org.username) {
-                o.status = "approved";
-                setOrgs(orgs.filter(o => o !== org));
-                const currentDate = new Date();
-                o.joined_date = currentDate.toISOString().split('T')[0];
-                const maxId = Math.max(...OrganizationData.map(o => o.org_id));
-                o.org_id = maxId + 1;
-                OrganizationData.push(o);
-                console.log(OrganizationData);
+            LoginData.forEach((o) => {
+                if (o.username === org.username) {
+                    o.status = "approved";
+                    setOrgs(orgs.filter(o => o !== org));
+                    const currentDate = new Date();
+                    o.joined_date = currentDate.toISOString().split('T')[0];
+                    const maxId = Math.max(...OrganizationData.map(o => o.org_id));
+                    o.org_id = maxId + 1;
+                    OrganizationData.push(o);
+                    console.log(OrganizationData);
 
 
-                return;
-            }
-        });
-    }
+                    return;
+                }
+            });
+        }
     }
 
     const handleReject = (org) => {
         // Add logic to reject the organization
         if (window.confirm("Are you sure you want to reject this organization")) {
-        LoginData.forEach((o) => {
-            if (o.username === org.username) {
-                o.status = "rejected";
-                setOrgs(orgs.filter(o => o !== org));
+            LoginData.forEach((o) => {
+                if (o.username === org.username) {
+                    o.status = "rejected";
+                    setOrgs(orgs.filter(o => o !== org));
 
 
-                return;
-            }
-        });
-    }
+                    return;
+                }
+            });
+        }
     }
 
     const handleViewDocument = (org) => {
