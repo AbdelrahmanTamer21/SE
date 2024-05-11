@@ -9,6 +9,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import markerIcon from '../marker.png'; // Import your marker icon
 import { FaMapMarkerAlt } from "react-icons/fa";
+import "./Info.css";
 
 export function HomeTab() {
     const { donor_id } = useParams();

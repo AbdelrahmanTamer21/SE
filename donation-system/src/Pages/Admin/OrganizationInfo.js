@@ -1,22 +1,95 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate, useParams, Outlet } from 'react-router-dom';
+import DonorsData from "../DonorsData"
+import "./Info.css"
 import OrganizationData from '../OrganizationData';
-import './Info.css';
-import { Nav, Row ,Col} from 'react-bootstrap';
+import { Nav, Row, Col, Card, Container, Image } from 'react-bootstrap';
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { Button } from 'antd';
+import { AimOutlined } from '@ant-design/icons';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+import markerIcon from '../marker.png'; // Import your marker icon
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 export function HomeTab() {
     const { org_id } = useParams();
 
-    const Organization = OrganizationData.find(Organization => Organization.org_id === Number(org_id)) ;
+    const org = OrganizationData.find(org => org.org_id === Number(org_id));
+
+    const [isMapOpen, setIsMapOpen] = useState(false);
+
+    const containerStyle = {
+        width: '70%',
+        height: '300px',
+        borderRadius: '15px'
+    };
+
+    function handleMap() {
+        setIsMapOpen(!isMapOpen);
+    }
+
+    const mapRef = useRef(null);
+
+    // Create custom marker icon
+    const customMarkerIcon = L.icon({
+        iconUrl: markerIcon,
+        iconSize: [22, 32], // Adjust the size of your marker icon
+    });
 
     return (
-        <div>
-            <h1>Organization Information</h1>
-            <p>Organization Name: {Organization?.organizationName}</p>
-            <p>Type: {Organization?.orgType}</p>
-            <p>Email: {Organization?.organizationEmail}</p>
-        </div>
+        <Card>
+            <h1 className='mt-2'>Organization Information</h1>
+            <Container className='text-start ms-3'>
+                <Row>
+                    <Col md="auto">
+                        <Image roundedCircle
+                            src="https://i.pinimg.com/564x/c0/27/be/c027bec07c2dc08b9df60921dfd539bd.jpg"
+                            width={100} height={100}
+                            alt="profile" />
+                    </Col>
+                </Row>
+                <Row className='mt-4'>
+                    <Col>
+                        <p>Organization Name: {org?.organizationName}</p>
+                    </Col>
+                </Row>
+                <Row className="mt-1">
+                    <Col>
+                        <p>Email: {org?.organizationEmail}</p>
+                    </Col>
+                    
+                </Row>
+                <Row className="mt-1">
+                    <Col md="auto">
+                        <p className='mt-1'>Address: {org?.address}</p>
+                    </Col>
+                    <Col>
+                        <Button
+                            type='primary'
+                            className='mapBtn'
+                            icon={<AimOutlined />}
+                            onClick={handleMap}>
+                            Map
+                        </Button>
+                    </Col>
+                </Row>
+                <Row className={`${isMapOpen ? "map" : "d-none"} mt-2 mb-3 justify-content-center me-2`}>
+                    <MapContainer center={org.location} zoom={13} style={containerStyle} ref={mapRef}>
+
+                        <TileLayer
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        />
+                        <Marker position={org.location} icon={customMarkerIcon}>
+                            <Popup>
+                                Donor location
+                            </Popup>
+                        </Marker>
+                    </MapContainer>
+                </Row>
+            </Container>
+        </Card>
     );
 }
 
@@ -37,9 +110,10 @@ export function ContactTab() {
 }
 
 function OrganizationInfo() {
-    const { org_id } = useParams();
     const navigate = useNavigate();
+    const { org_id } = useParams();
     const [activeTab, setActiveTab] = React.useState("");
+
     const handleTabClick = (tab) => {
         setActiveTab(tab);
         navigate(`/Admin/OrganizationInfo/${org_id}/${tab}`);
@@ -48,13 +122,13 @@ function OrganizationInfo() {
     return (
         <Row className='tab-content m-auto pt-4'>
             <div className='col-auto'>
-                <IoMdArrowRoundBack className='backIcon' onClick={() =>navigate('/Admin/Organizations') }/>
+                <IoMdArrowRoundBack className='backIcon' onClick={() => navigate('/Admin/Organization')} />
 
             </div>
             <Col >
                 <div>
 
-                <Nav variant="tabs" defaultActiveKey="/home">
+                    <Nav variant="tabs" defaultActiveKey="/home">
                         <Nav.Item>
                             <Nav.Link
                                 onClick={() => handleTabClick("")}
