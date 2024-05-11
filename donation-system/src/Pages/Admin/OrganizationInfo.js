@@ -122,7 +122,7 @@ function OrganizationInfo() {
     return (
         <Row className='tab-content m-auto pt-4'>
             <div className='col-auto'>
-                <IoMdArrowRoundBack className='backIcon' onClick={() => navigate('/Admin/Organization')} />
+                <IoMdArrowRoundBack className='backIcon' onClick={() => navigate('/Admin/Organizations')} />
 
             </div>
             <Col >

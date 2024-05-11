@@ -152,7 +152,14 @@ function OrganizationList() {
             ...getColumnSearchProps('email'),
             sorter: (a, b) => a.email.length - b.email.length,
                 sortDirections: ['descend', 'ascend'],
+        },
+    {
+            title: 'Details',
+            dataIndex: '',
+            key: 'x',
+            render: (record) => <Button onClick={()=>handleRowClick(record.id)}>Details</Button>
         }
+
     ];
     return (
         <Container className="pt-3">
@@ -160,11 +167,7 @@ function OrganizationList() {
             <Table className="mt-4"
                 columns={columns}
                 dataSource={updatedOrganizationData}
-                onRow={(record, rowIndex) => {
-                    return {
-                        onClick: () => handleRowClick(record.org_id), // click row
-                    };
-                }}
+               
             />
         </Container>
     );
