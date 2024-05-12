@@ -33,7 +33,6 @@ import DocumentUpload from './Pages/Donor/DocumentUpload';
 import Delivery from './Pages/Donor/Delivery';
 import TeachingPosts from './Pages/Donor/ViewTeachingPosts';
 import TeachingPostsInfo from './Pages/Donor/TeachingPostsInfo';
-import TeachingPostsInfo from './Pages/Donor/TeachingPostsInfo';
 import MedicalCasesTable from './Pages/Donor/MedicalCasesTable';
 import MedicalCasesInfo from './Pages/Donor/MedicalCaseInfo';
 import Donate from './Pages/Donor/Donate';
@@ -43,7 +42,6 @@ import DonorOrganizationInfo from './Pages/Donor/DonorOrganizationInfo';
 import Admin from './Pages/Admin/Admin';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
 import Profile from './Profile';
-import Profile from './Profile';
 import DonorsList from './Pages/Admin/DonorsList';
 import OrganizationList from './Pages/Admin/OrganizationList';
 import DonorsInfo from './Pages/Admin/DonorsInfo';
@@ -52,7 +50,6 @@ import { HomeTab, DonationsTab, ContactTab } from './Pages/Admin/OrganizationInf
 import { HomeTab as DonorHomeTab, DonationsTab as DonorDonationsTab, ContactTab as DonorContactTab } from './Pages/Admin/DonorsInfo';
 import AccountSettings from './AccountSettings';
 import Requests from './Pages/Admin/Requests';
-import { DonorsTab, OrganizationsTab } from './Pages/Admin/Requests';
 import { DonorsTab, OrganizationsTab } from './Pages/Admin/Requests';
 
 import OrganizationDashboard from './Pages/Organization/OrganizationDashboard';
