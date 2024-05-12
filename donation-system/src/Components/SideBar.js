@@ -29,7 +29,7 @@ const Sidebar = () => {
 
             </>
         ):null}
-        {userRole === 'Donor' || userRole === 'Organization'?(
+        {userRole === 'Donor' || userRole === 'x'?(
           <>
             <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}/DonationRequests`)} className="nav-link">Donation Requests</Nav.Link>
           </>
@@ -47,6 +47,14 @@ const Sidebar = () => {
 
           </>
         ):null}
+        {userRole === 'Organization' && (
+          <>
+            <Nav.Link eventKey="link-1" onClick={() => navigate(`/${userRole}/FulfilledPosts`)} className="nav-link">Check Fulfilled Posts</Nav.Link>
+            <Nav.Link eventKey="link-1" onClick={() => navigate(`/${userRole}/DonationPosts`)} className="nav-link">Add New Donation Post</Nav.Link>
+            <Nav.Link eventKey="link-1" onClick={() => navigate(`/${userRole}/OrgViewDonationRequests`)} className="nav-link">View Donation Requests</Nav.Link>
+          </>
+        )}
+        
         
       </Nav>
     </>

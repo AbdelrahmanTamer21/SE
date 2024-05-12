@@ -55,7 +55,7 @@ import Requests from './Pages/Admin/Requests';
 import { DonorsTab, OrganizationsTab } from './Pages/Admin/Requests';
 
 import OrganizationDashboard from './Pages/Organization/OrganizationDashboard';
-import OrgViewDonationRequest from './Pages/Organization/OrgViewDonationRequests';
+import OrgViewDonationRequests from './Pages/Organization/OrgViewDonationRequests';
 import MyDonations from './Pages/Donor/MyDonations';
 import AdminNotifications from './Pages/Admin/AdminNotifications';
 import { ToastContainer, Toast } from 'react-bootstrap';
@@ -64,6 +64,9 @@ import { useContext } from 'react';
 import { UserContext } from './Components/UserContext';
 import notificationsData from './Pages/NotificationData'
 import OrganizationPage from './Pages/Organization/Organization';
+import FulfilledPosts from './Pages/Organization/FulfilledPosts';
+import DonationPosts from './Pages/Organization/DonationPosts';
+import DonorDetails from './Pages/Organization/DonorDetails';
 
 function CustomToast({ data }) {
   const [show, setShow] = useState(true);
@@ -181,7 +184,14 @@ function App() {
 
             <Route path='/Organization' element={<OrganizationPage />}>
               <Route path='' element={<OrganizationDashboard />} />
-              <Route path='OrgViewRequests' element={<OrgViewDonationRequest />} />
+              <Route path='OrgViewDonationRequests' element={<OrgViewDonationRequests />} />
+              <Route path="FulfilledPosts" element={<FulfilledPosts />} >
+                {/* not working */}
+                <Route path="DonorDetails" element = {<DonorDetails/>}/> 
+              </Route>
+
+              <Route path ="DonationPosts" element={<DonationPosts />}/>
+
             </Route>
           </Routes>
 

@@ -3,14 +3,16 @@ import { Button, Input, Space, Table, Popconfirm, message } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { useNavigate } from 'react-router-dom';
 import { SearchOutlined } from '@ant-design/icons';
-import donationData from "./Pages/donationData";
+import donationData from "../donationData";
 
 function FulfilledDonationTable() {
     const navigate = useNavigate();
     const [data, setData] = useState(donationData); // State to manage the donation data
 
     const handleRowClick = (id) => {
-        navigate(`/DonorDetails/${id}`); // Navigate to DonorDetails.js with the id
+      const selectedDonation = donationData.find(donation => donation.id === id);
+    const selectedDonor = DonorsData.find(donor => donor.donor_id === selectedDonation.donor_id);
+    navigate(`/DonorDetails/${id}`, { donation: selectedDonation, donor: selectedDonor });
     }
 
     const [filteredInfo, setFilteredInfo] = useState({});
