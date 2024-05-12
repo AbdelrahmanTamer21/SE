@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import Avatar from './Avatar';
 import { SideBarContext } from './SideBarContext';
 import "./Login.css" 
+import { SlMenu } from "react-icons/sl";
 
 
 function TopBar() {
@@ -31,7 +32,7 @@ function TopBar() {
     <Navbar expand="lg" className="navbar sticky-top">
       {isLoggedIn === true ? (
         <button onClick={toggleSidebar} className={`sidebar-toggle ${isOpen ? 'open' : ''} ms-3`}>
-          <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQbMdpEOk1eHL8V9GHwWliqKfwb4V37ZxQZlJTMxIAOBmG674h4" alt="Toggle Sidebar" className="sidebar-toggle-icon" />
+          <SlMenu className='sidebar-toggle-icon' />
         </button>
       ) : null}
       <Container>

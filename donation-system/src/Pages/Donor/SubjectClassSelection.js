@@ -35,7 +35,7 @@ function ClassAndSubjectSelection() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    LoginData.forEach((user) => user.username === username ? user.type = 'Teacher' : null)
+    LoginData.forEach((user) => user.username === username ? user.don_Type = 'Teacher' : null)
 
     // Implement logic to submit selection data (e.g., send to server)
     alert(`Thank you for your willingness to help! You selected: 

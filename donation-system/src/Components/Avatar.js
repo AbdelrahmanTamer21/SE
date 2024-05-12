@@ -10,7 +10,7 @@ function Avatar() {
     const navigate = useNavigate();
     const handleLogout = () => {
         if (window.confirm("Are you sure you want to logout?")) {
-            updateUser(null, false);
+            updateUser(null, false, null);
             navigate("/");
         }
     }
@@ -29,7 +29,7 @@ function Avatar() {
             <Dropdown.Menu>
                 <Dropdown.Item as={Link} to={`/${userRole}/Profile`}>Profile</Dropdown.Item>
                 <Dropdown.Item as={Link} to={`/${userRole}/Settings`}>Settings</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Notifications</Dropdown.Item>
+                <Dropdown.Item as={Link} to={`/${userRole}/AdminNotifications`}>Notifications</Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item>
                     <Button variant="danger" onClick={handleLogout} className=" w-100" >Logout</Button>

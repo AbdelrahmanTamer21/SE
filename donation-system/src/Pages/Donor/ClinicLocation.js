@@ -14,7 +14,7 @@ function ClinicLocation() {
   const navigate = useNavigate();
   const { username } = useParams();
   function handleSubmit() {
-    LoginData.forEach((user) => user.username === username ? user.type = 'Doctor' : null)
+    LoginData.forEach((user) => user.username === username ? user.don_Type = 'Doctor' : null)
     navigate("/Login")
   }
   return (

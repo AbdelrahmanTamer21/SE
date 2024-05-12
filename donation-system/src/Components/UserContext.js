@@ -7,6 +7,7 @@ const UserProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState(null);
   const [username,setUsername] = useState(null);
+  const [requests,setRequests] = useState([]);
 
 
   // Load user data from localStorage on component mount
@@ -14,6 +15,7 @@ const UserProvider = ({ children }) => {
     const storedUserRole = localStorage.getItem('userRole');
     const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
     const storedUsername = localStorage.getItem('username');
+
     
     if (storedUserRole && storedIsLoggedIn && storedUsername) {
       setUserRole(storedUserRole);
@@ -23,7 +25,7 @@ const UserProvider = ({ children }) => {
   }, []);
 
   // Function to update user role and login status
-  const updateUser = (role, loggedIn,username,) => {
+  const updateUser = (role, loggedIn,usernam) => {
     setUserRole(role);
     setIsLoggedIn(loggedIn);
     setUsername(username);
@@ -35,7 +37,7 @@ const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ isLoggedIn, userRole, updateUser,username }}>
+    <UserContext.Provider value={{ isLoggedIn, userRole, updateUser,username,requests }}>
       {children}
     </UserContext.Provider>
   );

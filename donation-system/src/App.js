@@ -32,14 +32,14 @@ import VolunteerRoleSelection from './Pages/VolunteerRoleSelection';
 import DocumentUpload from './Pages/Donor/DocumentUpload';
 import Delivery from './Pages/Donor/Delivery';
 import TeachingPosts from './Pages/Donor/ViewTeachingPosts';
-import TeachingPostsInfo from './Pages/Donor/TeachingPostsInfo' ;
+import TeachingPostsInfo from './Pages/Donor/TeachingPostsInfo';
 import MedicalCasesTable from './Pages/Donor/MedicalCasesTable';
 import MedicalCasesInfo from './Pages/Donor/MedicalCaseInfo';
 import Donate from './Pages/Donor/Donate';
 
 import Admin from './Pages/Admin/Admin';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
-import Profile from './Profile'; 
+import Profile from './Profile';
 import DonorsList from './Pages/Admin/DonorsList';
 import OrganizationList from './Pages/Admin/OrganizationList';
 import DonorsInfo from './Pages/Admin/DonorsInfo';
@@ -48,15 +48,37 @@ import { HomeTab, DonationsTab, ContactTab } from './Pages/Admin/OrganizationInf
 import { HomeTab as DonorHomeTab, DonationsTab as DonorDonationsTab, ContactTab as DonorContactTab } from './Pages/Admin/DonorsInfo';
 import AccountSettings from './AccountSettings';
 import Requests from './Pages/Admin/Requests';
-import {DonorsTab , OrganizationsTab} from './Pages/Admin/Requests';
+import { DonorsTab, OrganizationsTab } from './Pages/Admin/Requests';
 
 import OrganizationDashboard from './Pages/Organization/OrganizationDashboard';
 import OrgViewDonationRequest from './Pages/Organization/OrgViewDonationRequests';
 import MyDonations from './Pages/Donor/MyDonations';
+import AdminNotifications from './Pages/Admin/AdminNotifications';
+import { ToastContainer, Toast } from 'react-bootstrap';
+import { useState } from 'react';
+import { useContext } from 'react';
+import { UserContext } from './Components/UserContext';
+import notificationsData from './Pages/NotificationData'
+
+function CustomToast({ show, setShow }) {
+  const { isLoggedIn, userRole } = useContext(UserContext);
+  console.log(userRole);
+  return isLoggedIn === true && userRole === 'Admin' ? (
+    <ToastContainer
+      className="p-3"
+      position={'bottom-end'}
+      style={{ zIndex: 1 }}
+    >
+    </ToastContainer>
+  ) : null;
+}
+
 
 function App() {
+  const [show, setShow] = useState(true);
   return (
     <div className="App">
+
       <UserProvider>
         <SideBarProvider>
           <TopBar />
@@ -93,11 +115,11 @@ function App() {
               <Route path='Delivery' element={<Delivery />} />
               <Route path='Organizations' element={<OrganizationList />} />
               <Route path='Profile' element={<Profile />} />
-              <Route path='Settings' element={<AccountSettings/>} />
-              <Route path='Teaching' element={<TeachingPosts/>} />
-              <Route path='MedicalCases' element={<MedicalCasesTable/>} />
-              <Route path='MedicalCasesInfo/:id' element={<MedicalCasesInfo/>} />
-              <Route path='TeachingPostsInfo/:id' element={<TeachingPostsInfo/>} />
+              <Route path='Settings' element={<AccountSettings />} />
+              <Route path='Teaching' element={<TeachingPosts />} />
+              <Route path='MedicalCases' element={<MedicalCasesTable />} />
+              <Route path='MedicalCasesInfo/:id' element={<MedicalCasesInfo />} />
+              <Route path='TeachingPostsInfo/:id' element={<TeachingPostsInfo />} />
               <Route path='MyDonations' element={<MyDonations />} />
             </Route>
 
@@ -116,17 +138,18 @@ function App() {
                 <Route path="contact" element={<ContactTab />} />
               </Route>
               <Route path='Profile' element={<Profile />} />
-              <Route path='Settings' element={<AccountSettings/>} />
-              <Route path='Requests' element={<Requests/>}>
+              <Route path='Settings' element={<AccountSettings />} />
+              <Route path='Requests' element={<Requests />}>
                 <Route path='' element={<OrganizationsTab />} />
-                <Route path='Donors' element={<DonorsTab/>} />
+                <Route path='Donors' element={<DonorsTab />} />
               </Route>
+              <Route path='AdminNotifications' element={<AdminNotifications />} />
             </Route>
             <Route path='/Organization' element={<DonationForm />} />
             <Route path='/OrganizationDashboard' element={<OrganizationDashboard />} />
             <Route path='/OrgViewRequests' element={<OrgViewDonationRequest />} />
           </Routes>
-
+          <CustomToast show={show} setShow={setShow}></CustomToast>
         </SideBarProvider>
       </UserProvider>
     </div>

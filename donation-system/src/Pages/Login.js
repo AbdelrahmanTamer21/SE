@@ -20,6 +20,7 @@ function Login() {
       switch(user.type){
         case "Admin":
           navigate("/Admin");
+          
           break;
         case "Donor":
           if(user.status === "pending"){
