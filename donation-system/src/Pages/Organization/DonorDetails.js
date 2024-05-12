@@ -1,31 +1,43 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import donationsData from '../DonationsData';
+import DonorsData from '../DonorsData';
+import donationData from '../donationData';
+import { Card } from 'react-bootstrap';
 
 function DonorDetails() {
-    const location = useLocation();
-    const selectedDonation = location.state.donation;
-    const selectedDonor = location.state.donor;
-
-    // Render selected donation and donor details
+    
+    const {id} = useParams();
+    const x =donationsData.find((don)=>don.donation_id===Number(id));
+    const donor = DonorsData.find((don)=> don.donor_id===x.donor_id);
+    const donation = donationData.find((don)=> Number(id)===don.id);
+    
     return (
         <div>
             <h2>Donation Details</h2>
-            {selectedDonation && (
+            {donation && (
                 <div>
-                    <p>Category: {selectedDonation.category}</p>
-                    <p>Item Name: {selectedDonation.itemName}</p>
-                    <p>Condition: {selectedDonation.condition}</p>
-                    {/* Render other donation details as needed */}
+                    <Card>
+                        <Card.Body>
+                    <p>Category: {donation.category}</p>
+                    <p>Item Name: {donation.itemName}</p>
+                    <p>Condition: {donation.condition}</p>
+                    </Card.Body>
+                    </Card>
                 </div>
             )}
             <h2>Donor Details</h2>
-            {selectedDonor && (
+            {donor && (
                 <div>
-                    <p>Name: {selectedDonor.first_name} {selectedDonor.last_name}</p>
-                    <p>Email: {selectedDonor.email}</p>
-                    <p>Phone: {selectedDonor.phone}</p>
-                    <p>Address: {selectedDonor.address}</p>
-                    {/* Render other donor details as needed */}
+                    <Card>
+                        <Card.Body>
+                    <p>Name: {donor.first_name} {donor.last_name}</p>
+                    <p>Email: {donor.email}</p>
+                    <p>Phone: {donor.phone}</p>
+                    <p>Address: {donor.address}</p>
+                    </Card.Body>
+                    </Card>
+                   
                 </div>
             )}
         </div>

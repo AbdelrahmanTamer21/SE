@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import { PiWarehouse } from "react-icons/pi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { MdOutlineMail, MdErrorOutline } from "react-icons/md";
-import { FaKey, FaRegUser } from "react-icons/fa";
+import { FaKey, FaPhoneAlt, FaRegUser } from "react-icons/fa";
 import { Checkbox } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
@@ -11,6 +11,7 @@ import L from 'leaflet';
 import markerIcon from '../marker.png'; // Import your marker icon
 import LoginData from '../LoginData';
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { SiGooglestreetview } from "react-icons/si";
 
 function OrganizationRegistration() {
   const navigate = useNavigate();
@@ -113,14 +114,20 @@ function OrganizationRegistration() {
                     <PiWarehouse className="me-3" size='24' />
                     <Form.Control type='text' placeholder='Organization Name' className='w-100' name='organizationName' onChange={(e) => handleChange(e)} required />
                   </div>
+                  <div className="d-flex flex-row align-items-center mb-4 ">
+                    <SiGooglestreetview className="me-3" size='24' />
+                    <Form.Control type='text' placeholder='Organization Address' className='w-100' name='organizationAddress' onChange={(e) => handleChange(e)} required />
+                  </div>
+                  
+                  
                   <div className="d-flex flex-row align-items-center mb-4">
                     <MdOutlineMail className="me-3" size='24' />
-                    <Form.Control type='email' placeholder='Organization Email' name='organizationEmail' onChange={(e) => handleChange(e)} required />
+                    <Form.Control type='email' placeholder='UserEmail' name='organizationEmail' onChange={(e) => handleChange(e)} required />
                   </div>
                   <div className={usernameMatch ? 'mb-2' : 'mb-4'}>
                     <div className="d-flex flex-row align-items-center">
                       <FaRegUser className="me-3" size='24' />
-                      <Form.Control type='text' placeholder='Username' name='username' onChange={(e) => handleChange(e)} required />
+                      <Form.Control type='text' placeholder='First and Last name' name='username' onChange={(e) => handleChange(e)} required />
                     </div>
                     {usernameMatch &&
                       <Row className='justify-content-center align-items-center mt-2'>
@@ -145,16 +152,28 @@ function OrganizationRegistration() {
                       </Row>
                     }
                   </div>
+                  <div className="d-flex flex-row align-items-center mb-4 ">
+                    <FaPhoneAlt className="me-3" size='24' />
+                    <Form.Control type='text' placeholder='Your Contact Number' className='w-100' name='contactNumber' onChange={(e) => handleChange(e)} required />
+                  </div>
                 </Row>
                 <Row>
+                <Form.Group className="mb-4 w-100">
+                    <Form.Label> Gender</Form.Label>
+                    <Form.Select aria-label="Gender Type" required>
+                      <option value='Male'>Male</option>
+                      <option value='Female'>Female</option>
+                      
+                    </Form.Select>
+                  </Form.Group>
                   <Form.Group className="mb-4 w-100">
                     <Form.Label>Organization Type</Form.Label>
                     <Form.Select aria-label="Organization Type" required>
                       <option value='Hospital'>Hospital</option>
                       <option value='Orphanage'>Orphanage</option>
                       <option value='School'>School</option>
-                      <option value ='Place Of Worship(Mosque/Church)'></option>
-                      <option value ='Charity'></option>
+                      <option value ='Place Of Worship(Mosque/Church)'>Mosque/Church</option>
+                      <option value ='Charity'>Charity</option>
                     </Form.Select>
                   </Form.Group>
                 </Row>
@@ -174,7 +193,7 @@ function OrganizationRegistration() {
                 </Row>
               </Col>
               <Col md='10' lg='6' className='order-1 order-lg-2 d-flex align-items-center'>
-                <div style={{ border: '2px solid black', width: '100%', height: '400px', position: 'relative' }}>
+                <div style={{ border: '2px solid black', width: '100%', height: '400px', position: 'relative',top:'-175px' }}>
                   <MapContainer center={[30.020882, 31.526789]} zoom={13} style={{ width: '100%', height: '100%' }} onclick={handleMapClick} ref={mapRef}>
 
                     <TileLayer

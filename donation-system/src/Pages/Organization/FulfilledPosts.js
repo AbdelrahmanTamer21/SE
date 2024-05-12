@@ -13,7 +13,7 @@ function FulfilledDonationTable() {
     const handleRowClick = (id) => {
       const selectedDonation = donationData.find(donation => donation.id === id);
     const selectedDonor = DonorsData.find(donor => donor.donor_id === selectedDonation.donor_id);
-    navigate(`/DonorDetails/${id}`, { donation: selectedDonation, donor: selectedDonor });
+    navigate(`/Organization/DonorDetails/${id}`, { donation: selectedDonation, donor: selectedDonor });
     }
 
     const [filteredInfo, setFilteredInfo] = useState({});

@@ -192,12 +192,12 @@ function App() {
             <Route path='/Organization' element={<OrganizationPage />}>
               <Route path='' element={<OrganizationDashboard />} />
               <Route path='OrgViewDonationRequests' element={<OrgViewDonationRequests />} />
-              <Route path="FulfilledPosts" element={<FulfilledPosts />} >
-                {/* not working */}
-                <Route path="DonorDetails" element = {<DonorDetails/>}/> 
-              </Route>
+              <Route path="FulfilledPosts" element={<FulfilledPosts />} />
+              {/* not working */}
+              <Route path="DonorDetails/:id" element={<DonorDetails />} />
 
-              <Route path ="DonationPosts" element={<DonationPosts />}/>
+
+              <Route path="DonationPosts" element={<DonationPosts />} />
 
             </Route>
           </Routes>
