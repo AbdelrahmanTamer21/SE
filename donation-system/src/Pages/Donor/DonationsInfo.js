@@ -1,12 +1,37 @@
+import React, { useState, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import DonationsData from "../donationData";
 import { Button, Card, Row, Col, Container } from 'react-bootstrap';
+import { Button as ButtonMap } from 'antd';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+import markerIcon from '../marker.png';
+import { AimOutlined } from '@ant-design/icons';
 
 
 function DonationsInfo() {
     const navigate = useNavigate();
     const { id } = useParams();
     const donation = DonationsData.find(donation => donation.id === Number(id));
+
+    const [isMapOpen, setIsMapOpen] = useState(false);
+    const containerStyle = {
+        width: '70%',
+        height: '300px',
+        borderRadius: '15px'
+    };
+
+    function handleMap() {
+        setIsMapOpen(!isMapOpen);
+    }
+
+    const mapRef = useRef(null);
+
+    // Create custom marker icon
+    const customMarkerIcon = L.icon({
+        iconUrl: markerIcon,
+        iconSize: [22, 32], // Adjust the size of your marker icon
+    });
 
     const goBack = () => {
         navigate(-1);
@@ -120,9 +145,6 @@ function DonationsInfo() {
                                             <Col>
                                                 <p>Area: {donation?.area}</p>
                                             </Col>
-                                            <Col>
-                                                <p>Address: {donation?.address}</p>
-                                            </Col>
                                         </Row>
                                         <Row>
                                             <Col>
@@ -132,6 +154,35 @@ function DonationsInfo() {
                                                 <p>Blood Type: {donation?.bloodtype}</p>
                                             </Col>
                                         </Row>
+                                        <Row>
+                                            <Col>
+                                                <p>Address: {donation?.address}</p>
+                                            </Col>
+                                            <Col>
+                                                <ButtonMap
+                                                    type='primary'
+                                                     className='mapBtn'
+                                                     icon={<AimOutlined />}
+                                                     onClick={handleMap}>
+                                                     Map
+                                                </ButtonMap>
+                                            </Col>
+                                        </Row>
+                                        <Row className={`${isMapOpen ? "map" : "d-none"} mt-2 mb-3 justify-content-center me-2`}>
+                                            {donation && donation.location && isMapOpen && (
+                                             <MapContainer center={donation.location} zoom={13} style={containerStyle} ref={mapRef}>
+                                                 <TileLayer
+                                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                                />
+                                             <Marker position={donation.location} icon={customMarkerIcon}>
+                                              <Popup>
+                                                Hospital location
+                                              </Popup>
+                                             </Marker>
+                                            </MapContainer>
+                                         )}
+                                    </Row>
                                     </>
                                 ) : donation.category === 'School Supplies' ? (
                                     <>

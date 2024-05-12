@@ -27,8 +27,15 @@ export function HomeTab() {
     function handleMap() {
         setIsMapOpen(!isMapOpen);
     }
+
     const goBack = () => {
         navigate(-1);
+      }
+
+
+
+    const FullfillPage = () => {
+        navigate('/Donor/DoctorFullfill');
       }
     
 
@@ -75,6 +82,16 @@ export function HomeTab() {
                 </Row>
                 <Row className="mt-1">
                     <Col>
+                        <p>Date {med ? med.Date : 'N/A'}</p>
+                    </Col>
+                </Row>
+                <Row className="mt-1">
+                    <Col>
+                        <p>Time: {med ? med.time : 'N/A'}</p>
+                    </Col>
+                </Row>
+                <Row className="mt-1">
+                    <Col>
                         <p>Case description: {med ? med.caseDesc : 'N/A'}</p>
                     </Col>
                 </Row>
@@ -111,7 +128,7 @@ export function HomeTab() {
                 </Row>
                     <div>
                         <Button  className='w-25' variant='main-inverse'  onClick={goBack} >Back</Button>
-                        <Button  className="w-25 ms-2" variant='main-inverse'>Fulfill</Button>
+                        <Button  className="w-25 ms-2" variant='main-inverse' onClick={FullfillPage}>Fulfill</Button>
                     </div>
             </Container>
         </Card>

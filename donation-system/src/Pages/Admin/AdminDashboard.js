@@ -12,6 +12,7 @@ import donationsData from '../DonationsData';
 import donationData from '../donationData';
 import DonorsData from '../DonorsData';
 import OrganizationData from '../OrganizationData';
+import notificationsData from '../NotificationData';
 
 const Dashboard = () => {
     const [chartData, setChartData] = useState({});
@@ -137,7 +138,14 @@ const Dashboard = () => {
                 <Col>
                     <Card className='shadow rounded-0 h-100'>
                         <Card.Body className='d-flex align-items-center'>
-
+                        <Row>
+                                <Col md="auto" className='pe-0 align-content-center'>
+                                    {circleData(notificationsData.length)}
+                                </Col>
+                                <Col>
+                                    <h4 style={{ marginTop: '0.2rem' }}>Total number of notifications</h4>
+                                </Col>
+                            </Row>
                         </Card.Body>
                     </Card>
                 </Col>

@@ -19,6 +19,7 @@ function ClinicLocation() {
   const { username } = useParams();
 
   const [markerPosition, setMarkerPosition] = useState(null);
+  const [document, setDocument] = useState(null);
   const mapRef = useRef(null);
 
   // Create custom marker icon
@@ -40,8 +41,12 @@ function ClinicLocation() {
     }
   }
 
+  const handleDocument = (e) => {
+    setDocument(e.target.files[0]);
+  };
   function handleSubmit() {
     LoginData.forEach((user) => user.username === username ? user.don_Type = 'Doctor' : null)
+    LoginData.forEach((user) => user.username === username ? user.pdf = document : null)
     navigate("/Login")
   }
   return (
@@ -74,7 +79,7 @@ function ClinicLocation() {
                 </div>
                 <Form.Group className="mb-4">
                     <Form.Label>Document Upload for Doctor </Form.Label>
-                    <Form.Control type="file" name='document'  required />
+                    <Form.Control type="file" name='document' onChange={handleDocument}  required />
                   </Form.Group>
                 <Button variant='main-inverse' type='submit' className='mb-4' size='lg'>Submit</Button>
               </Form>
