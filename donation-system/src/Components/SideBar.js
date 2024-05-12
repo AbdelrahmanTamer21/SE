@@ -51,6 +51,7 @@ const Sidebar = () => {
             <Nav.Link eventKey="link-1" onClick={() => navigate(`/${userRole}/FulfilledPosts`)} className="nav-link">Check Fulfilled Posts</Nav.Link>
             <Nav.Link eventKey="link-1" onClick={() => navigate(`/${userRole}/DonationPosts`)} className="nav-link">Add New Donation Post</Nav.Link>
             <Nav.Link eventKey="link-1" onClick={() => navigate(`/${userRole}/OrgViewDonationRequests`)} className="nav-link">View Donation Requests</Nav.Link>
+            <Nav.Link eventKey="link-1" onClick={() => navigate(`/${userRole}/FulfilledPosition`)} className="nav-link">View Fulfilled Postions</Nav.Link>
           </>
         )}
         

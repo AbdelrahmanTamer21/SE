@@ -68,6 +68,8 @@ import OrganizationPage from './Pages/Organization/Organization';
 import FulfilledPosts from './Pages/Organization/FulfilledPosts';
 import DonationPosts from './Pages/Organization/DonationPosts';
 import DonorDetails from './Pages/Organization/DonorDetails';
+import FulfilledPosition from './Pages/Organization/FulfilledPosition';
+import VolDetails from './Pages/Organization/VolDetails';
 
 function CustomToast({ data }) {
   const [show, setShow] = useState(true);
@@ -197,8 +199,10 @@ function App() {
               <Route path='' element={<OrganizationDashboard />} />
               <Route path='OrgViewDonationRequests' element={<OrgViewDonationRequests />} />
               <Route path="FulfilledPosts" element={<FulfilledPosts />} />
-              {/* not working */}
+              <Route path ="FulfilledPosition" element = {<FulfilledPosition/>}/>
+              
               <Route path="DonorDetails/:id" element={<DonorDetails />} />
+              <Route path = "VolDetails/:id" element  ={<VolDetails/>}/>
 
 
               <Route path="DonationPosts" element={<DonationPosts />} />
