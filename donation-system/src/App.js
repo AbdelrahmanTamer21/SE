@@ -72,6 +72,9 @@ import ForgotPassword from './ForgotPassword';
 import ChangePassword from './ChangePassword';
 import RequestInfo from './Pages/Organization/RequestInfo';
 
+import FulfilledPosition from './Pages/Organization/FulfilledPosition';
+import VolDetails from './Pages/Organization/VolDetails';
+import ChoosePickUp from './Pages/Organization/ChoosePickUp';
 
 function CustomToast({ data }) {
   const [show, setShow] = useState(true);
@@ -201,7 +204,10 @@ function App() {
               <Route path='' element={<OrganizationDashboard />} />
               <Route path='OrgViewDonationRequests' element={<OrgViewDonationRequests />} />
               <Route path="FulfilledPosts" element={<FulfilledPosts />} />
+              <Route path ="FulfilledPosition" element = {<FulfilledPosition/>}/>
+              <Route path = "ChoosePickUp" element = {<ChoosePickUp/>}/>
               <Route path="DonorDetails/:id" element={<DonorDetails />} />
+              <Route path = "VolDetails/:id" element  ={<VolDetails/>}/>
               <Route path="DonationPosts" element={<DonationPosts />} />
               <Route path='Notifications' element={<Notifications />} />
               <Route path='Donationsinfo/:id' element={<RequestInfo />} />
