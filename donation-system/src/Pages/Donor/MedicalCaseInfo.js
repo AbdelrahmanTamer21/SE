@@ -9,6 +9,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import markerIcon from '../marker.png'; // Import your marker icon
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { Button as ButtonMap } from 'antd';
 
 
 export function HomeTab() {
@@ -83,13 +84,13 @@ export function HomeTab() {
                         <p className='mt-1'>Address: {med ? med.address : 'N/A'}</p>
                     </Col>
                     <Col>
-                        <Button
+                        <ButtonMap
                             type='primary'
                             className='mapBtn'
                             icon={<AimOutlined />}
                             onClick={handleMap}>
                             Map
-                        </Button>
+                        </ButtonMap>
                     </Col>
                 </Row>
                 

@@ -1,27 +1,26 @@
-import Toast from 'react-bootstrap/Toast';
-import ToastContainer from 'react-bootstrap/ToastContainer';
+import notificationsData from '../NotificationData';
+import { Container, Card } from 'react-bootstrap';
+import { useState, useContext, useEffect } from 'react';
+import { UserContext } from '../../Components/UserContext';
 
 function AdminNotifications() {
-  return (
-    <ToastContainer className="position-static">
-      <Toast>
-        <Toast.Header>
-          <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-          <strong className="me-auto">Bootstrap</strong>
-          <small className="text-muted">just now</small>
-        </Toast.Header>
-        <Toast.Body>See? Just like this.</Toast.Body>
-      </Toast>
-      <Toast>
-        <Toast.Header>
-          <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-          <strong className="me-auto">Bootstrap</strong>
-          <small className="text-muted">2 seconds ago</small>
-        </Toast.Header>
-        <Toast.Body>Heads up, toasts will stack automatically</Toast.Body>
-      </Toast>
-    </ToastContainer>
-  );
+  const { isLoggedIn, userRole } = useContext(UserContext);
+  
+  return isLoggedIn === true ? (
+    <Container>
+      {notificationsData.map((notification) => {
+        if (String(userRole) === String(notification.type)) {
+          <Card>
+            <Card.Body>
+              <Card.Title>{notification.type} Notification</Card.Title>
+              <Card.Text>{notification.description}</Card.Text>
+              <Card.Text>{notification.dataTime}</Card.Text>
+            </Card.Body>
+          </Card>
+        }
+        return null;
+      })}
+    </Container>
+  ) : null;
 }
-
 export default AdminNotifications;
