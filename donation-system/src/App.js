@@ -163,7 +163,7 @@ function App() {
                 <Route path="" element={<TeachingTab />} />
               </Route>
               <Route path='MyDonations' element={<MyDonations />} />
-              <Route path="DonorOrganizationInfo/:org_id" element={<DonorOrganizationInfo />}>
+              <Route path="OrganizationInfo/:org_id" element={<DonorOrganizationInfo />}>
                 <Route path="" element={<HomeTab />} />
                 <Route path="donations" element={<DonationsTab />} />
                 <Route path="contact" element={<ContactTab />} />

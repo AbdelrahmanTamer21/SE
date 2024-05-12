@@ -15,7 +15,7 @@ function DonorOrganizationList() {
     }));
 
     const handleRowClick = (org_id) => {
-        navigate(`/Donor/DonorOrganizationInfo/${org_id}`);
+        navigate(`/Donor/OrganizationInfo/${org_id}`);
     }
 
     const [searchText, setSearchText] = useState('');
