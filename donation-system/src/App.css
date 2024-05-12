@@ -68,6 +68,14 @@
   color: #438844 !important;
   font-weight: bold !important;
 }
+.btn-main2 {
+  background-color: white !important;
+  color: #438844 !important;
+  font-weight: bold !important;
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 5px; /* Rounded corners */
+}
+
 
 .btn-main-inverse {
   background-color: #438844 !important;

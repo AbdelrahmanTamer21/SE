@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import './Settings.css'
 import { useNavigate } from 'react-router-dom';
-import { InputGroup, Form, CardBody, Row, Col } from 'react-bootstrap';
+import { InputGroup, Form, CardBody, Row, Col,Button } from 'react-bootstrap';
 import { UserContext } from './Components/UserContext';
 import LoginData from './Pages/LoginData';
 
@@ -168,16 +168,25 @@ const InfoTab = () => {
     });
 
   };
+  const handleReset = () => {
+    setUserData({
+      first_name: "",
+      last_name: "",
+      email: "",
+      phone: ""
+    });
+
+  };
   return (
     <div className="tab-pane active show" id="account-general">
-      <div className="card-body media align-items-center">
+      <div className="card-body media align-items-center" >
         <img src={photo} alt="" className="d-block ui-w-80" />
         <div className="media-body ml-4">
-          <label className="btn btn-outline-primary">
+          <label className="btn btn-outline-primary green-label" style={{ backgroundColor: "#438844",color: "white" }} >
             Upload new photo
-            <input type="file" className="account-settings-fileinput" onChange={handleFileUpload} />
+            <input type="file" className="account-settings-fileinput"  onChange={handleFileUpload} />
           </label>
-          <button type="button" className="btn btn-default md-btn-flat">Reset</button>
+          <Button type="button" className="btn btn-default md-btn-flat ms-2 " variant='main' onClick={handleReset}>Reset</Button>
 
           <div className="text-light small mt-1">Allowed JPG, GIF or PNG. Max size of 800K</div>
         </div>
@@ -224,8 +233,8 @@ const InfoTab = () => {
         </Col>
       </Row>
       <div className="text-right mt-3">
-        <button type="submit" className="btn btn-primary m-3" onClick={(e) => handleSubmit(e)}>Save changes</button>
-        <button type="button" className="btn btn-default" onClick={(e) => handleCancel(e)}>Cancel</button>
+        <Button type="submit" className="btn btn-primary m-3 " variant='main-inverse' onClick={(e) => handleSubmit(e)}>Save changes</Button>
+        <Button type="button" className="btn btn-default" variant='main' onClick={(e) => handleCancel(e)}>Cancel</Button>
       </div>
     </div>
 
@@ -300,8 +309,8 @@ const ChangePasswordTab = ({ setActiveTab }) => {
           </InputGroup>
         </CardBody>
         <div className="text-right mt-3">
-          <button type="submit" className="btn btn-primary m-3" onClick={(e) => handleSubmit(e)}>Save changes</button>
-          <button type="button" className="btn btn-default" onClick={(e) => handleCancel(e)}>Cancel</button>
+          <Button type="submit" className="btn btn-primary m-3" variant='main-inverse' onClick={(e) => handleSubmit(e)}>Save changes</Button>
+          <Button type="button" className="btn btn-default" variant='main' onClick={(e) => handleCancel(e)}>Cancel</Button>
         </div>
       </Form>
     </div>
@@ -374,8 +383,8 @@ const ChangeAddressTab = ({ setActiveTab }) => {
           </InputGroup>
         </CardBody>
         <div className="text-right mt-3">
-          <button type="submit" className="btn btn-primary m-3" onClick={(e) => handleSubmit(e)}>Save changes</button>
-          <button type="button" className="btn btn-default" onClick={(e) => handleCancel(e)}>Cancel</button>
+          <Button type="submit" className="btn btn-primary m-3"  variant='main-inverse' onClick={(e) => handleSubmit(e)}>Save changes</Button>
+          <Button type="button" className="btn btn-default"  variant='main' onClick={(e) => handleCancel(e)}>Cancel</Button>
         </div>
       </Form>
     </div>
