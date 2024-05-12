@@ -109,16 +109,6 @@ function DonorRegistration() {
         image: undefined,
         location: loc
       }
-      let newDonor = {
-        key: maxKey,
-        donor_id: maxDonorID,
-        first_name: first_name,
-        last_name: last_name,
-        email: email,
-        phone: contact,
-        address: address,
-        location: loc
-      }
       LoginData.push(newUser);
       setValidated(true);
       navigate(`/Volunteer/${username}`);

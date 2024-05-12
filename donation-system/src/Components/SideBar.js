@@ -16,7 +16,7 @@ const Sidebar = () => {
   return (
     <>
 
-      <Nav defaultActiveKey="/home" className={`flex-column sidebar h-100 ${isOpen ? 'open' : 'closed'}`} style={{ backgroundColor: '#FFFFFF' }}>
+      <Nav defaultActiveKey="/home" className={`flex-column sidebar vh-100 h-100 ${isOpen ? 'open' : 'closed'}`} style={{ backgroundColor: '#FFFFFF' }}>
         
         
         <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}`)} className="nav-link">Dashboard</Nav.Link>

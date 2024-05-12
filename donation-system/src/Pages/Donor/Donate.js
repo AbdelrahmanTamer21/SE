@@ -28,9 +28,8 @@ function Donate() {
             quantity: amount,
             date: currentDate.toISOString().split('T')[0]
         }
-        console.log(donationItem)
         DonationsData.push(donationItem)
-        console.log(DonationsData)
+        navigate('/Donor/MyDonations')
     }
 
     return (

@@ -1,3 +1,4 @@
+import MyDocument from './MyDocument';
 function getRandomLocation() {
     const minLat = 30.0; // Minimum latitude value
     const maxLat = 31.0; // Maximum latitude value
@@ -9,6 +10,8 @@ function getRandomLocation() {
 
     return { lat, lng };
 }
+
+let sampleFile = <MyDocument />
 
 let LoginData = [
     {
@@ -27,6 +30,7 @@ let LoginData = [
             apartment: "303"
         },
         image: undefined,
+        pdf: sampleFile,
         location: getRandomLocation()
     },
     {
@@ -41,6 +45,7 @@ let LoginData = [
         type: "Donor",
         status: "pending",
         image: undefined,
+        pdf: sampleFile,
         location: getRandomLocation(),
         joined_date: undefined
     },
@@ -56,6 +61,7 @@ let LoginData = [
         type: "Donor",
         status: "pending",
         image: undefined,
+        pdf: sampleFile,
         location: getRandomLocation(),
         joined_date: undefined
         
@@ -72,6 +78,7 @@ let LoginData = [
         type: "Donor",
         status: "approved",
         image: undefined,
+        pdf: sampleFile,
         location: getRandomLocation(),
         joined_date: "2024-1-4"
 
@@ -84,7 +91,7 @@ let LoginData = [
         password: "123",
         type: "Organization",
         orgType: "Hospital",
-        pdf: undefined,
+        pdf: sampleFile,
         status: "approved",
         image: undefined,
         location: getRandomLocation(),
@@ -98,7 +105,7 @@ let LoginData = [
         password: "123",
         type: "Organization",
         orgType: "Hospital",
-        pdf: undefined,
+        pdf: sampleFile,
         status: "approved",
         image: undefined,
         location: getRandomLocation(),
@@ -112,7 +119,7 @@ let LoginData = [
         password: "123",
         type: "Organization",
         orgType: "Orphanage",
-        pdf: undefined,
+        pdf: sampleFile,
         status: "pending",
         image: undefined,
         location: getRandomLocation(),
@@ -126,7 +133,7 @@ let LoginData = [
         password: "123",
         type: "Organization",
         orgType: "School",
-        pdf: undefined,
+        pdf: sampleFile,
         status: "pending",
         image: undefined,
         location: getRandomLocation(),
