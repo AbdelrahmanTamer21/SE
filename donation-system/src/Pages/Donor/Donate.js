@@ -23,12 +23,12 @@ function Donate() {
         const currentDate = new Date();
         let donationItem = {
             key: maxKey,
-            donation_id: request_id,
+            donation_id: Number(request_id),
             donor_id: donor.donor_id,
             quantity: amount,
             date: currentDate.toISOString().split('T')[0]
         }
-        DonationsData.push(donationItem)
+        donationsData.push(donationItem)
         navigate('/Donor/MyDonations')
     }
 

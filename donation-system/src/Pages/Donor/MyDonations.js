@@ -23,6 +23,8 @@ function MyDonations() {
         };
     });
 
+    console.log(donationsData)
+
     console.log(data);
 
     const [filteredInfo, setFilteredInfo] = useState({});

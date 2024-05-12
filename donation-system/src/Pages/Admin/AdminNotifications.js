@@ -10,13 +10,15 @@ function AdminNotifications() {
     <Container>
       {notificationsData.map((notification) => {
         if (String(userRole) === String(notification.type)) {
-          <Card>
+          return (
+          <Card className='mt-3'>
             <Card.Body>
               <Card.Title>{notification.type} Notification</Card.Title>
               <Card.Text>{notification.description}</Card.Text>
               <Card.Text>{notification.dataTime}</Card.Text>
             </Card.Body>
           </Card>
+          );
         }
         return null;
       })}
