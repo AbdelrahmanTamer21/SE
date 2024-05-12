@@ -68,6 +68,9 @@ import OrganizationPage from './Pages/Organization/Organization';
 import FulfilledPosts from './Pages/Organization/FulfilledPosts';
 import DonationPosts from './Pages/Organization/DonationPosts';
 import DonorDetails from './Pages/Organization/DonorDetails';
+import ForgotPassword from './ForgotPassword';
+import { changePassword } from './ForgotPassword';
+
 import FulfilledPosition from './Pages/Organization/FulfilledPosition';
 import VolDetails from './Pages/Organization/VolDetails';
 
@@ -208,6 +211,9 @@ function App() {
               <Route path="DonationPosts" element={<DonationPosts />} />
 
             </Route>
+            <Route path='/ForgotPassword' element={<ForgotPassword />} />
+              <Route path='ChangePassword' element={<changePassword />} />
+
           </Routes>
 
           <CustomToastContainer />

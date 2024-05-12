@@ -8,6 +8,7 @@ import { BsFillPersonPlusFill } from "react-icons/bs";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import SideBar from '../../Components/SideBar';
 import { SideBarContext } from '../../Components/SideBarContext';
+import './OrganizationDashboard.css';
 
 
 function OrganizationDashboard() {

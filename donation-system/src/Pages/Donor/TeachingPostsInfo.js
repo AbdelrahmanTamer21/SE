@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate, useParams, Outlet } from 'react-router-dom';
 import "./Info.css";
 import TeachingPostsData from '../TeachingPostsData'; // Corrected import
-import { Nav, Row, Col, Card, Container, Image , Button } from 'react-bootstrap';
+import { Nav, Row, Col, Card, Container, Image, Button } from 'react-bootstrap';
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { AimOutlined } from '@ant-design/icons';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
@@ -36,15 +36,18 @@ export function HomeTab() {
     });
     const goBack = () => {
         navigate(-1);
-      }
+    }
 
-      const FullfillPage = () => {
-        navigate('/Donor/TeacherFullfill');
-      }
+    const FullfillPage = () => {
+        if (window.confirm("Are you sure you want to fulfill this case")) {
+
+            navigate('/Donor/TeacherFullfill');
+        }
+    }
     return (
         <Card>
             <h1 className='mt-2'>Teaching Post Information</h1>
-            <Container className='text-start ms-3'  style={{ paddingBottom: '20px' }}>
+            <Container className='text-start ms-3' style={{ paddingBottom: '20px' }}>
                 <Row className='mt-4'>
                     <Col>
                         <p>Number of Students: {post ? post.Number_of_students : 'N/A'}</p>
@@ -79,7 +82,7 @@ export function HomeTab() {
                         </ButtonMap>
                     </Col>
                 </Row>
-                
+
                 <Row className={`${isMapOpen ? "map" : "d-none"} mt-2 mb-3 justify-content-center me-2`}>
                     {post && post.location && isMapOpen && (
                         <MapContainer center={post.location} zoom={13} style={containerStyle} ref={mapRef}>
@@ -95,10 +98,10 @@ export function HomeTab() {
                         </MapContainer>
                     )}
                 </Row>
-                    <div>
-                        <Button variant="main-inverse" className='w-25' onClick={goBack}>Back</Button>
-                        <Button variant="main-inverse" className="w-25 ms-2" onClick={FullfillPage} >FullFill</Button>
-                    </div>
+                <div>
+                    <Button variant="main-inverse" className='w-25' onClick={goBack}>Back</Button>
+                    <Button variant="main-inverse" className="w-25 ms-2" onClick={FullfillPage} >FullFill</Button>
+                </div>
             </Container>
         </Card>
     );

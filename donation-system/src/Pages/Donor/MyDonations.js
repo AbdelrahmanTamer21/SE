@@ -23,10 +23,6 @@ function MyDonations() {
         };
     });
 
-    console.log(donationsData)
-
-    console.log(data);
-
     const [filteredInfo, setFilteredInfo] = useState({});
     const [sortedInfo, setSortedInfo] = useState({});
     const handleChange = (pagination, filters, sorter) => {

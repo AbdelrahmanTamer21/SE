@@ -10,6 +10,7 @@ function DonationForm() {
     itemName: '',
     condition: '',
     conditionOther: '', // Added state for condition "Other"
+    quantity: 0,
     description: ''
   });
 
@@ -37,6 +38,7 @@ function DonationForm() {
       itemName: '',
       condition: '',
       conditionOther: '',
+      quantity: 0,
       description: ''
     });
     navigate("/Donor/DonationRequests"); // Redirect to the donor page after submission
@@ -48,6 +50,7 @@ function DonationForm() {
       itemName: '',
       condition: '',
       conditionOther: '',
+      quantity: 0,
       description: ''
     });
   };
@@ -101,6 +104,15 @@ function DonationForm() {
                     {formData.condition === 'Other' && (
                       <Form.Control type='text' placeholder='Other Condition' name='conditionOther' value={formData.conditionOther} onChange={handleInputChange} size='lg' />
                     )}
+                  </Col>
+                </Row>
+                <hr className="mx-n3" />
+                <Row className='align-items-center pt-4 pb-3'>
+                  <Col md='3' className='ps-5'>
+                    <h5 className="mb-0">Quantity</h5>
+                  </Col>
+                  <Col md='9' className='pe-5'>
+                    <Form.Control type='number' placeholder='Item Name' name='quantity' value={formData.quantity} onChange={handleInputChange} size='lg' />
                   </Col>
                 </Row>
                 <hr className="mx-n3" />
