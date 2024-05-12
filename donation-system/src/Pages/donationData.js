@@ -59,7 +59,11 @@ let donationData = [
     address: 'Al Tagamoa El Khames, Cairo',
     patientName: 'Jane Doe',
     bloodtype: 'O+',
-    quantity: 2
+    quantity: 2,
+    location: {
+      lat: 30.0444,
+      lng: 31.2357
+   }
   },
   {
     key: 6,
@@ -139,7 +143,11 @@ let donationData = [
     address: 'Al Nasr Street, Nasr City, Cairo',
     patientName: 'John Doe',
     bloodtype: 'RH-',
-    quantity: 4
+    quantity: 4,
+    location: {
+      lat: 30.0444,
+      lng: 31.2357
+   }
   },
   {
     key: 12,
