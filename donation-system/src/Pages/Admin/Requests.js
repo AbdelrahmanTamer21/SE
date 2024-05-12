@@ -39,6 +39,7 @@ export function DonorsTab() {
     }
     const handleViewDocument = (donor) => {
         // Add logic to view the organization's document
+        console.log(donor.pdf)
         const pdf = new Blob([donor.pdf], { type: 'application/pdf' });
         const url = URL.createObjectURL(pdf);
         window.open(url);
