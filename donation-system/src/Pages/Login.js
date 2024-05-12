@@ -88,7 +88,9 @@ function Login() {
                       <FormCheck.Input type="checkbox" value="" id="form1Example3" defaultChecked />
                       <FormCheck.Label>Remember me</FormCheck.Label>
                     </FormCheck>
-                    <a href="#!">Forgot password?</a>
+                    <div className='p-3'>
+                    <Link to="/ForgotPassword">Forgot Password?</Link>
+                  </div>                  
                   </div>
 
                   {/* Submit button */}
