@@ -1,0 +1,84 @@
+.card-stats {
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    margin-bottom: 30px;
+}
+
+.card-stats .card-body {
+    padding: 15px 15px 0px;
+}
+
+.card-stats .card-footer {
+    background-color: transparent;
+    line-height: 30px;
+    border-top: none !important;
+    font-size: 14px;
+}
+
+.card .card-footer hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.card-stats .card-body .numbers {
+    font-size: 1.8rem;
+    text-align: right;
+}
+
+.card-footer:last-child {
+    border-radius: 0 0 var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius);
+}
+
+.card .stats {
+    color: #a9a9a9;
+}
+
+.card-stats .card-body .numbers p {
+    margin-bottom: 0;
+}
+
+.card .card-category,
+.card label {
+    font-size: 14px;
+    font-weight: 400;
+    color: #9A9A9A;
+    margin-bottom: 0px;
+}
+
+.card .card-title {
+    margin: 0;
+    color: #333333;
+    font-weight: 300;
+}
+
+.card .card-header {
+    padding: 15px 15px 0;
+    background-color: #FFFFFF;
+    border-bottom: none !important;
+}
+
+.card .card-title {
+    margin: 0;
+    color: #333333;
+    font-weight: 300;
+}
+
+.card .card-category,
+.card label {
+    font-size: 14px;
+    font-weight: 400;
+    color: #9A9A9A;
+    margin-bottom: 0px;
+}
+
+.card .card-footer .legend {
+    padding: 5px 0;
+}
+
+.card .card-footer {
+    padding-top: 0;
+    background-color: transparent;
+    line-height: 30px;
+    border-top: none !important;
+    font-size: 14px;
+}

@@ -109,20 +109,20 @@ export function ContactTab() {
     );
 }
 
-function OrganizationInfo() {
+function DonorOrganizationInfo() {
     const navigate = useNavigate();
     const { org_id } = useParams();
     const [activeTab, setActiveTab] = React.useState("");
 
     const handleTabClick = (tab) => {
         setActiveTab(tab);
-        navigate(`/Admin/OrganizationInfo/${org_id}/${tab}`);
+        navigate(`/Donor/OrganizationInfo/${org_id}/${tab}`);
     }
 
     return (
         <Row className='tab-content m-auto pt-4'>
             <div className='col-auto'>
-                <IoMdArrowRoundBack className='backIcon' onClick={() => navigate('/Admin/Organizations')} />
+                <IoMdArrowRoundBack className='backIcon' onClick={() => navigate('/Donor/DonorOrganizations')} />
 
             </div>
             <Col >
@@ -162,4 +162,4 @@ function OrganizationInfo() {
     );
 }
 
-export default OrganizationInfo;
+export default DonorOrganizationInfo;
