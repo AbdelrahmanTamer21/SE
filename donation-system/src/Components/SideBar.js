@@ -36,7 +36,6 @@ const Sidebar = () => {
         ):null}
         {userRole === 'Donor'?(
           <>
-            <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}/Delivery`)} className="nav-link">Schedule Pickup</Nav.Link>
             <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}/DonorOrganizations`)} className="nav-link">Organizations</Nav.Link>
             <Nav.Link eventKey="link-1" onClick={()=>navigate(`/${userRole}/MyDonations`)} className="nav-link">My Donations</Nav.Link>      
             {user.don_Type ==='Teacher'?(

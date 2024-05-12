@@ -59,8 +59,7 @@ import OrgViewDonationRequest from './Pages/Organization/OrgViewDonationRequests
 import MyDonations from './Pages/Donor/MyDonations';
 import AdminNotifications from './Pages/Admin/AdminNotifications';
 import { ToastContainer, Toast } from 'react-bootstrap';
-import { useState } from 'react';
-import { useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { UserContext } from './Components/UserContext';
 import notificationsData from './Pages/NotificationData'
 import OrganizationPage from './Pages/Organization/Organization';
@@ -80,15 +79,23 @@ function CustomToast({ data }) {
 
 function CustomToastContainer({ show, setShow }) {
   const { isLoggedIn, userRole } = useContext(UserContext);
-  console.log(notificationsData);
-  return isLoggedIn === true && userRole === 'Admin' ? (
+  const [notifications, setNotifications] = useState(notificationsData);
+  useEffect(() => {
+    setNotifications(notificationsData);
+    console.log('Update')
+  }, [notificationsData]);
+
+  return isLoggedIn === true ? (
     <ToastContainer
       className="p-3"
       position={'bottom-end'}
       style={{ zIndex: 1050 }}
     >
-      {notificationsData.map((notification) => {
-        return <CustomToast data={notification.description} />
+      {notifications.map((notification, key) => {
+        if (userRole === notification.type && notification.seen === false) {
+          notificationsData[key].seen = true;
+          return <CustomToast data={notification.description} />
+        }
       })}
     </ToastContainer>
   ) : null;
@@ -138,7 +145,7 @@ function App() {
               <Route path='Profile' element={<Profile />} />
               <Route path='Teaching' element={<TeachingPosts />} />
               <Route path='MedicalCases' element={<MedicalCasesTable />} />
-              
+
               <Route path='Settings' element={<AccountSettings />} />
               <Route path='Teaching' element={<TeachingPosts />} />
               <Route path='MedicalCases' element={<MedicalCasesTable />} />

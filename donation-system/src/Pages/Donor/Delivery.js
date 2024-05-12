@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Alert, Form, FormGroup, FormSelect, FormControl, InputGroup, Button } from 'react-bootstrap'; // Import Bootstrap components
+import notificationsData from '../NotificationData';
 
 
 
@@ -27,6 +28,13 @@ function Delivery() {
     const simulateArrivalNotification = setTimeout(() => {
       if (estimatedArrival) {
         setDriverArrived(true);
+        notificationsData.push({
+          id: notificationsData.length + 1,
+          type: "Donor",
+          description: 'Driver has arrived for pickup/drop-off.',
+          dateTime: new Date().toISOString(),
+          seen: false
+        });
       }
     }, 5000); // Simulate delay for notification after ETA
 
