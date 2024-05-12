@@ -24,6 +24,7 @@ function SubjectClassSelection() {
   const { username } = useParams();
   const [selectedSubjects, setSelectedSubjects] = useState([]);
   const [otherSubject, setOtherSubject] = useState('');
+  const [document, setDocument] = useState(null);
 
   const handleCheckboxChange = (subject) => {
     const updatedSubjects = [...selectedSubjects];
@@ -46,11 +47,14 @@ function SubjectClassSelection() {
     setOtherSubject(e.target.value);
   };
 
+  const handleDocument = (e) => {
+    setDocument(e.target.files[0]);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     LoginData.forEach((user) => user.username === username ? user.don_Type = 'Teacher' : null)
-
+    LoginData.forEach((user) => user.username === username ? user.pdf = document : null)
     navigate("/Login")
   }
   return (
@@ -60,62 +64,62 @@ function SubjectClassSelection() {
           <Row>
             <Col md='10' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center'>
               <Form onSubmit={handleSubmit}>
-             
+
                 <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Teacher </p>
                 <div className="d-flex flex-row align-items-center mb-4">
                   <FaChalkboardTeacher className="me-3" size='24' />
-                   <Form.Group controlId="checkboxWithTextbox">
-        <Row>
-          <Col>
-            <Form.Check
-              type="checkbox"
-              id="mathCheckbox"
-              label="Math"
-              onChange={() => handleCheckboxChange('math')}
-              checked={selectedSubjects.includes('math')}
-            />
-          </Col>
-          <Col>
-            <Form.Check
-              type="checkbox"
-              id="englishCheckbox"
-              label="English"
-              onChange={() => handleCheckboxChange('english')}
-              checked={selectedSubjects.includes('english')}
-            />
-          </Col>
-          <Col>
-            <Form.Check
-              type="checkbox"
-              id="scienceCheckbox"
-              label="Science"
-              onChange={() => handleCheckboxChange('science')}
-              checked={selectedSubjects.includes('science')}
-            />
-          </Col>
-          <Col>
-            <Form.Check
-              type="checkbox"
-              id="otherCheckbox"
-              label="Other"
-              onChange={() => handleCheckboxChange('other')}
-              checked={selectedSubjects.includes('other')}
-            />
-          </Col>
-        </Row>
-        {selectedSubjects.includes('other') && (
-          <Row>
-            <Col>
-              <Form.Control
-                type="text"
-                placeholder="Please specify other subject(s)"
-                value={otherSubject}
-                onChange={handleOtherInputChange}
-              />
-            </Col>
-          </Row>
-        )}
-      </Form.Group>
+                  <Form.Group controlId="checkboxWithTextbox">
+                    <Row>
+                      <Col>
+                        <Form.Check
+                          type="checkbox"
+                          id="mathCheckbox"
+                          label="Math"
+                          onChange={() => handleCheckboxChange('math')}
+                          checked={selectedSubjects.includes('math')}
+                        />
+                      </Col>
+                      <Col>
+                        <Form.Check
+                          type="checkbox"
+                          id="englishCheckbox"
+                          label="English"
+                          onChange={() => handleCheckboxChange('english')}
+                          checked={selectedSubjects.includes('english')}
+                        />
+                      </Col>
+                      <Col>
+                        <Form.Check
+                          type="checkbox"
+                          id="scienceCheckbox"
+                          label="Science"
+                          onChange={() => handleCheckboxChange('science')}
+                          checked={selectedSubjects.includes('science')}
+                        />
+                      </Col>
+                      <Col>
+                        <Form.Check
+                          type="checkbox"
+                          id="otherCheckbox"
+                          label="Other"
+                          onChange={() => handleCheckboxChange('other')}
+                          checked={selectedSubjects.includes('other')}
+                        />
+                      </Col>
+                    </Row>
+                    {selectedSubjects.includes('other') && (
+                      <Row>
+                        <Col>
+                          <Form.Control
+                            type="text"
+                            placeholder="Please specify other subject(s)"
+                            value={otherSubject}
+                            onChange={handleOtherInputChange}
+                          />
+                        </Col>
+                      </Row>
+                    )}
+                  </Form.Group>
                 </div>
                 <div className="d-flex flex-row align-items-center mb-4">
                   <PiStudentFill className="me-3" size='24' />
@@ -123,12 +127,12 @@ function SubjectClassSelection() {
                 </div>
                 <div className="d-flex flex-row align-items-center mb-4">
                   <RiGitRepositoryPrivateFill className="me-3" size='24' />
-                  <Form.Control type='number'  min='1' max='100'placeholder='Private Pro-bono Sessions' required />
+                  <Form.Control type='number' min='1' max='100' placeholder='Private Pro-bono Sessions' required />
                 </div>
                 <Form.Group className="mb-4">
-                    <Form.Label>Document Upload for Teacher </Form.Label>
-                    <Form.Control type="file" name='document'  required />
-                  </Form.Group>
+                  <Form.Label>Document Upload for Teacher </Form.Label>
+                  <Form.Control type="file" name='document' onChange={handleDocument} required />
+                </Form.Group>
 
                 <Button variant='main-inverse' type='submit' className='mb-4' size='lg'>Submit</Button>
               </Form>
