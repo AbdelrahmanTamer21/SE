@@ -61,6 +61,7 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { UserContext } from './Components/UserContext';
 import notificationsData from './Pages/NotificationData'
+import OrganizationPage from './Pages/Organization/Organization';
 
 function CustomToast({ data }) {
   const [show, setShow] = useState(true);
@@ -173,7 +174,8 @@ function App() {
               <Route path='AdminNotifications' element={<AdminNotifications />} />
             </Route>
 
-            <Route path='/Organization' element={<OrganizationDashboard />}>
+            <Route path='/Organization' element={<OrganizationPage />}>
+              <Route path='' element={<OrganizationDashboard />} />
               <Route path='OrgViewRequests' element={<OrgViewDonationRequest />} />
             </Route>
           </Routes>

@@ -95,7 +95,7 @@ function DonorRegistration() {
         donor_id: maxDonorID,
         first_name: first_name,
         last_name: last_name,
-        donorEmail: email,
+        email: email,
         contact: contact,
         address: address,
         area: area,
@@ -120,7 +120,6 @@ function DonorRegistration() {
         location: loc
       }
       LoginData.push(newUser);
-      DonorsData.push(newDonor);
       setValidated(true);
       navigate(`/Volunteer/${username}`);
     }

@@ -26,19 +26,20 @@ export function DonorsTab() {
                     setDonors(donors.filter(donor => donor !== d));
                     const currentDate = new Date();
                     d.joined_date = currentDate.toISOString().split('T')[0];
+                    const maxKey = Math.max(...DonorsData.map(d => d.key));
                     const maxId = Math.max(...DonorsData.map(d => d.donor_id));
+                    d.key = maxKey + 1;
                     d.donor_id = maxId + 1;
+                    console.log(donor);
                     DonorsData.push(donor);
-
-
                     return;
                 }
             });
         }
     }
-    const handleViewDocument = (org) => {
+    const handleViewDocument = (donor) => {
         // Add logic to view the organization's document
-        const pdf = new Blob([org.pdf], { type: 'application/pdf' });
+        const pdf = new Blob([donor.pdf], { type: 'application/pdf' });
         const url = URL.createObjectURL(pdf);
         window.open(url);
     }
@@ -79,7 +80,7 @@ export function DonorsTab() {
 
                                     }
                                     <h2>{donor.first_name + " " + donor.last_name}</h2>
-                                    <p>{donor.donorEmail}</p>
+                                    <p>{donor.email}</p>
                                     <p>{donor.don_Type}</p>
                                     <Button variant='main-inverse' className="w-100" onClick={() => handleViewDocument(donor)}>View Document</Button>
                                     <Button className="btn-success m-3" style={{ borderRadius: '50%', width: '3rem', height: '3rem' }} onClick={() => handleAccept(donor)}>

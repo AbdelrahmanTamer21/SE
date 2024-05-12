@@ -41,7 +41,7 @@ function Login() {
             alert("Your account has been rejected");
           }
           else{
-          navigate("/OrganizationDashboard");
+          navigate("/Organization");
           }
           break;
         default:
