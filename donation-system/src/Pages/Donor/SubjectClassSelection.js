@@ -22,41 +22,35 @@ import Teacher from '../Teacher.png'
 function SubjectClassSelection() {
   const navigate = useNavigate();
   const { username } = useParams();
-  const [subjects, setSubjects] = useState([]); // Array to store selected subjects
-  const [numClasses, setNumClasses] = useState(0); // Number of pro-bono classes
-  const [numStudents, setNumStudents] = useState(0); // Number of pro-bono students
+  const [selectedSubjects, setSelectedSubjects] = useState([]);
+  const [otherSubject, setOtherSubject] = useState('');
 
-  const handleSubjectChange = (event) => {
-    const isChecked = event.target.checked;
-    const subject = event.target.value;
+  const handleCheckboxChange = (subject) => {
+    const updatedSubjects = [...selectedSubjects];
 
-    if (isChecked) {
-      setSubjects([...subjects, subject]);
+    if (updatedSubjects.includes(subject)) {
+      updatedSubjects.splice(updatedSubjects.indexOf(subject), 1);
     } else {
-      setSubjects(subjects.filter((s) => s !== subject));
+      updatedSubjects.push(subject);
+    }
+
+    setSelectedSubjects(updatedSubjects);
+
+    // Reset the other subject value when unchecking the checkbox
+    if (!updatedSubjects.includes('other')) {
+      setOtherSubject('');
     }
   };
 
-  const handleInputChange = (event) => {
-    const value = event.target.value;
-    const name = event.target.name;
-
-    if (name === 'numClasses') {
-      setNumClasses(parseInt(value));
-    } else if (name === 'numStudents') {
-      setNumStudents(parseInt(value));
-    }
+  const handleOtherInputChange = (e) => {
+    setOtherSubject(e.target.value);
   };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
     LoginData.forEach((user) => user.username === username ? user.don_Type = 'Teacher' : null)
 
-    // Implement logic to submit selection data (e.g., send to server)
-    alert(`Thank you for your willingness to help! You selected: 
-      Subjects: ${subjects.join(', ')}
-      Number of Pro-bono Classes: ${numClasses}
-      Number of Pro-bono Students: ${numStudents}`);
     navigate("/Login")
   }
   return (
@@ -66,21 +60,73 @@ function SubjectClassSelection() {
           <Row>
             <Col md='10' lg='6' className='order-2 order-lg-1 d-flex flex-column align-items-center'>
               <Form onSubmit={handleSubmit}>
+             
                 <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Teacher </p>
                 <div className="d-flex flex-row align-items-center mb-4">
                   <FaChalkboardTeacher className="me-3" size='24' />
-                  <Form.Control type='text' placeholder='Subject(s) to Teach' required />
+                   <Form.Group controlId="checkboxWithTextbox">
+        <Row>
+          <Col>
+            <Form.Check
+              type="checkbox"
+              id="mathCheckbox"
+              label="Math"
+              onChange={() => handleCheckboxChange('math')}
+              checked={selectedSubjects.includes('math')}
+            />
+          </Col>
+          <Col>
+            <Form.Check
+              type="checkbox"
+              id="englishCheckbox"
+              label="English"
+              onChange={() => handleCheckboxChange('english')}
+              checked={selectedSubjects.includes('english')}
+            />
+          </Col>
+          <Col>
+            <Form.Check
+              type="checkbox"
+              id="scienceCheckbox"
+              label="Science"
+              onChange={() => handleCheckboxChange('science')}
+              checked={selectedSubjects.includes('science')}
+            />
+          </Col>
+          <Col>
+            <Form.Check
+              type="checkbox"
+              id="otherCheckbox"
+              label="Other"
+              onChange={() => handleCheckboxChange('other')}
+              checked={selectedSubjects.includes('other')}
+            />
+          </Col>
+        </Row>
+        {selectedSubjects.includes('other') && (
+          <Row>
+            <Col>
+              <Form.Control
+                type="text"
+                placeholder="Please specify other subject(s)"
+                value={otherSubject}
+                onChange={handleOtherInputChange}
+              />
+            </Col>
+          </Row>
+        )}
+      </Form.Group>
                 </div>
                 <div className="d-flex flex-row align-items-center mb-4">
                   <PiStudentFill className="me-3" size='24' />
-                  <Form.Control type='number' placeholder='Pro-bono Sessions' required />
+                  <Form.Control type='number' min='1' max='100' placeholder='Pro-bono Sessions' required />
                 </div>
                 <div className="d-flex flex-row align-items-center mb-4">
                   <RiGitRepositoryPrivateFill className="me-3" size='24' />
-                  <Form.Control type='number' placeholder='Private Pro-bono Sessions' required />
+                  <Form.Control type='number'  min='1' max='100'placeholder='Private Pro-bono Sessions' required />
                 </div>
                 <Form.Group className="mb-4">
-                    <Form.Label>Document Upload for Organization Verification</Form.Label>
+                    <Form.Label>Document Upload for Teacher </Form.Label>
                     <Form.Control type="file" name='document'  required />
                   </Form.Group>
 
