@@ -2,14 +2,14 @@ import React, { useState, useRef } from 'react';
 import { useNavigate, useParams, Outlet } from 'react-router-dom';
 import "./Info.css";
 import MedicalCases from '../medicalCasesData'; // Corrected import
-import { Nav, Row, Col, Card, Container, Image } from 'react-bootstrap';
+import { Nav, Row, Col, Card, Container, Image, Button } from 'react-bootstrap';
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { Button } from 'antd';
 import { AimOutlined } from '@ant-design/icons';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import markerIcon from '../marker.png'; // Import your marker icon
 import { FaMapMarkerAlt } from "react-icons/fa";
+
 
 export function HomeTab() {
     const { id } = useParams();
@@ -26,6 +26,10 @@ export function HomeTab() {
     function handleMap() {
         setIsMapOpen(!isMapOpen);
     }
+    const goBack = () => {
+        navigate(-1);
+      }
+    
 
     const mapRef = useRef(null);
 
@@ -105,8 +109,8 @@ export function HomeTab() {
                     )}
                 </Row>
                     <div>
-                        <Button variant="main-inverse" className='w-25' >Back</Button>
-                        <Button variant="main-inverse" className="w-25 ms-2" >Donate</Button>
+                        <Button  className='w-25' variant='main-inverse'  onClick={goBack} >Back</Button>
+                        <Button  className="w-25 ms-2" variant='main-inverse'>Fulfill</Button>
                     </div>
             </Container>
         </Card>

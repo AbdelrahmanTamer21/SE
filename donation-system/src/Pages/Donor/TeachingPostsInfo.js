@@ -2,9 +2,8 @@ import React, { useState, useRef } from 'react';
 import { useNavigate, useParams, Outlet } from 'react-router-dom';
 import "./Info.css";
 import TeachingPostsData from '../TeachingPostsData'; // Corrected import
-import { Nav, Row, Col, Card, Container, Image } from 'react-bootstrap';
+import { Nav, Row, Col, Card, Container, Image , Button } from 'react-bootstrap';
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { Button } from 'antd';
 import { AimOutlined } from '@ant-design/icons';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
@@ -34,6 +33,9 @@ export function HomeTab() {
         iconUrl: markerIcon,
         iconSize: [22, 32], // Adjust the size of your marker icon
     });
+    const goBack = () => {
+        navigate(-1);
+      }
 
     return (
         <Card>
@@ -80,7 +82,7 @@ export function HomeTab() {
                     )}
                 </Row>
                     <div>
-                        <Button variant="main-inverse" className='w-25' >Back</Button>
+                        <Button variant="main-inverse" className='w-25' onClick={goBack}>Back</Button>
                         <Button variant="main-inverse" className="w-25 ms-2" >Donate</Button>
                     </div>
             </Container>
