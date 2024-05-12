@@ -30,7 +30,6 @@ export function DonorsTab() {
                     const maxId = Math.max(...DonorsData.map(d => d.donor_id));
                     d.key = maxKey + 1;
                     d.donor_id = maxId + 1;
-                    console.log(donor);
                     DonorsData.push(donor);
                     return;
                 }
@@ -39,7 +38,6 @@ export function DonorsTab() {
     }
     const handleViewDocument = (donor) => {
         // Add logic to view the organization's document
-        console.log(donor.pdf)
         const pdf = new Blob([donor.pdf], { type: 'application/pdf' });
         const url = URL.createObjectURL(pdf);
         window.open(url);
@@ -113,9 +111,6 @@ export function OrganizationsTab() {
                     const maxId = Math.max(...OrganizationData.map(o => o.org_id));
                     o.org_id = maxId + 1;
                     OrganizationData.push(o);
-                    console.log(OrganizationData);
-
-
                     return;
                 }
             });

@@ -70,7 +70,6 @@ function OrganizationRegistration() {
     const map = mapRef.current;
     if (map) {
       const center = map.getCenter();
-      console.log(center);
       setMarkerPosition(center);
     }
   }

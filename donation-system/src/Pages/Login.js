@@ -16,7 +16,6 @@ function Login() {
     event.preventDefault();
     const user = LoginData.find((user) => user.username === username && user.password === password);
     if(user){
-      console.log(user.type,user.username);
       updateUser(user.type,true,user.username);
       switch(user.type){
         case "Admin":

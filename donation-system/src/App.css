@@ -270,3 +270,12 @@
   align-items: center;
   justify-content: center;
 }
+
+.link-style{
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.btn-main-inverse:hover .link-style{
+  color: var(--main-grenn);
+}

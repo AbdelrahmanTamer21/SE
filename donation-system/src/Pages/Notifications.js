@@ -1,11 +1,10 @@
-import notificationsData from '../NotificationData';
+import notificationsData from './NotificationData';
 import { Container, Card } from 'react-bootstrap';
 import { useState, useContext, useEffect } from 'react';
-import { UserContext } from '../../Components/UserContext';
+import { UserContext } from '../Components/UserContext';
 
-function AdminNotifications() {
+function Notifications() {
   const { isLoggedIn, userRole } = useContext(UserContext);
-  
   return isLoggedIn === true ? (
     <Container>
       {notificationsData.map((notification) => {
@@ -25,4 +24,4 @@ function AdminNotifications() {
     </Container>
   ) : null;
 }
-export default AdminNotifications;
+export default Notifications;

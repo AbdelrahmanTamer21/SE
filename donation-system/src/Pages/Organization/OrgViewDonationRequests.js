@@ -3,14 +3,14 @@ import donationData from "../donationData";
 import { SearchOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 import Highlighter from 'react-highlight-words';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Container } from "react-bootstrap";
 import { Form, InputNumber } from 'antd';
 import { Popconfirm } from 'antd';
 
 
 function OrgViewDonationRequest() {
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
@@ -94,7 +94,7 @@ function OrgViewDonationRequest() {
     };
 
     const handleRowClick = (id) => {
-        console.log(id);
+        navigate(`/Organization/Donationsinfo/${id}`)
     }
 
     const handleDelete = (id) => {
@@ -316,6 +316,12 @@ function OrgViewDonationRequest() {
                 );
             },
         },
+        {
+            title: 'Details',
+            dataIndex: '',
+            key: 'x',
+            render: (record) => <Button onClick={()=>handleRowClick(record.id)}>Details</Button>
+        }
     ];
 
     const mergedColumns = columns.map((col) => {

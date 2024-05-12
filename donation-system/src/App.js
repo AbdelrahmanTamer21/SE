@@ -59,7 +59,7 @@ import { DonorsTab, OrganizationsTab } from './Pages/Admin/Requests';
 import OrganizationDashboard from './Pages/Organization/OrganizationDashboard';
 import OrgViewDonationRequests from './Pages/Organization/OrgViewDonationRequests';
 import MyDonations from './Pages/Donor/MyDonations';
-import AdminNotifications from './Pages/Admin/AdminNotifications';
+import Notifications from './Pages/Notifications';
 import { ToastContainer, Toast } from 'react-bootstrap';
 import { useState, useContext, useEffect } from 'react';
 import { UserContext } from './Components/UserContext';
@@ -69,7 +69,8 @@ import FulfilledPosts from './Pages/Organization/FulfilledPosts';
 import DonationPosts from './Pages/Organization/DonationPosts';
 import DonorDetails from './Pages/Organization/DonorDetails';
 import ForgotPassword from './ForgotPassword';
-import { changePassword } from './ForgotPassword';
+import ChangePassword from './ChangePassword';
+import RequestInfo from './Pages/Organization/RequestInfo';
 
 
 function CustomToast({ data }) {
@@ -90,7 +91,6 @@ function CustomToastContainer({ show, setShow }) {
   const [notifications, setNotifications] = useState(notificationsData);
   useEffect(() => {
     setNotifications(notificationsData);
-    console.log('Update')
   }, [notificationsData]);
 
   return isLoggedIn === true ? (
@@ -153,8 +153,8 @@ function App() {
               <Route path='Profile' element={<Profile />} />
               <Route path='Teaching' element={<TeachingPosts />} />
               <Route path='MedicalCases' element={<MedicalCasesTable />} />
-              <Route path='TeacherFullfill' element={<TeachFullfill/>}/>
-              <Route path='DoctorFullfill' element={<DocFullfill/>}/>
+              <Route path='TeacherFullfill' element={<TeachFullfill />} />
+              <Route path='DoctorFullfill' element={<DocFullfill />} />
 
               <Route path='Settings' element={<AccountSettings />} />
               <Route path='Teaching' element={<TeachingPosts />} />
@@ -171,6 +171,7 @@ function App() {
                 <Route path="donations" element={<DonationsTab />} />
                 <Route path="contact" element={<ContactTab />} />
               </Route>
+              <Route path='Notifications' element={<Notifications />} />
             </Route>
 
             <Route path='/Admin' element={<Admin />}>
@@ -193,22 +194,20 @@ function App() {
                 <Route path='' element={<OrganizationsTab />} />
                 <Route path='Donors' element={<DonorsTab />} />
               </Route>
-              <Route path='AdminNotifications' element={<AdminNotifications />} />
+              <Route path='Notifications' element={<Notifications />} />
             </Route>
 
             <Route path='/Organization' element={<OrganizationPage />}>
               <Route path='' element={<OrganizationDashboard />} />
               <Route path='OrgViewDonationRequests' element={<OrgViewDonationRequests />} />
               <Route path="FulfilledPosts" element={<FulfilledPosts />} />
-              {/* not working */}
               <Route path="DonorDetails/:id" element={<DonorDetails />} />
-
-
               <Route path="DonationPosts" element={<DonationPosts />} />
-
+              <Route path='Notifications' element={<Notifications />} />
+              <Route path='Donationsinfo/:id' element={<RequestInfo />} />
             </Route>
             <Route path='/ForgotPassword' element={<ForgotPassword />} />
-              <Route path='ChangePassword' element={<changePassword />} />
+            <Route path='ChangePassword' element={<ChangePassword />} />
 
           </Routes>
 

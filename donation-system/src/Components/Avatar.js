@@ -29,7 +29,7 @@ function Avatar() {
             <Dropdown.Menu>
                 <Dropdown.Item as={Link} to={`/${userRole}/Profile`}>Profile</Dropdown.Item>
                 <Dropdown.Item as={Link} to={`/${userRole}/Settings`}>Settings</Dropdown.Item>
-                <Dropdown.Item as={Link} to={`/${userRole}/AdminNotifications`}>Notifications</Dropdown.Item>
+                <Dropdown.Item as={Link} to={`/${userRole}/Notifications`}>Notifications</Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item>
                     <Button variant="danger" onClick={handleLogout} className=" w-100" >Logout</Button>

@@ -21,6 +21,20 @@ let notificationsData = [
         description: 'donor has registered.',
         dataTime: "2024-5-11 22:30:00",
         seen: false
+    },
+    {
+        key: 4,
+        type: 'Donor',
+        description: 'donation recorded.',
+        dataTime: "2024-5-11 23:30:00",
+        seen: false
+    },
+    {
+        key: 5,
+        type: 'Organization',
+        description: 'donation request recorded.',
+        dataTime: "2024-5-11 23:30:00",
+        seen: false
     }
 ]
 

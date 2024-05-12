@@ -27,8 +27,6 @@ function Registration() {
       return;
     }
 
-    console.log('Registration data:', formData); // For demonstration only
-
     // Simulate successful registration (replace with actual logic)
     alert('Registration successful!');
   };
