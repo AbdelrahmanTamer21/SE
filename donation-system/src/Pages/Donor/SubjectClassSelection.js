@@ -22,11 +22,41 @@ import Teacher from '../Teacher.png'
 function SubjectClassSelection() {
   const navigate = useNavigate();
   const { username } = useParams();
+  const [subjects, setSubjects] = useState([]); // Array to store selected subjects
+  const [numClasses, setNumClasses] = useState(0); // Number of pro-bono classes
+  const [numStudents, setNumStudents] = useState(0); // Number of pro-bono students
 
- 
+  const handleSubjectChange = (event) => {
+    const isChecked = event.target.checked;
+    const subject = event.target.value;
 
-  function handleSubmit() {
-    LoginData.forEach((user) => user.username === username ? user.type = 'Doctor' : null)
+    if (isChecked) {
+      setSubjects([...subjects, subject]);
+    } else {
+      setSubjects(subjects.filter((s) => s !== subject));
+    }
+  };
+
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+
+    if (name === 'numClasses') {
+      setNumClasses(parseInt(value));
+    } else if (name === 'numStudents') {
+      setNumStudents(parseInt(value));
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    LoginData.forEach((user) => user.username === username ? user.don_Type = 'Teacher' : null)
+
+    // Implement logic to submit selection data (e.g., send to server)
+    alert(`Thank you for your willingness to help! You selected: 
+      Subjects: ${subjects.join(', ')}
+      Number of Pro-bono Classes: ${numClasses}
+      Number of Pro-bono Students: ${numStudents}`);
     navigate("/Login")
   }
   return (

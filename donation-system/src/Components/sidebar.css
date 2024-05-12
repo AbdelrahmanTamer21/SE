@@ -31,14 +31,19 @@
     color: #fff !important; /* White */
   }
   .sidebar-toggle {
+    width: 35px !important;
+    height: 35px !important;
     border: none !important;
     background: none !important;
 
   }
   .sidebar-toggle-icon {
-    width: 35px; /* Adjust as needed */
-    height: 35px; /* Adjust as needed */
+    width: 28px !important; /* Adjust as needed */
+    height: 28px !important; /* Adjust as needed */
     background: none;
     border: none;
-    border-radius: 50%;
+  }
+
+  .sidebar-toggle:hover > .sidebar-toggle-icon{
+      color: silver;
   }

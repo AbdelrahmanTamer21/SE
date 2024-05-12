@@ -55,15 +55,33 @@ import { DonorsTab, OrganizationsTab } from './Pages/Admin/Requests';
 import OrganizationDashboard from './Pages/Organization/OrganizationDashboard';
 import OrgViewDonationRequest from './Pages/Organization/OrgViewDonationRequests';
 import MyDonations from './Pages/Donor/MyDonations';
+import AdminNotifications from './Pages/Admin/AdminNotifications';
 import { ToastContainer, Toast } from 'react-bootstrap';
 import { useState } from 'react';
+import { useContext } from 'react';
+import { UserContext } from './Components/UserContext';
+import notificationsData from './Pages/NotificationData'
+
+function CustomToast({ show, setShow }) {
+  const { isLoggedIn, userRole } = useContext(UserContext);
+  console.log(userRole);
+  return isLoggedIn === true && userRole === 'Admin' ? (
+    <ToastContainer
+      className="p-3"
+      position={'bottom-end'}
+      style={{ zIndex: 1 }}
+    >
+    </ToastContainer>
+  ) : null;
+}
+
 
 
 function App() {
   const [show, setShow] = useState(true);
-
   return (
     <div className="App">
+
       <UserProvider>
         <SideBarProvider>
           <TopBar />
@@ -105,6 +123,11 @@ function App() {
               <Route path='MedicalCases' element={<MedicalCasesTable />} />
               <Route path='MedicalCasesInfo/:id' element={<MedicalCasesInfo />} />
               <Route path='TeachingPostsInfo/:id' element={<TeachingPostsInfo />} />
+              <Route path='Settings' element={<AccountSettings />} />
+              <Route path='Teaching' element={<TeachingPosts />} />
+              <Route path='MedicalCases' element={<MedicalCasesTable />} />
+              <Route path='MedicalCasesInfo/:id' element={<MedicalCasesInfo />} />
+              <Route path='TeachingPostsInfo/:id' element={<TeachingPostsInfo />} />
               <Route path='MyDonations' element={<MyDonations />} />
               <Route path="DonorOrganizationInfo/:org_id" element={<DonorOrganizationInfo />}>
                 <Route path="" element={<HomeTab />} />
@@ -130,32 +153,21 @@ function App() {
               <Route path='Profile' element={<Profile />} />
               <Route path='Settings' element={<AccountSettings />} />
               <Route path='Requests' element={<Requests />}>
-                <Route path='' element={<OrganizationsTab />} />
-                <Route path='Donors' element={<DonorsTab />} />
+                <Route path='Settings' element={<AccountSettings />} />
+                <Route path='Requests' element={<Requests />}>
+                  <Route path='' element={<OrganizationsTab />} />
+                  <Route path='Donors' element={<DonorsTab />} />
+                  <Route path='Donors' element={<DonorsTab />} />
+                </Route>
+                <Route path='AdminNotifications' element={<AdminNotifications />} />
               </Route>
             </Route>
-            <Route path='/Organization' element={<DonationForm />} />
-            <Route path='/OrganizationDashboard' element={<OrganizationDashboard />} />
-            <Route path='/OrgViewRequests' element={<OrgViewDonationRequest />} />
+            <Route path='/Organization' element={<OrganizationDashboard />}>
+                <Route path='OrgViewRequests' element={<OrgViewDonationRequest />} />
+              </Route>
           </Routes>
-          <ToastContainer
-            className="p-3"
-            position={'bottom-end'}
-            style={{ zIndex: 1 }}
-          >
-            <Toast onClose={() => setShow(false)} show={show}>
-              <Toast.Header>
-                <img
-                  src="holder.js/20x20?text=%20"
-                  className="rounded me-2"
-                  alt=""
-                />
-                <strong className="me-auto">Bootstrap</strong>
-                <small>11 mins ago</small>
-              </Toast.Header>
-              <Toast.Body>Hello, world! This is a toast message.</Toast.Body>
-            </Toast>
-          </ToastContainer>
+
+          <CustomToast show={show} setShow={setShow}></CustomToast>
         </SideBarProvider>
       </UserProvider>
     </div>
