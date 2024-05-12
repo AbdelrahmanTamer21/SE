@@ -153,6 +153,8 @@ function OrganizationRegistration() {
                       <option value='Hospital'>Hospital</option>
                       <option value='Orphanage'>Orphanage</option>
                       <option value='School'>School</option>
+                      <option value ='Place Of Worship(Mosque/Church)'></option>
+                      <option value ='Charity'></option>
                     </Form.Select>
                   </Form.Group>
                 </Row>
