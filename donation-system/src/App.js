@@ -156,18 +156,20 @@ function App() {
               <Route path='Profile' element={<Profile />} />
               <Route path='Settings' element={<AccountSettings />} />
               <Route path='Requests' element={<Requests />}>
-              <Route path='Settings' element={<AccountSettings />} />
-              <Route path='Requests' element={<Requests />}>
-                <Route path='' element={<OrganizationsTab />} />
-                <Route path='Donors' element={<DonorsTab />} />
-                <Route path='Donors' element={<DonorsTab />} />
+                <Route path='Settings' element={<AccountSettings />} />
+                <Route path='Requests' element={<Requests />}>
+                  <Route path='' element={<OrganizationsTab />} />
+                  <Route path='Donors' element={<DonorsTab />} />
+                  <Route path='Donors' element={<DonorsTab />} />
+                </Route>
+                <Route path='AdminNotifications' element={<AdminNotifications />} />
               </Route>
-              <Route path='AdminNotifications' element={<AdminNotifications />} />
+              <Route path='/Organization' element={<OrganizationDashboard />}>
+                <Route path='/OrgViewRequests' element={<OrgViewDonationRequest />} />
+              </Route>
             </Route>
-            <Route path='/Organization' element={<DonationForm />} />
-            <Route path='/OrganizationDashboard' element={<OrganizationDashboard />} />
-            <Route path='/OrgViewRequests' element={<OrgViewDonationRequest />} />
           </Routes>
+
           <CustomToast show={show} setShow={setShow}></CustomToast>
         </SideBarProvider>
       </UserProvider>
