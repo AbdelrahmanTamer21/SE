@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@canvasjs/react-charts": "^1.0.2",
     "chart.js": "^4.4.2",
     "react": "^17.0.2",
     "react-chartjs-2": "^5.2.0"

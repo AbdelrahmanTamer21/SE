@@ -36,6 +36,8 @@ import TeachingPostsInfo from './Pages/Donor/TeachingPostsInfo';
 import MedicalCasesTable from './Pages/Donor/MedicalCasesTable';
 import MedicalCasesInfo from './Pages/Donor/MedicalCaseInfo';
 import Donate from './Pages/Donor/Donate';
+import DonorOrganizationList from './Pages/Donor/DonorOrganizationList';
+import DonorOrganizationInfo from './Pages/Donor/DonorOrganizationInfo';
 
 import Admin from './Pages/Admin/Admin';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
@@ -72,6 +74,7 @@ function CustomToast({ show, setShow }) {
     </ToastContainer>
   ) : null;
 }
+
 
 
 function App() {
@@ -113,7 +116,7 @@ function App() {
               <Route path='VolunteerSelection' element={<VolunteerRoleSelection />} />
               <Route path='DocumentUpload' element={<DocumentUpload />} />
               <Route path='Delivery' element={<Delivery />} />
-              <Route path='Organizations' element={<OrganizationList />} />
+              <Route path='DonorOrganizations' element={<DonorOrganizationList />} />
               <Route path='Profile' element={<Profile />} />
               <Route path='Settings' element={<AccountSettings />} />
               <Route path='Teaching' element={<TeachingPosts />} />
@@ -121,6 +124,11 @@ function App() {
               <Route path='MedicalCasesInfo/:id' element={<MedicalCasesInfo />} />
               <Route path='TeachingPostsInfo/:id' element={<TeachingPostsInfo />} />
               <Route path='MyDonations' element={<MyDonations />} />
+              <Route path="DonorOrganizationInfo/:org_id" element={<DonorOrganizationInfo />}>
+                <Route path="" element={<HomeTab />} />
+                <Route path="donations" element={<DonationsTab />} />
+                <Route path="contact" element={<ContactTab />} />
+              </Route>
             </Route>
 
             <Route path='/Admin' element={<Admin />}>

@@ -7,7 +7,7 @@ import { Container } from "react-bootstrap";
 import OrganizationData from "../OrganizationData";
 
 
-function OrganizationList() {
+function DonorOrganizationList() {
     const navigate = useNavigate();
     const updatedOrganizationData = OrganizationData.map((org, index) => ({
         ...org,
@@ -15,7 +15,7 @@ function OrganizationList() {
     }));
 
     const handleRowClick = (org_id) => {
-        navigate(`/Admin/OrganizationInfo/${org_id}`);
+        navigate(`/Donor/DonorOrganizationInfo/${org_id}`);
     }
 
     const [searchText, setSearchText] = useState('');
@@ -131,33 +131,33 @@ function OrganizationList() {
             width: '10%',
             render: (text, record, index) => index + 1,
         },
-    {
-        title: 'Name',
+        {
+            title: 'Name',
             dataIndex: 'organizationName',
-                key: 'name',
-                    width: '30%',
+            key: 'name',
+            width: '30%',
             ...getColumnSearchProps('name'),
         },
-    {
-        title: 'Type',
+        {
+            title: 'Type',
             dataIndex: 'orgType',
-                key: 'type',
-                    width: '30%',
+            key: 'type',
+            width: '30%',
             ...getColumnSearchProps('type'),
         },
-    {
-        title: 'Email',
+        {
+            title: 'Email',
             dataIndex: 'organizationEmail',
-                key: 'email',
+            key: 'email',
             ...getColumnSearchProps('email'),
             sorter: (a, b) => a.email.length - b.email.length,
-                sortDirections: ['descend', 'ascend'],
+            sortDirections: ['descend', 'ascend'],
         },
-    {
+        {
             title: 'Details',
             dataIndex: '',
             key: 'x',
-            render: (record) => <Button onClick={()=>handleRowClick(record.id)}>Details</Button>
+            render: (record) => <Button onClick={() => handleRowClick(record.org_id)}>Details</Button>
         }
 
     ];
@@ -167,10 +167,10 @@ function OrganizationList() {
             <Table className="mt-4"
                 columns={columns}
                 dataSource={updatedOrganizationData}
-               
+
             />
         </Container>
     );
 }
 
-export default OrganizationList;
+export default DonorOrganizationList;

@@ -125,7 +125,7 @@ function OrganizationRegistration() {
                     {usernameMatch &&
                       <Row className='justify-content-center align-items-center mt-2'>
                         <MdErrorOutline className='w-auto text-danger p-0' size='20' />
-                        <p className='text-danger w-auto m-0'>Username Alreday exists</p>
+                        <p className='text-danger w-auto m-0'>Username Already exists</p>
                       </Row>
                     }
                   </div>
