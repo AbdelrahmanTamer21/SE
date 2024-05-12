@@ -95,18 +95,21 @@ function VolunteerTable() {
             title: 'First Name',
             dataIndex: 'first_name',
             key: 'first_name',
+            width: '25%',
             ...getColumnSearchProps('first_name'),
         },
         {
             title: 'Last Name',
             dataIndex: 'last_name',
             key: 'last_name',
+            width: '25%',
             ...getColumnSearchProps('last_name'),
         },
         {
             title: 'Position',
             dataIndex: 'position',
             key: 'position',
+            width: '25%',
             ...getColumnSearchProps('position'),
         },
         {
@@ -140,8 +143,9 @@ function VolunteerTable() {
 
     return (
         <>
-            <h2>Volunteers</h2>
+            <h2 className='mt-3'>Volunteers</h2>
             <Table
+                className='mt-4'
                 columns={columns}
                 dataSource={data}
                 bordered
