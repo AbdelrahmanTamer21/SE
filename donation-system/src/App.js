@@ -38,6 +38,8 @@ import MedicalCasesInfo from './Pages/Donor/MedicalCaseInfo';
 import Donate from './Pages/Donor/Donate';
 import DonorOrganizationList from './Pages/Donor/DonorOrganizationList';
 import DonorOrganizationInfo from './Pages/Donor/DonorOrganizationInfo';
+import { HomeTab as TeachingTab } from './Pages/Donor/TeachingPostsInfo';
+import { HomeTab as MedTab } from './Pages/Donor/MedicalCaseInfo';
 
 import Admin from './Pages/Admin/Admin';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
@@ -136,13 +138,16 @@ function App() {
               <Route path='Profile' element={<Profile />} />
               <Route path='Teaching' element={<TeachingPosts />} />
               <Route path='MedicalCases' element={<MedicalCasesTable />} />
-              <Route path='MedicalCasesInfo/:id' element={<MedicalCasesInfo />} />
-              <Route path='TeachingPostsInfo/:id' element={<TeachingPostsInfo />} />
+              
               <Route path='Settings' element={<AccountSettings />} />
               <Route path='Teaching' element={<TeachingPosts />} />
               <Route path='MedicalCases' element={<MedicalCasesTable />} />
-              <Route path='MedicalCasesInfo/:id' element={<MedicalCasesInfo />} />
-              <Route path='TeachingPostsInfo/:id' element={<TeachingPostsInfo />} />
+              <Route path="MedicalCasesInfo/:id" element={<MedicalCasesInfo />}>
+                <Route path="" element={<MedTab />} />
+              </Route>
+              <Route path="TeachingPostsInfo/:id" element={<TeachingPostsInfo />}>
+                <Route path="" element={<TeachingTab />} />
+              </Route>
               <Route path='MyDonations' element={<MyDonations />} />
               <Route path="DonorOrganizationInfo/:org_id" element={<DonorOrganizationInfo />}>
                 <Route path="" element={<HomeTab />} />

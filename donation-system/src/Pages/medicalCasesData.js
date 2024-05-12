@@ -6,11 +6,15 @@ let medicalCasesData = [
       patientage:"19",
       patientgender:"Male",
       patientweight:"63",
-      location:"",
+      governorate:'Cairo',
       address:"Tagamoaa",
       organizationName:"57357",
       medicalSpecialty:"Blood Cancer",
-      caseDesc:"Has high level of blood cancer"
+      caseDesc:"Has high level of blood cancer",
+      location: {
+        lat: 30.0444,
+        lng: 31.2357
+     }
     },
     {
       key: 2,
@@ -19,11 +23,15 @@ let medicalCasesData = [
       patientage:"12",
       patientgender:"female",
       patientweight:"45",
-      location:"",
       address:"Tagamoaa",
+      governorate:'Cairo',
       organizationName:"57357",
       medicalSpecialty:"Blood Cancer",
-      caseDesc:"Has high level of blood cancer"
+      caseDesc:"Has high level of blood cancer",
+      location: {
+        lat: 30.0444,
+        lng: 31.2357
+     }
     },
   
   ];

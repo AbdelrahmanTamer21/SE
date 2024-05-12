@@ -39,7 +39,7 @@ let LoginData = [
         password: "123",
         don_Type: "Teacher",
         type: "Donor",
-        status: "pending",
+        status: "approved",
         image: undefined,
         location: getRandomLocation(),
         joined_date: undefined
@@ -54,7 +54,7 @@ let LoginData = [
         password: "123",
         don_Type: "Doctor",
         type: "Donor",
-        status: "pending",
+        status: "approved",
         image: undefined,
         location: getRandomLocation(),
         joined_date: undefined

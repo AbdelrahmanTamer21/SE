@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import medicalCasesData from "./medicalCasesData";
+import medicalCasesData from "../medicalCasesData";
 import { SearchOutlined, EnvironmentOutlined } from '@ant-design/icons';
 import { Button, Input, Space, Table } from 'antd';
 import Highlighter from 'react-highlight-words';
@@ -179,21 +179,15 @@ function MedicalCasesTable() {
             ...getColumnSearchProps('address'),
             filteredValue: filteredInfo.address || null,
         },
-        /*{
+        {
             title: 'Governorate',
             dataIndex: 'governorate',
             key: 'governorate',
             width: '15%',
             ...getColumnSearchProps('governorate'),
             filteredValue: filteredInfo.governorate || null,
-        },*/
-        {
-            title: 'Location',
-            dataIndex: 'location',
-            key: 'location',
-            width: '15%',
-            render: (text) => <Button icon={<EnvironmentOutlined style={{ fontSize: '16px' }} />}></Button>,
         },
+       
         {
             title: 'Details',
             dataIndex: '',
