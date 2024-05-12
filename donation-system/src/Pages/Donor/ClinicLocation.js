@@ -70,10 +70,10 @@ function ClinicLocation() {
                 </div>
                 <div className="d-flex flex-row align-items-center mb-4">
                   <MdEventAvailable className="me-3" size='24' />
-                  <Form.Control type='number' placeholder='Pro-bono cases' required />
+                  <Form.Control type='number' min='1' max='100' placeholder='Pro-bono cases' required />
                 </div>
                 <Form.Group className="mb-4">
-                    <Form.Label>Document Upload for Organization Verification</Form.Label>
+                    <Form.Label>Document Upload for Doctor </Form.Label>
                     <Form.Control type="file" name='document'  required />
                   </Form.Group>
                 <Button variant='main-inverse' type='submit' className='mb-4' size='lg'>Submit</Button>
