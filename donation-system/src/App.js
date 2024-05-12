@@ -40,6 +40,8 @@ import DonorOrganizationList from './Pages/Donor/DonorOrganizationList';
 import DonorOrganizationInfo from './Pages/Donor/DonorOrganizationInfo';
 import { HomeTab as TeachingTab } from './Pages/Donor/TeachingPostsInfo';
 import { HomeTab as MedTab } from './Pages/Donor/MedicalCaseInfo';
+import TeachFullfill from './Pages/Donor/TeacherFullifil';
+import DocFullfill from './Pages/Donor/DoctorFullFill';
 
 import Admin from './Pages/Admin/Admin';
 import AdminDashboard from './Pages/Admin/AdminDashboard';
@@ -148,6 +150,8 @@ function App() {
               <Route path='Profile' element={<Profile />} />
               <Route path='Teaching' element={<TeachingPosts />} />
               <Route path='MedicalCases' element={<MedicalCasesTable />} />
+              <Route path='TeacherFullfill' element={<TeachFullfill/>}/>
+              <Route path='DoctorFullfill' element={<DocFullfill/>}/>
 
               <Route path='Settings' element={<AccountSettings />} />
               <Route path='Teaching' element={<TeachingPosts />} />

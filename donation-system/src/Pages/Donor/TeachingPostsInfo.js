@@ -38,6 +38,9 @@ export function HomeTab() {
         navigate(-1);
       }
 
+      const FullfillPage = () => {
+        navigate('/Donor/TeacherFullfill');
+      }
     return (
         <Card>
             <h1 className='mt-2'>Teaching Post Information</h1>
@@ -50,6 +53,16 @@ export function HomeTab() {
                 <Row className="mt-1">
                     <Col>
                         <p>Subject: {post ? post.Subject : 'N/A'}</p>
+                    </Col>
+                </Row>
+                <Row className="mt-1">
+                    <Col>
+                        <p>Date: {post ? post.Date : 'N/A'}</p>
+                    </Col>
+                </Row>
+                <Row className="mt-1">
+                    <Col>
+                        <p>Time: {post ? post.time : 'N/A'}</p>
                     </Col>
                 </Row>
                 <Row className="mt-1">
@@ -84,7 +97,7 @@ export function HomeTab() {
                 </Row>
                     <div>
                         <Button variant="main-inverse" className='w-25' onClick={goBack}>Back</Button>
-                        <Button variant="main-inverse" className="w-25 ms-2" >FullFill</Button>
+                        <Button variant="main-inverse" className="w-25 ms-2" onClick={FullfillPage} >FullFill</Button>
                     </div>
             </Container>
         </Card>

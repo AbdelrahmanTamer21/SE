@@ -14,7 +14,9 @@ let medicalCasesData = [
       location: {
         lat: 30.0444,
         lng: 31.2357
-     }
+     },
+     Date:'10/10/2024',
+     time:'9:00 AM'
     },
     {
       key: 2,
@@ -31,7 +33,9 @@ let medicalCasesData = [
       location: {
         lat: 30.0444,
         lng: 31.2357
-     }
+     },
+     Date:'10/10/2024',
+     time:'9:00 AM'
     },
   
   ];
