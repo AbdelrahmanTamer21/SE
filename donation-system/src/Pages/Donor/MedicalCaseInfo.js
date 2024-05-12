@@ -30,14 +30,17 @@ export function HomeTab() {
 
     const goBack = () => {
         navigate(-1);
-      }
+    }
 
 
 
     const FullfillPage = () => {
-        navigate('/Donor/DoctorFullfill');
-      }
-    
+        if (window.confirm("Are you sure you want to fulfill this case")) {
+
+            navigate('/Donor/DoctorFullfill');
+        }
+    }
+
 
     const mapRef = useRef(null);
 
@@ -50,16 +53,16 @@ export function HomeTab() {
     return (
         <Card>
             <h1 className='mt-2'>Medical Case Information</h1>
-            <Container className='text-start ms-3'  style={{ paddingBottom: '20px' }}>
+            <Container className='text-start ms-3' style={{ paddingBottom: '20px' }}>
                 <Row className='mt-4'>
                     <Col>
                         <p>Patient Name : {med ? med.patientName : 'N/A'}</p>
                     </Col>
                 </Row>
-                    <Col>
-                        <p>Age: {med ? med.patientage : 'N/A'}</p>
-                    </Col>
-                
+                <Col>
+                    <p>Age: {med ? med.patientage : 'N/A'}</p>
+                </Col>
+
                 <Row className="mt-1">
                     <Col>
                         <p>Gender: {med ? med.patientgender : 'N/A'}</p>
@@ -95,7 +98,7 @@ export function HomeTab() {
                         <p>Case description: {med ? med.caseDesc : 'N/A'}</p>
                     </Col>
                 </Row>
-                
+
                 <Row className="mt-1">
                     <Col md="auto">
                         <p className='mt-1'>Address: {med ? med.address : 'N/A'}</p>
@@ -110,7 +113,7 @@ export function HomeTab() {
                         </ButtonMap>
                     </Col>
                 </Row>
-                
+
                 <Row className={`${isMapOpen ? "map" : "d-none"} mt-2 mb-3 justify-content-center me-2`}>
                     {med && med.location && isMapOpen && (
                         <MapContainer center={med.location} zoom={13} style={containerStyle} ref={mapRef}>
@@ -126,10 +129,10 @@ export function HomeTab() {
                         </MapContainer>
                     )}
                 </Row>
-                    <div>
-                        <Button  className='w-25' variant='main-inverse'  onClick={goBack} >Back</Button>
-                        <Button  className="w-25 ms-2" variant='main-inverse' onClick={FullfillPage}>Fulfill</Button>
-                    </div>
+                <div>
+                    <Button className='w-25' variant='main-inverse' onClick={goBack} >Back</Button>
+                    <Button className="w-25 ms-2" variant='main-inverse' onClick={FullfillPage}>Fulfill</Button>
+                </div>
             </Container>
         </Card>
     );
