@@ -1,89 +1,236 @@
-import React, { useState } from 'react';
-import { Card, Button, Row, Col } from 'react-bootstrap';
+import React, { useState, useRef } from "react";
+import { Button, Input, Space, Table, Popconfirm, message } from 'antd';
+import Highlighter from 'react-highlight-words';
+import { useNavigate } from 'react-router-dom';
+import { SearchOutlined } from '@ant-design/icons';
+import donationData from "./Pages/donationData";
 
-function FulfilledDonationPosts() {
-  const [fulfilledPosts, setFulfilledPosts] = useState([
-    // Sample data for fulfilled donation posts
-    {
-      id: 1,
-      itemName: 'Clothing',
-      description: 'Assorted clothes for children',
-      donor: {
-        name: 'John Doe',
-        email: 'john@example.com',
-        phone: '123-456-7890'
-      },
-      acknowledged: false, // Flag to track acknowledgment
-      showDetails: false // Flag to track whether donor details are shown
-    },
-    {
-      id: 2,
-      itemName: 'Food',
-      description: 'Canned goods and non-perishable items',
-      donor: {
-        name: 'Jane Smith',
-        email: 'jane@example.com',
-        phone: '987-654-3210'
-      },
-      acknowledged: false,
-      showDetails: false
+function FulfilledDonationTable() {
+    const navigate = useNavigate();
+    const [data, setData] = useState(donationData); // State to manage the donation data
+
+    const handleRowClick = (id) => {
+        navigate(`/DonorDetails/${id}`); // Navigate to DonorDetails.js with the id
     }
-  ]);
 
-  // Function to toggle showing donor details
-  const toggleDetails = (id) => {
-    const updatedPosts = fulfilledPosts.map(post =>
-      post.id === id ? { ...post, showDetails: !post.showDetails } : post
+    const [filteredInfo, setFilteredInfo] = useState({});
+    const [sortedInfo, setSortedInfo] = useState({});
+    const handleChange = (pagination, filters, sorter) => {
+        setFilteredInfo(filters);
+        setSortedInfo(sorter);
+    };
+
+    const clearAll = () => {
+        setFilteredInfo({});
+        setSortedInfo({});
+        setSearchText('');
+    };
+
+    const [searchText, setSearchText] = useState('');
+    const [searchedColumn, setSearchedColumn] = useState('');
+    const searchInput = useRef(null);
+
+    const handleSearch = (selectedKeys, confirm, dataIndex) => {
+        confirm();
+        setSearchText(selectedKeys[0]);
+        setSearchedColumn(dataIndex);
+    };
+
+    const handleReset = (clearFilters) => {
+        clearFilters();
+        setSearchText('');
+    };
+
+    const getColumnSearchProps = (dataIndex) => ({
+        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
+            <div
+                style={{
+                    padding: 8,
+                }}
+                onKeyDown={(e) => e.stopPropagation()}
+            >
+                <Input
+                    ref={searchInput}
+                    placeholder={`Search ${dataIndex}`}
+                    value={selectedKeys[0]}
+                    onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+                    onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                    style={{
+                        marginBottom: 8,
+                        display: 'block',
+                    }}
+                />
+                <Space>
+                    <Button
+                        type="primary"
+                        onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
+                        icon={<SearchOutlined />}
+                        size="small"
+                        style={{
+                            width: 90,
+                        }}
+                    >
+                        Search
+                    </Button>
+                    <Button
+                        onClick={() => clearFilters && handleReset(clearFilters)}
+                        size="small"
+                        style={{
+                            width: 90,
+                        }}
+                    >
+                        Reset
+                    </Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        onClick={() => {
+                            confirm({
+                                closeDropdown: false,
+                            });
+                            setSearchText(selectedKeys[0]);
+                            setSearchedColumn(dataIndex);
+                        }}
+                    >
+                        Filter
+                    </Button>
+                    <Button
+                        type="link"
+                        size="small"
+                        onClick={() => {
+                            close();
+                        }}
+                    >
+                        close
+                    </Button>
+                </Space>
+            </div>
+        ),
+        filterIcon: (filtered) => (
+            <SearchOutlined
+                style={{
+                    color: filtered ? '#1677ff' : undefined,
+                }}
+            />
+        ),
+        onFilter: (value, record) =>
+            record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+        onFilterDropdownOpenChange: (visible) => {
+            if (visible) {
+                setTimeout(() => searchInput.current?.select(), 100);
+            }
+        },
+        render: (text) =>
+            searchedColumn === dataIndex ? (
+                <Highlighter
+                    highlightStyle={{
+                        backgroundColor: '#ffc069',
+                        padding: 0,
+                    }}
+                    searchWords={[searchText]}
+                    autoEscape
+                    textToHighlight={text ? text.toString() : ''}
+                />
+            ) : (
+                text
+            ),
+    });
+
+    const handleAcknowledge = (id) => {
+        const updatedData = data.map(item => {
+            if (item.id === id) {
+                return { ...item, acknowledged: true };
+            }
+            return item;
+        });
+        setData(updatedData); // Update data state with the modified data
+        message.success('Acknowledged!');
+    };
+
+    const handleDelete = (id) => {
+        const updatedData = data.filter(item => item.id !== id);
+        setData(updatedData); // Update data state with the modified data
+        message.success('Deleted!');
+    };
+
+    const rowSelection = {
+        onChange: (selectedRowKeys, selectedRows) => {
+            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+        },
+        onSelect: (record, selected, selectedRows) => {
+            console.log(record, selected, selectedRows);
+        },
+        onSelectAll: (selected, selectedRows, changeRows) => {
+            console.log(selected, selectedRows, changeRows);
+        },
+    };
+
+    const generalColumns = [
+        {
+            title: '#',
+            dataIndex: 'id',
+            key: 'id',
+            width: '10%',
+            filteredValue: filteredInfo.id || null,
+            sorter: (a, b) => a.id - b.id,
+            sortOrder: sortedInfo.columnKey === 'id' ? sortedInfo.order : null,
+        },
+        {
+            title: 'Item Name',
+            dataIndex: 'itemName',
+            key: 'itemName',
+            width: '25%',
+            ...getColumnSearchProps('itemName'),
+            filteredValue: filteredInfo.itemName || null,
+            sortOrder: sortedInfo.columnKey === 'itemName' ? sortedInfo.order : null,
+        },
+        {
+            title: 'Category',
+            dataIndex: 'category',
+            key: 'category',
+            width: '15%',
+            ...getColumnSearchProps('category'),
+            filteredValue: filteredInfo.category || null,
+            sortOrder: sortedInfo.columnKey === 'category' ? sortedInfo.order : null,
+        },
+        {
+            title: 'Acknowledged',
+            dataIndex: 'acknowledged',
+            key: 'acknowledged',
+            width: '10%',
+            render: (acknowledged) => acknowledged ? 'Yes' : 'No',
+        },
+        {
+            title: 'Actions',
+            dataIndex: 'id',
+            key: 'id',
+            width: '40%', // Adjusted width
+            render: (id, record) => (
+                <>
+                    <Button onClick={() => handleRowClick(id)}>Details</Button>
+                    {!record.acknowledged && (
+                        <Button onClick={() => handleAcknowledge(id)} style={{ marginLeft: 8 }}>Acknowledge</Button>
+                    )}
+                    <Popconfirm
+                        title="Are you sure to delete this row?"
+                        onConfirm={() => handleDelete(id)}
+                        okText="Yes"
+                        cancelText="No"
+                    >
+                        <Button style={{ marginLeft: 8 }}>Delete</Button>
+                    </Popconfirm>
+                </>
+            ),
+        },
+    ];
+
+    return (
+        <>
+            <h2>Fulfilled Posts</h2>
+            <Button onClick={clearAll} className="mb-3">Clear Filters</Button>
+            <Table bordered className="mt-4" columns={generalColumns} dataSource={data} rowSelection={rowSelection} onChange={handleChange} />
+        </>
     );
-    setFulfilledPosts(updatedPosts);
-  };
+};
 
-  // Function to acknowledge donor contribution
-  const acknowledgeContribution = (id) => {
-    const updatedPosts = fulfilledPosts.map(post =>
-      post.id === id ? { ...post, acknowledged: true } : post
-    );
-    setFulfilledPosts(updatedPosts);
-  };
-
-  // Function to delete a donation post
-  const deletePost = (id) => {
-    const updatedPosts = fulfilledPosts.filter(post => post.id !== id);
-    setFulfilledPosts(updatedPosts);
-  };
-
-  return (
-    <div>
-      <h2>Fulfilled Donation Posts</h2>
-      <Row>
-        {fulfilledPosts.map(post => (
-          <Col key={post.id} xs={12} md={6} lg={4}>
-            <Card className="mb-3">
-              <Card.Body>
-                <Card.Title>{post.itemName}</Card.Title>
-                <Card.Text>{post.description}</Card.Text>
-                <Button variant="primary" onClick={() => toggleDetails(post.id)}>
-                  {post.showDetails ? 'Hide Donor Details' : 'View Donor Details'}
-                </Button>
-                <Button variant="danger" onClick={() => deletePost(post.id)}>Delete</Button>
-                {post.showDetails && (
-                  <div>
-                    <p>Donor: {post.donor.name}</p>
-                    <p>Email: {post.donor.email}</p>
-                    <p>Phone: {post.donor.phone}</p>
-                  </div>
-                )}
-                <p>Acknowledged: {post.acknowledged ? 'Yes' : 'No'}</p>
-                {!post.acknowledged && (
-                  <Button variant="success" onClick={() => acknowledgeContribution(post.id)}>Acknowledge</Button>
-                )}
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    </div>
-  );
-}
-
-export default FulfilledDonationPosts;
+export default FulfilledDonationTable;
