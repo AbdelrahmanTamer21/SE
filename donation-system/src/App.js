@@ -62,15 +62,31 @@ import { useContext } from 'react';
 import { UserContext } from './Components/UserContext';
 import notificationsData from './Pages/NotificationData'
 
-function CustomToast({ show, setShow }) {
+function CustomToast({ data }) {
+  const [show, setShow] = useState(true);
+  return (
+    <Toast show={show} onClose={() => setShow(false)} delay={8000} autohide>
+      <Toast.Header>
+        <strong className="me-auto">Notification</strong>
+      </Toast.Header>
+      <Toast.Body>{data}</Toast.Body>
+    </Toast>
+  );
+
+}
+
+function CustomToastContainer({ show, setShow }) {
   const { isLoggedIn, userRole } = useContext(UserContext);
-  console.log(userRole);
+  console.log(notificationsData);
   return isLoggedIn === true && userRole === 'Admin' ? (
     <ToastContainer
       className="p-3"
       position={'bottom-end'}
-      style={{ zIndex: 1 }}
+      style={{ zIndex: 1050 }}
     >
+      {notificationsData.map((notification) => {
+        return <CustomToast data={notification.description} />
+      })}
     </ToastContainer>
   ) : null;
 }
@@ -78,7 +94,6 @@ function CustomToast({ show, setShow }) {
 
 
 function App() {
-  const [show, setShow] = useState(true);
   return (
     <div className="App">
 
@@ -118,7 +133,6 @@ function App() {
               <Route path='Delivery' element={<Delivery />} />
               <Route path='DonorOrganizations' element={<DonorOrganizationList />} />
               <Route path='Profile' element={<Profile />} />
-              <Route path='Settings' element={<AccountSettings />} />
               <Route path='Teaching' element={<TeachingPosts />} />
               <Route path='MedicalCases' element={<MedicalCasesTable />} />
               <Route path='MedicalCasesInfo/:id' element={<MedicalCasesInfo />} />
@@ -153,21 +167,18 @@ function App() {
               <Route path='Profile' element={<Profile />} />
               <Route path='Settings' element={<AccountSettings />} />
               <Route path='Requests' element={<Requests />}>
-                <Route path='Settings' element={<AccountSettings />} />
-                <Route path='Requests' element={<Requests />}>
-                  <Route path='' element={<OrganizationsTab />} />
-                  <Route path='Donors' element={<DonorsTab />} />
-                  <Route path='Donors' element={<DonorsTab />} />
-                </Route>
-                <Route path='AdminNotifications' element={<AdminNotifications />} />
+                <Route path='' element={<OrganizationsTab />} />
+                <Route path='Donors' element={<DonorsTab />} />
               </Route>
+              <Route path='AdminNotifications' element={<AdminNotifications />} />
             </Route>
+
             <Route path='/Organization' element={<OrganizationDashboard />}>
-                <Route path='OrgViewRequests' element={<OrgViewDonationRequest />} />
-              </Route>
+              <Route path='OrgViewRequests' element={<OrgViewDonationRequest />} />
+            </Route>
           </Routes>
 
-          <CustomToast show={show} setShow={setShow}></CustomToast>
+          <CustomToastContainer />
         </SideBarProvider>
       </UserProvider>
     </div>

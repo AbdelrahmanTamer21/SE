@@ -16,11 +16,11 @@ function Login() {
     event.preventDefault();
     const user = LoginData.find((user) => user.username === username && user.password === password);
     if(user){
-      updateUser(user.type,true,username);
+      console.log(user.type,user.username);
+      updateUser(user.type,true,user.username);
       switch(user.type){
         case "Admin":
           navigate("/Admin");
-          
           break;
         case "Donor":
           if(user.status === "pending"){

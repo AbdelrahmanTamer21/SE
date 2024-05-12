@@ -25,7 +25,7 @@ const UserProvider = ({ children }) => {
   }, []);
 
   // Function to update user role and login status
-  const updateUser = (role, loggedIn,usernam) => {
+  const updateUser = (role, loggedIn,username) => {
     setUserRole(role);
     setIsLoggedIn(loggedIn);
     setUsername(username);
