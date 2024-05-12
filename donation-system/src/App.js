@@ -161,10 +161,10 @@ function App() {
                 </Route>
                 <Route path='AdminNotifications' element={<AdminNotifications />} />
               </Route>
-              <Route path='/Organization' element={<OrganizationDashboard />}>
-                <Route path='/OrgViewRequests' element={<OrgViewDonationRequest />} />
-              </Route>
             </Route>
+            <Route path='/Organization' element={<OrganizationDashboard />}>
+                <Route path='OrgViewRequests' element={<OrgViewDonationRequest />} />
+              </Route>
           </Routes>
 
           <CustomToast show={show} setShow={setShow}></CustomToast>
