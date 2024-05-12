@@ -35,9 +35,6 @@ function TopBar() {
         <>
           <FaArrowLeft className="ms-2" style={{ color: 'white' }} onMouseEnter={e => e.target.style.fontSize = '1.2em'} onMouseLeave={e => e.target.style.fontSize = '1em'} onClick={goBack}>Back</FaArrowLeft>
           <button onClick={toggleSidebar} className={`sidebar-toggle ${isOpen ? 'open' : ''} ms-3`}>
-            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQbMdpEOk1eHL8V9GHwWliqKfwb4V37ZxQZlJTMxIAOBmG674h4" alt="Toggle Sidebar" className="sidebar-toggle-icon" />
-          </button>
-          <button onClick={toggleSidebar} className={`sidebar-toggle ${isOpen ? 'open' : ''} ms-3`}>
             <SlMenu className='sidebar-toggle-icon' />
           </button>
         </>
