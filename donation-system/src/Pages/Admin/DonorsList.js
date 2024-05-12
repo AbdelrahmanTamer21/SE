@@ -5,6 +5,7 @@ import { Button, Input, Space, Table } from 'antd';
 import Highlighter from 'react-highlight-words';
 import { useNavigate } from 'react-router-dom';
 import { Container } from "react-bootstrap";
+import LoginData from "../LoginData";
 
 
 function DonorsList() {
@@ -14,6 +15,7 @@ function DonorsList() {
         navigate(`/Admin/DonorsInfo/${donor_id}`);
     }
 
+    const [data, setData] = useState(DonorsData);
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
@@ -26,6 +28,21 @@ function DonorsList() {
         clearFilters();
         setSearchText('');
     };
+
+    const handleDelete = (id) => {
+        DonorsData.forEach((item,index) => {
+            if(item.donor_id === id){
+                DonorsData.splice(index,1)
+            }
+        });
+        LoginData.forEach((item,index) => {
+            if(item.donor_id === id){
+                LoginData.splice(index,1)
+            }
+        });
+        setData(data.filter((donor) => donor.donor_id !== id));
+    }
+
     const getColumnSearchProps = (dataIndex) => ({
         filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters, close }) => (
             <div
@@ -132,14 +149,14 @@ function DonorsList() {
             title: 'First Name',
             dataIndex: 'first_name',
             key: 'first_name',
-            width: '30%',
+            width: '20%',
             ...getColumnSearchProps('first_name'),
         },
         {
             title: 'Last Name',
             dataIndex: 'last_name',
             key: 'last_name',
-            width: '30%',
+            width: '20%',
             ...getColumnSearchProps('last_name'),
         },
         {
@@ -149,20 +166,39 @@ function DonorsList() {
             ...getColumnSearchProps('email'),
             sorter: (a, b) => a.email.length - b.email.length,
             sortDirections: ['descend', 'ascend'],
+        },
+        {
+            title: 'Actions',
+            dataIndex: '',
+            key: 'x',
+            render: (_, record) => {
+                return (
+                    <Space size="middle">
+                        <Button onClick={() => handleDelete(record.donor_id)} className="me-2" style={
+                            {
+                                backgroundColor: '#da0808',
+                                color: 'white',
+                            }
+                        }>
+                            Delete</Button>
+                        <Button onClick={() => handleRowClick(record.donor_id)} className="me-2">Details</Button>
+                    </Space>
+                )
+            }
         }
     ];
 
     const rowSelection = {
         onChange: (selectedRowKeys, selectedRows) => {
-          console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+            console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
         },
         onSelect: (record, selected, selectedRows) => {
-          console.log(record, selected, selectedRows);
+            console.log(record, selected, selectedRows);
         },
         onSelectAll: (selected, selectedRows, changeRows) => {
-          console.log(selected, selectedRows, changeRows);
+            console.log(selected, selectedRows, changeRows);
         },
-      };
+    };
     return (
         <Container className="pt-3">
             <h1>Donors List</h1>
@@ -171,12 +207,7 @@ function DonorsList() {
                 rowSelection={{
                     ...rowSelection
                 }}
-                dataSource={DonorsData}
-                onRow={(record, rowIndex) => {
-                    return {
-                        onClick: () => handleRowClick(record.donor_id), // click row
-                    };
-                }}
+                dataSource={data}
             />
         </Container>
     );
