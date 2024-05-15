@@ -53,6 +53,7 @@ const Sidebar = () => {
             <Nav.Link eventKey="link-1" onClick={() => navigate(`/${userRole}/OrgViewDonationRequests`)} className="nav-link">View Donation Requests</Nav.Link>
             <Nav.Link eventKey="link-1" onClick={() => navigate(`/${userRole}/FulfilledPosition`)} className="nav-link">View Fulfilled Postions</Nav.Link>
             <Nav.Link eventKey="link-1" onClick={() => navigate(`/${userRole}/ChoosePickUp`)} className="nav-link">Choose Suitable Time-Slot</Nav.Link>
+            <Nav.Link eventKey="link-1" onClick={() => navigate(`/${userRole}/AddNewPos`)} className="nav-link">Add new available position</Nav.Link>
           </>
         )}
         

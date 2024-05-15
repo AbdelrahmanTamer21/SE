@@ -74,6 +74,8 @@ import { changePassword } from './ForgotPassword';
 import FulfilledPosition from './Pages/Organization/FulfilledPosition';
 import VolDetails from './Pages/Organization/VolDetails';
 import ChoosePickUp from './Pages/Organization/ChoosePickUp';
+import AddNewPos from './Pages/Organization/AddNewPos';
+
 
 function CustomToast({ data }) {
   const [show, setShow] = useState(true);
@@ -212,7 +214,8 @@ function App() {
 
 
               <Route path="DonationPosts" element={<DonationPosts />} />
-              
+              <Route path = "AddNewPos" element ={<AddNewPos/>}/>
+              <Route path = "OrganizationDashboard" element ={<OrganizationDashboard/>}/>
 
             </Route>
             <Route path='/ForgotPassword' element={<ForgotPassword />} />
